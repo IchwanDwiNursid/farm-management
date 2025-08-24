@@ -1,0 +1,5 @@
+import { PrismaClient } from "@/app/generated/prisma";
+
+export const DB = new PrismaClient({
+    log: ['query', 'info', 'warn', 'error']
+})

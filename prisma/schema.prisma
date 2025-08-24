@@ -1,0 +1,159 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String
+  password  String
+  role String @default("user")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Ayam {
+  id        String   @id @default(cuid())
+  nama      String
+  jumlah   Int
+  jenis   String
+  umur Int
+  gambar String
+  kandang String
+  pakan Json
+  obat Json
+  deleted Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  JadwalVaksinasi jadwal_vaksinasi[]
+  Penyakit penyakit[]
+  Mortalitas mortalitas[]
+  @@map("ayam")
+}
+
+model Vaksin {
+  id        String   @id @default(cuid())
+  nama      String
+  gambar String
+  indikasi String
+  tipe String
+  penggunaan String
+  umur Int
+  deleted Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  JasadwalVaksinasi jadwal_vaksinasi[]
+  @@map("vaksin")
+}
+
+model Pakan {
+  id        String   @id @default(cuid())
+  nama      String
+  jenis   String
+  gambar String
+  gizi String
+  harga Int
+  deleted Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("pakan")
+}
+
+model Obat {
+  id        String   @id @default(cuid())
+  nama      String
+  indikasi String
+  harga String
+  deleted Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  gambar String
+  penyakit penyakit[]
+  @@map("obat")
+}
+
+model jadwal_vaksinasi {
+  id        String   @id @default(cuid())
+  ayamId    String
+  vaksinId  String
+  tanggal   DateTime
+  dosis     Int
+  keterangan String
+  sudah Boolean @default(false)
+  deleted   Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  ayam Ayam @relation(fields: [ayamId], references: [id])
+  vaksin Vaksin @relation(fields: [vaksinId], references: [id])
+
+  @@map("jadwal_vaksinasi")
+}
+
+model penyakit {
+  id        String   @id @default(cuid())
+  nama      String
+  deskripsi String
+  gejala    String
+  pengobatan String
+  gambar    String
+  ayamId    String
+  deleted   Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ayam Ayam @relation(fields: [ayamId], references: [id])
+  obat Obat @relation(fields: [pengobatan], references: [id])
+  @@map("penyakit")
+}
+
+model mortalitas {
+  id        String   @id @default(cuid())
+  ayamId    String
+  tanggal   DateTime
+  jumlah    Int
+  penyebab  String
+  deleted   Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  ayam Ayam @relation(fields: [ayamId], references: [id])
+
+  @@map("mortalitas")
+}
+
+enum Jenis {
+  telur
+  daging
+}
+
+enum Tindakan {
+  jual
+  konsumsi
+}
+
+model panen {
+  id        String   @id @default(cuid())
+  jenis Jenis @default(telur)
+  tindakan Tindakan @default(konsumsi)
+  jumlah Int
+  harga Int?
+  deleted   Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("panen")
+}
