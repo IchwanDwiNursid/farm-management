@@ -353,6 +353,10 @@ const vaksinSchedule = async () => {
     }
 } 
 
+// const dewormingSchedule = async () => {
+    
+// }
+
 cron.schedule("*/30 * * * *", async() => {
     try {
         await vaksinSchedule();
