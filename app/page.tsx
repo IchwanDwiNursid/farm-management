@@ -1,6 +1,5 @@
 import { getAllJumlahAyam, getPenyakitPalingBanyak } from "@/service/query";
 
-
 export default async function Home() {
   const jumlahAyam = await getAllJumlahAyam();
   const penyakitAyam = await getPenyakitPalingBanyak()

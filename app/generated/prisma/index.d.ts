@@ -58,6 +58,16 @@ export type mortalitas = $Result.DefaultSelection<Prisma.$mortalitasPayload>
  * 
  */
 export type panen = $Result.DefaultSelection<Prisma.$panenPayload>
+/**
+ * Model belanja
+ * 
+ */
+export type belanja = $Result.DefaultSelection<Prisma.$belanjaPayload>
+/**
+ * Model notifications
+ * 
+ */
+export type notifications = $Result.DefaultSelection<Prisma.$notificationsPayload>
 
 /**
  * Enums
@@ -302,6 +312,26 @@ export class PrismaClient<
     * ```
     */
   get panen(): Prisma.panenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.belanja`: Exposes CRUD operations for the **belanja** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Belanjas
+    * const belanjas = await prisma.belanja.findMany()
+    * ```
+    */
+  get belanja(): Prisma.belanjaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.notifications`: Exposes CRUD operations for the **notifications** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Notifications
+    * const notifications = await prisma.notifications.findMany()
+    * ```
+    */
+  get notifications(): Prisma.notificationsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -750,7 +780,9 @@ export namespace Prisma {
     jadwal_vaksinasi: 'jadwal_vaksinasi',
     penyakit: 'penyakit',
     mortalitas: 'mortalitas',
-    panen: 'panen'
+    panen: 'panen',
+    belanja: 'belanja',
+    notifications: 'notifications'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -769,7 +801,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "ayam" | "vaksin" | "pakan" | "obat" | "jadwal_vaksinasi" | "penyakit" | "mortalitas" | "panen"
+      modelProps: "user" | "ayam" | "vaksin" | "pakan" | "obat" | "jadwal_vaksinasi" | "penyakit" | "mortalitas" | "panen" | "belanja" | "notifications"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1367,6 +1399,138 @@ export namespace Prisma {
           }
         }
       }
+      belanja: {
+        payload: Prisma.$belanjaPayload<ExtArgs>
+        fields: Prisma.belanjaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.belanjaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$belanjaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.belanjaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$belanjaPayload>
+          }
+          findFirst: {
+            args: Prisma.belanjaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$belanjaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.belanjaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$belanjaPayload>
+          }
+          findMany: {
+            args: Prisma.belanjaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$belanjaPayload>[]
+          }
+          create: {
+            args: Prisma.belanjaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$belanjaPayload>
+          }
+          createMany: {
+            args: Prisma.belanjaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.belanjaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$belanjaPayload>
+          }
+          update: {
+            args: Prisma.belanjaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$belanjaPayload>
+          }
+          deleteMany: {
+            args: Prisma.belanjaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.belanjaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.belanjaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$belanjaPayload>
+          }
+          aggregate: {
+            args: Prisma.BelanjaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBelanja>
+          }
+          groupBy: {
+            args: Prisma.belanjaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BelanjaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.belanjaCountArgs<ExtArgs>
+            result: $Utils.Optional<BelanjaCountAggregateOutputType> | number
+          }
+        }
+      }
+      notifications: {
+        payload: Prisma.$notificationsPayload<ExtArgs>
+        fields: Prisma.notificationsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.notificationsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.notificationsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationsPayload>
+          }
+          findFirst: {
+            args: Prisma.notificationsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.notificationsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationsPayload>
+          }
+          findMany: {
+            args: Prisma.notificationsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationsPayload>[]
+          }
+          create: {
+            args: Prisma.notificationsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationsPayload>
+          }
+          createMany: {
+            args: Prisma.notificationsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.notificationsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationsPayload>
+          }
+          update: {
+            args: Prisma.notificationsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationsPayload>
+          }
+          deleteMany: {
+            args: Prisma.notificationsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.notificationsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.notificationsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notificationsPayload>
+          }
+          aggregate: {
+            args: Prisma.NotificationsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNotifications>
+          }
+          groupBy: {
+            args: Prisma.notificationsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NotificationsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.notificationsCountArgs<ExtArgs>
+            result: $Utils.Optional<NotificationsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1468,6 +1632,8 @@ export namespace Prisma {
     penyakit?: penyakitOmit
     mortalitas?: mortalitasOmit
     panen?: panenOmit
+    belanja?: belanjaOmit
+    notifications?: notificationsOmit
   }
 
   /* Types for Logging */
@@ -10640,6 +10806,1830 @@ export namespace Prisma {
 
 
   /**
+   * Model belanja
+   */
+
+  export type AggregateBelanja = {
+    _count: BelanjaCountAggregateOutputType | null
+    _avg: BelanjaAvgAggregateOutputType | null
+    _sum: BelanjaSumAggregateOutputType | null
+    _min: BelanjaMinAggregateOutputType | null
+    _max: BelanjaMaxAggregateOutputType | null
+  }
+
+  export type BelanjaAvgAggregateOutputType = {
+    jumlah: number | null
+    harga: number | null
+  }
+
+  export type BelanjaSumAggregateOutputType = {
+    jumlah: number | null
+    harga: number | null
+  }
+
+  export type BelanjaMinAggregateOutputType = {
+    id: string | null
+    nama: string | null
+    jumlah: number | null
+    harga: number | null
+    deleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BelanjaMaxAggregateOutputType = {
+    id: string | null
+    nama: string | null
+    jumlah: number | null
+    harga: number | null
+    deleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BelanjaCountAggregateOutputType = {
+    id: number
+    nama: number
+    jumlah: number
+    harga: number
+    deleted: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BelanjaAvgAggregateInputType = {
+    jumlah?: true
+    harga?: true
+  }
+
+  export type BelanjaSumAggregateInputType = {
+    jumlah?: true
+    harga?: true
+  }
+
+  export type BelanjaMinAggregateInputType = {
+    id?: true
+    nama?: true
+    jumlah?: true
+    harga?: true
+    deleted?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BelanjaMaxAggregateInputType = {
+    id?: true
+    nama?: true
+    jumlah?: true
+    harga?: true
+    deleted?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BelanjaCountAggregateInputType = {
+    id?: true
+    nama?: true
+    jumlah?: true
+    harga?: true
+    deleted?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BelanjaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which belanja to aggregate.
+     */
+    where?: belanjaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of belanjas to fetch.
+     */
+    orderBy?: belanjaOrderByWithRelationInput | belanjaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: belanjaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` belanjas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` belanjas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned belanjas
+    **/
+    _count?: true | BelanjaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BelanjaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BelanjaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BelanjaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BelanjaMaxAggregateInputType
+  }
+
+  export type GetBelanjaAggregateType<T extends BelanjaAggregateArgs> = {
+        [P in keyof T & keyof AggregateBelanja]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBelanja[P]>
+      : GetScalarType<T[P], AggregateBelanja[P]>
+  }
+
+
+
+
+  export type belanjaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: belanjaWhereInput
+    orderBy?: belanjaOrderByWithAggregationInput | belanjaOrderByWithAggregationInput[]
+    by: BelanjaScalarFieldEnum[] | BelanjaScalarFieldEnum
+    having?: belanjaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BelanjaCountAggregateInputType | true
+    _avg?: BelanjaAvgAggregateInputType
+    _sum?: BelanjaSumAggregateInputType
+    _min?: BelanjaMinAggregateInputType
+    _max?: BelanjaMaxAggregateInputType
+  }
+
+  export type BelanjaGroupByOutputType = {
+    id: string
+    nama: string
+    jumlah: number
+    harga: number
+    deleted: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: BelanjaCountAggregateOutputType | null
+    _avg: BelanjaAvgAggregateOutputType | null
+    _sum: BelanjaSumAggregateOutputType | null
+    _min: BelanjaMinAggregateOutputType | null
+    _max: BelanjaMaxAggregateOutputType | null
+  }
+
+  type GetBelanjaGroupByPayload<T extends belanjaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BelanjaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BelanjaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BelanjaGroupByOutputType[P]>
+            : GetScalarType<T[P], BelanjaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type belanjaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nama?: boolean
+    jumlah?: boolean
+    harga?: boolean
+    deleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["belanja"]>
+
+
+
+  export type belanjaSelectScalar = {
+    id?: boolean
+    nama?: boolean
+    jumlah?: boolean
+    harga?: boolean
+    deleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type belanjaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama" | "jumlah" | "harga" | "deleted" | "createdAt" | "updatedAt", ExtArgs["result"]["belanja"]>
+
+  export type $belanjaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "belanja"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      nama: string
+      jumlah: number
+      harga: number
+      deleted: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["belanja"]>
+    composites: {}
+  }
+
+  type belanjaGetPayload<S extends boolean | null | undefined | belanjaDefaultArgs> = $Result.GetResult<Prisma.$belanjaPayload, S>
+
+  type belanjaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<belanjaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BelanjaCountAggregateInputType | true
+    }
+
+  export interface belanjaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['belanja'], meta: { name: 'belanja' } }
+    /**
+     * Find zero or one Belanja that matches the filter.
+     * @param {belanjaFindUniqueArgs} args - Arguments to find a Belanja
+     * @example
+     * // Get one Belanja
+     * const belanja = await prisma.belanja.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends belanjaFindUniqueArgs>(args: SelectSubset<T, belanjaFindUniqueArgs<ExtArgs>>): Prisma__belanjaClient<$Result.GetResult<Prisma.$belanjaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Belanja that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {belanjaFindUniqueOrThrowArgs} args - Arguments to find a Belanja
+     * @example
+     * // Get one Belanja
+     * const belanja = await prisma.belanja.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends belanjaFindUniqueOrThrowArgs>(args: SelectSubset<T, belanjaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__belanjaClient<$Result.GetResult<Prisma.$belanjaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Belanja that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {belanjaFindFirstArgs} args - Arguments to find a Belanja
+     * @example
+     * // Get one Belanja
+     * const belanja = await prisma.belanja.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends belanjaFindFirstArgs>(args?: SelectSubset<T, belanjaFindFirstArgs<ExtArgs>>): Prisma__belanjaClient<$Result.GetResult<Prisma.$belanjaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Belanja that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {belanjaFindFirstOrThrowArgs} args - Arguments to find a Belanja
+     * @example
+     * // Get one Belanja
+     * const belanja = await prisma.belanja.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends belanjaFindFirstOrThrowArgs>(args?: SelectSubset<T, belanjaFindFirstOrThrowArgs<ExtArgs>>): Prisma__belanjaClient<$Result.GetResult<Prisma.$belanjaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Belanjas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {belanjaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Belanjas
+     * const belanjas = await prisma.belanja.findMany()
+     * 
+     * // Get first 10 Belanjas
+     * const belanjas = await prisma.belanja.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const belanjaWithIdOnly = await prisma.belanja.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends belanjaFindManyArgs>(args?: SelectSubset<T, belanjaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$belanjaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Belanja.
+     * @param {belanjaCreateArgs} args - Arguments to create a Belanja.
+     * @example
+     * // Create one Belanja
+     * const Belanja = await prisma.belanja.create({
+     *   data: {
+     *     // ... data to create a Belanja
+     *   }
+     * })
+     * 
+     */
+    create<T extends belanjaCreateArgs>(args: SelectSubset<T, belanjaCreateArgs<ExtArgs>>): Prisma__belanjaClient<$Result.GetResult<Prisma.$belanjaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Belanjas.
+     * @param {belanjaCreateManyArgs} args - Arguments to create many Belanjas.
+     * @example
+     * // Create many Belanjas
+     * const belanja = await prisma.belanja.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends belanjaCreateManyArgs>(args?: SelectSubset<T, belanjaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Belanja.
+     * @param {belanjaDeleteArgs} args - Arguments to delete one Belanja.
+     * @example
+     * // Delete one Belanja
+     * const Belanja = await prisma.belanja.delete({
+     *   where: {
+     *     // ... filter to delete one Belanja
+     *   }
+     * })
+     * 
+     */
+    delete<T extends belanjaDeleteArgs>(args: SelectSubset<T, belanjaDeleteArgs<ExtArgs>>): Prisma__belanjaClient<$Result.GetResult<Prisma.$belanjaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Belanja.
+     * @param {belanjaUpdateArgs} args - Arguments to update one Belanja.
+     * @example
+     * // Update one Belanja
+     * const belanja = await prisma.belanja.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends belanjaUpdateArgs>(args: SelectSubset<T, belanjaUpdateArgs<ExtArgs>>): Prisma__belanjaClient<$Result.GetResult<Prisma.$belanjaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Belanjas.
+     * @param {belanjaDeleteManyArgs} args - Arguments to filter Belanjas to delete.
+     * @example
+     * // Delete a few Belanjas
+     * const { count } = await prisma.belanja.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends belanjaDeleteManyArgs>(args?: SelectSubset<T, belanjaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Belanjas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {belanjaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Belanjas
+     * const belanja = await prisma.belanja.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends belanjaUpdateManyArgs>(args: SelectSubset<T, belanjaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Belanja.
+     * @param {belanjaUpsertArgs} args - Arguments to update or create a Belanja.
+     * @example
+     * // Update or create a Belanja
+     * const belanja = await prisma.belanja.upsert({
+     *   create: {
+     *     // ... data to create a Belanja
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Belanja we want to update
+     *   }
+     * })
+     */
+    upsert<T extends belanjaUpsertArgs>(args: SelectSubset<T, belanjaUpsertArgs<ExtArgs>>): Prisma__belanjaClient<$Result.GetResult<Prisma.$belanjaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Belanjas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {belanjaCountArgs} args - Arguments to filter Belanjas to count.
+     * @example
+     * // Count the number of Belanjas
+     * const count = await prisma.belanja.count({
+     *   where: {
+     *     // ... the filter for the Belanjas we want to count
+     *   }
+     * })
+    **/
+    count<T extends belanjaCountArgs>(
+      args?: Subset<T, belanjaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BelanjaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Belanja.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BelanjaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BelanjaAggregateArgs>(args: Subset<T, BelanjaAggregateArgs>): Prisma.PrismaPromise<GetBelanjaAggregateType<T>>
+
+    /**
+     * Group by Belanja.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {belanjaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends belanjaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: belanjaGroupByArgs['orderBy'] }
+        : { orderBy?: belanjaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, belanjaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBelanjaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the belanja model
+   */
+  readonly fields: belanjaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for belanja.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__belanjaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the belanja model
+   */
+  interface belanjaFieldRefs {
+    readonly id: FieldRef<"belanja", 'String'>
+    readonly nama: FieldRef<"belanja", 'String'>
+    readonly jumlah: FieldRef<"belanja", 'Int'>
+    readonly harga: FieldRef<"belanja", 'Int'>
+    readonly deleted: FieldRef<"belanja", 'Boolean'>
+    readonly createdAt: FieldRef<"belanja", 'DateTime'>
+    readonly updatedAt: FieldRef<"belanja", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * belanja findUnique
+   */
+  export type belanjaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the belanja
+     */
+    select?: belanjaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the belanja
+     */
+    omit?: belanjaOmit<ExtArgs> | null
+    /**
+     * Filter, which belanja to fetch.
+     */
+    where: belanjaWhereUniqueInput
+  }
+
+  /**
+   * belanja findUniqueOrThrow
+   */
+  export type belanjaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the belanja
+     */
+    select?: belanjaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the belanja
+     */
+    omit?: belanjaOmit<ExtArgs> | null
+    /**
+     * Filter, which belanja to fetch.
+     */
+    where: belanjaWhereUniqueInput
+  }
+
+  /**
+   * belanja findFirst
+   */
+  export type belanjaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the belanja
+     */
+    select?: belanjaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the belanja
+     */
+    omit?: belanjaOmit<ExtArgs> | null
+    /**
+     * Filter, which belanja to fetch.
+     */
+    where?: belanjaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of belanjas to fetch.
+     */
+    orderBy?: belanjaOrderByWithRelationInput | belanjaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for belanjas.
+     */
+    cursor?: belanjaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` belanjas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` belanjas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of belanjas.
+     */
+    distinct?: BelanjaScalarFieldEnum | BelanjaScalarFieldEnum[]
+  }
+
+  /**
+   * belanja findFirstOrThrow
+   */
+  export type belanjaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the belanja
+     */
+    select?: belanjaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the belanja
+     */
+    omit?: belanjaOmit<ExtArgs> | null
+    /**
+     * Filter, which belanja to fetch.
+     */
+    where?: belanjaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of belanjas to fetch.
+     */
+    orderBy?: belanjaOrderByWithRelationInput | belanjaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for belanjas.
+     */
+    cursor?: belanjaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` belanjas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` belanjas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of belanjas.
+     */
+    distinct?: BelanjaScalarFieldEnum | BelanjaScalarFieldEnum[]
+  }
+
+  /**
+   * belanja findMany
+   */
+  export type belanjaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the belanja
+     */
+    select?: belanjaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the belanja
+     */
+    omit?: belanjaOmit<ExtArgs> | null
+    /**
+     * Filter, which belanjas to fetch.
+     */
+    where?: belanjaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of belanjas to fetch.
+     */
+    orderBy?: belanjaOrderByWithRelationInput | belanjaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing belanjas.
+     */
+    cursor?: belanjaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` belanjas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` belanjas.
+     */
+    skip?: number
+    distinct?: BelanjaScalarFieldEnum | BelanjaScalarFieldEnum[]
+  }
+
+  /**
+   * belanja create
+   */
+  export type belanjaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the belanja
+     */
+    select?: belanjaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the belanja
+     */
+    omit?: belanjaOmit<ExtArgs> | null
+    /**
+     * The data needed to create a belanja.
+     */
+    data: XOR<belanjaCreateInput, belanjaUncheckedCreateInput>
+  }
+
+  /**
+   * belanja createMany
+   */
+  export type belanjaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many belanjas.
+     */
+    data: belanjaCreateManyInput | belanjaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * belanja update
+   */
+  export type belanjaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the belanja
+     */
+    select?: belanjaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the belanja
+     */
+    omit?: belanjaOmit<ExtArgs> | null
+    /**
+     * The data needed to update a belanja.
+     */
+    data: XOR<belanjaUpdateInput, belanjaUncheckedUpdateInput>
+    /**
+     * Choose, which belanja to update.
+     */
+    where: belanjaWhereUniqueInput
+  }
+
+  /**
+   * belanja updateMany
+   */
+  export type belanjaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update belanjas.
+     */
+    data: XOR<belanjaUpdateManyMutationInput, belanjaUncheckedUpdateManyInput>
+    /**
+     * Filter which belanjas to update
+     */
+    where?: belanjaWhereInput
+    /**
+     * Limit how many belanjas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * belanja upsert
+   */
+  export type belanjaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the belanja
+     */
+    select?: belanjaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the belanja
+     */
+    omit?: belanjaOmit<ExtArgs> | null
+    /**
+     * The filter to search for the belanja to update in case it exists.
+     */
+    where: belanjaWhereUniqueInput
+    /**
+     * In case the belanja found by the `where` argument doesn't exist, create a new belanja with this data.
+     */
+    create: XOR<belanjaCreateInput, belanjaUncheckedCreateInput>
+    /**
+     * In case the belanja was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<belanjaUpdateInput, belanjaUncheckedUpdateInput>
+  }
+
+  /**
+   * belanja delete
+   */
+  export type belanjaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the belanja
+     */
+    select?: belanjaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the belanja
+     */
+    omit?: belanjaOmit<ExtArgs> | null
+    /**
+     * Filter which belanja to delete.
+     */
+    where: belanjaWhereUniqueInput
+  }
+
+  /**
+   * belanja deleteMany
+   */
+  export type belanjaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which belanjas to delete
+     */
+    where?: belanjaWhereInput
+    /**
+     * Limit how many belanjas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * belanja without action
+   */
+  export type belanjaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the belanja
+     */
+    select?: belanjaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the belanja
+     */
+    omit?: belanjaOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model notifications
+   */
+
+  export type AggregateNotifications = {
+    _count: NotificationsCountAggregateOutputType | null
+    _min: NotificationsMinAggregateOutputType | null
+    _max: NotificationsMaxAggregateOutputType | null
+  }
+
+  export type NotificationsMinAggregateOutputType = {
+    id: string | null
+    message: string | null
+    read: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NotificationsMaxAggregateOutputType = {
+    id: string | null
+    message: string | null
+    read: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NotificationsCountAggregateOutputType = {
+    id: number
+    message: number
+    read: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type NotificationsMinAggregateInputType = {
+    id?: true
+    message?: true
+    read?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NotificationsMaxAggregateInputType = {
+    id?: true
+    message?: true
+    read?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NotificationsCountAggregateInputType = {
+    id?: true
+    message?: true
+    read?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type NotificationsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which notifications to aggregate.
+     */
+    where?: notificationsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of notifications to fetch.
+     */
+    orderBy?: notificationsOrderByWithRelationInput | notificationsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: notificationsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned notifications
+    **/
+    _count?: true | NotificationsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NotificationsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NotificationsMaxAggregateInputType
+  }
+
+  export type GetNotificationsAggregateType<T extends NotificationsAggregateArgs> = {
+        [P in keyof T & keyof AggregateNotifications]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNotifications[P]>
+      : GetScalarType<T[P], AggregateNotifications[P]>
+  }
+
+
+
+
+  export type notificationsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: notificationsWhereInput
+    orderBy?: notificationsOrderByWithAggregationInput | notificationsOrderByWithAggregationInput[]
+    by: NotificationsScalarFieldEnum[] | NotificationsScalarFieldEnum
+    having?: notificationsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NotificationsCountAggregateInputType | true
+    _min?: NotificationsMinAggregateInputType
+    _max?: NotificationsMaxAggregateInputType
+  }
+
+  export type NotificationsGroupByOutputType = {
+    id: string
+    message: string
+    read: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: NotificationsCountAggregateOutputType | null
+    _min: NotificationsMinAggregateOutputType | null
+    _max: NotificationsMaxAggregateOutputType | null
+  }
+
+  type GetNotificationsGroupByPayload<T extends notificationsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NotificationsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NotificationsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NotificationsGroupByOutputType[P]>
+            : GetScalarType<T[P], NotificationsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type notificationsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    message?: boolean
+    read?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["notifications"]>
+
+
+
+  export type notificationsSelectScalar = {
+    id?: boolean
+    message?: boolean
+    read?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type notificationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "message" | "read" | "createdAt" | "updatedAt", ExtArgs["result"]["notifications"]>
+
+  export type $notificationsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "notifications"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      message: string
+      read: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["notifications"]>
+    composites: {}
+  }
+
+  type notificationsGetPayload<S extends boolean | null | undefined | notificationsDefaultArgs> = $Result.GetResult<Prisma.$notificationsPayload, S>
+
+  type notificationsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<notificationsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NotificationsCountAggregateInputType | true
+    }
+
+  export interface notificationsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['notifications'], meta: { name: 'notifications' } }
+    /**
+     * Find zero or one Notifications that matches the filter.
+     * @param {notificationsFindUniqueArgs} args - Arguments to find a Notifications
+     * @example
+     * // Get one Notifications
+     * const notifications = await prisma.notifications.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends notificationsFindUniqueArgs>(args: SelectSubset<T, notificationsFindUniqueArgs<ExtArgs>>): Prisma__notificationsClient<$Result.GetResult<Prisma.$notificationsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Notifications that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {notificationsFindUniqueOrThrowArgs} args - Arguments to find a Notifications
+     * @example
+     * // Get one Notifications
+     * const notifications = await prisma.notifications.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends notificationsFindUniqueOrThrowArgs>(args: SelectSubset<T, notificationsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__notificationsClient<$Result.GetResult<Prisma.$notificationsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Notifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notificationsFindFirstArgs} args - Arguments to find a Notifications
+     * @example
+     * // Get one Notifications
+     * const notifications = await prisma.notifications.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends notificationsFindFirstArgs>(args?: SelectSubset<T, notificationsFindFirstArgs<ExtArgs>>): Prisma__notificationsClient<$Result.GetResult<Prisma.$notificationsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Notifications that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notificationsFindFirstOrThrowArgs} args - Arguments to find a Notifications
+     * @example
+     * // Get one Notifications
+     * const notifications = await prisma.notifications.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends notificationsFindFirstOrThrowArgs>(args?: SelectSubset<T, notificationsFindFirstOrThrowArgs<ExtArgs>>): Prisma__notificationsClient<$Result.GetResult<Prisma.$notificationsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Notifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notificationsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Notifications
+     * const notifications = await prisma.notifications.findMany()
+     * 
+     * // Get first 10 Notifications
+     * const notifications = await prisma.notifications.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const notificationsWithIdOnly = await prisma.notifications.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends notificationsFindManyArgs>(args?: SelectSubset<T, notificationsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$notificationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Notifications.
+     * @param {notificationsCreateArgs} args - Arguments to create a Notifications.
+     * @example
+     * // Create one Notifications
+     * const Notifications = await prisma.notifications.create({
+     *   data: {
+     *     // ... data to create a Notifications
+     *   }
+     * })
+     * 
+     */
+    create<T extends notificationsCreateArgs>(args: SelectSubset<T, notificationsCreateArgs<ExtArgs>>): Prisma__notificationsClient<$Result.GetResult<Prisma.$notificationsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Notifications.
+     * @param {notificationsCreateManyArgs} args - Arguments to create many Notifications.
+     * @example
+     * // Create many Notifications
+     * const notifications = await prisma.notifications.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends notificationsCreateManyArgs>(args?: SelectSubset<T, notificationsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Notifications.
+     * @param {notificationsDeleteArgs} args - Arguments to delete one Notifications.
+     * @example
+     * // Delete one Notifications
+     * const Notifications = await prisma.notifications.delete({
+     *   where: {
+     *     // ... filter to delete one Notifications
+     *   }
+     * })
+     * 
+     */
+    delete<T extends notificationsDeleteArgs>(args: SelectSubset<T, notificationsDeleteArgs<ExtArgs>>): Prisma__notificationsClient<$Result.GetResult<Prisma.$notificationsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Notifications.
+     * @param {notificationsUpdateArgs} args - Arguments to update one Notifications.
+     * @example
+     * // Update one Notifications
+     * const notifications = await prisma.notifications.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends notificationsUpdateArgs>(args: SelectSubset<T, notificationsUpdateArgs<ExtArgs>>): Prisma__notificationsClient<$Result.GetResult<Prisma.$notificationsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Notifications.
+     * @param {notificationsDeleteManyArgs} args - Arguments to filter Notifications to delete.
+     * @example
+     * // Delete a few Notifications
+     * const { count } = await prisma.notifications.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends notificationsDeleteManyArgs>(args?: SelectSubset<T, notificationsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notificationsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Notifications
+     * const notifications = await prisma.notifications.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends notificationsUpdateManyArgs>(args: SelectSubset<T, notificationsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Notifications.
+     * @param {notificationsUpsertArgs} args - Arguments to update or create a Notifications.
+     * @example
+     * // Update or create a Notifications
+     * const notifications = await prisma.notifications.upsert({
+     *   create: {
+     *     // ... data to create a Notifications
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Notifications we want to update
+     *   }
+     * })
+     */
+    upsert<T extends notificationsUpsertArgs>(args: SelectSubset<T, notificationsUpsertArgs<ExtArgs>>): Prisma__notificationsClient<$Result.GetResult<Prisma.$notificationsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notificationsCountArgs} args - Arguments to filter Notifications to count.
+     * @example
+     * // Count the number of Notifications
+     * const count = await prisma.notifications.count({
+     *   where: {
+     *     // ... the filter for the Notifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends notificationsCountArgs>(
+      args?: Subset<T, notificationsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NotificationsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NotificationsAggregateArgs>(args: Subset<T, NotificationsAggregateArgs>): Prisma.PrismaPromise<GetNotificationsAggregateType<T>>
+
+    /**
+     * Group by Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notificationsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends notificationsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: notificationsGroupByArgs['orderBy'] }
+        : { orderBy?: notificationsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, notificationsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNotificationsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the notifications model
+   */
+  readonly fields: notificationsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for notifications.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__notificationsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the notifications model
+   */
+  interface notificationsFieldRefs {
+    readonly id: FieldRef<"notifications", 'String'>
+    readonly message: FieldRef<"notifications", 'String'>
+    readonly read: FieldRef<"notifications", 'Boolean'>
+    readonly createdAt: FieldRef<"notifications", 'DateTime'>
+    readonly updatedAt: FieldRef<"notifications", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * notifications findUnique
+   */
+  export type notificationsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifications
+     */
+    select?: notificationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notifications
+     */
+    omit?: notificationsOmit<ExtArgs> | null
+    /**
+     * Filter, which notifications to fetch.
+     */
+    where: notificationsWhereUniqueInput
+  }
+
+  /**
+   * notifications findUniqueOrThrow
+   */
+  export type notificationsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifications
+     */
+    select?: notificationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notifications
+     */
+    omit?: notificationsOmit<ExtArgs> | null
+    /**
+     * Filter, which notifications to fetch.
+     */
+    where: notificationsWhereUniqueInput
+  }
+
+  /**
+   * notifications findFirst
+   */
+  export type notificationsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifications
+     */
+    select?: notificationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notifications
+     */
+    omit?: notificationsOmit<ExtArgs> | null
+    /**
+     * Filter, which notifications to fetch.
+     */
+    where?: notificationsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of notifications to fetch.
+     */
+    orderBy?: notificationsOrderByWithRelationInput | notificationsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for notifications.
+     */
+    cursor?: notificationsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of notifications.
+     */
+    distinct?: NotificationsScalarFieldEnum | NotificationsScalarFieldEnum[]
+  }
+
+  /**
+   * notifications findFirstOrThrow
+   */
+  export type notificationsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifications
+     */
+    select?: notificationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notifications
+     */
+    omit?: notificationsOmit<ExtArgs> | null
+    /**
+     * Filter, which notifications to fetch.
+     */
+    where?: notificationsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of notifications to fetch.
+     */
+    orderBy?: notificationsOrderByWithRelationInput | notificationsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for notifications.
+     */
+    cursor?: notificationsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of notifications.
+     */
+    distinct?: NotificationsScalarFieldEnum | NotificationsScalarFieldEnum[]
+  }
+
+  /**
+   * notifications findMany
+   */
+  export type notificationsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifications
+     */
+    select?: notificationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notifications
+     */
+    omit?: notificationsOmit<ExtArgs> | null
+    /**
+     * Filter, which notifications to fetch.
+     */
+    where?: notificationsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of notifications to fetch.
+     */
+    orderBy?: notificationsOrderByWithRelationInput | notificationsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing notifications.
+     */
+    cursor?: notificationsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` notifications.
+     */
+    skip?: number
+    distinct?: NotificationsScalarFieldEnum | NotificationsScalarFieldEnum[]
+  }
+
+  /**
+   * notifications create
+   */
+  export type notificationsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifications
+     */
+    select?: notificationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notifications
+     */
+    omit?: notificationsOmit<ExtArgs> | null
+    /**
+     * The data needed to create a notifications.
+     */
+    data: XOR<notificationsCreateInput, notificationsUncheckedCreateInput>
+  }
+
+  /**
+   * notifications createMany
+   */
+  export type notificationsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many notifications.
+     */
+    data: notificationsCreateManyInput | notificationsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * notifications update
+   */
+  export type notificationsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifications
+     */
+    select?: notificationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notifications
+     */
+    omit?: notificationsOmit<ExtArgs> | null
+    /**
+     * The data needed to update a notifications.
+     */
+    data: XOR<notificationsUpdateInput, notificationsUncheckedUpdateInput>
+    /**
+     * Choose, which notifications to update.
+     */
+    where: notificationsWhereUniqueInput
+  }
+
+  /**
+   * notifications updateMany
+   */
+  export type notificationsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update notifications.
+     */
+    data: XOR<notificationsUpdateManyMutationInput, notificationsUncheckedUpdateManyInput>
+    /**
+     * Filter which notifications to update
+     */
+    where?: notificationsWhereInput
+    /**
+     * Limit how many notifications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * notifications upsert
+   */
+  export type notificationsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifications
+     */
+    select?: notificationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notifications
+     */
+    omit?: notificationsOmit<ExtArgs> | null
+    /**
+     * The filter to search for the notifications to update in case it exists.
+     */
+    where: notificationsWhereUniqueInput
+    /**
+     * In case the notifications found by the `where` argument doesn't exist, create a new notifications with this data.
+     */
+    create: XOR<notificationsCreateInput, notificationsUncheckedCreateInput>
+    /**
+     * In case the notifications was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<notificationsUpdateInput, notificationsUncheckedUpdateInput>
+  }
+
+  /**
+   * notifications delete
+   */
+  export type notificationsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifications
+     */
+    select?: notificationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notifications
+     */
+    omit?: notificationsOmit<ExtArgs> | null
+    /**
+     * Filter which notifications to delete.
+     */
+    where: notificationsWhereUniqueInput
+  }
+
+  /**
+   * notifications deleteMany
+   */
+  export type notificationsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which notifications to delete
+     */
+    where?: notificationsWhereInput
+    /**
+     * Limit how many notifications to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * notifications without action
+   */
+  export type notificationsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifications
+     */
+    select?: notificationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the notifications
+     */
+    omit?: notificationsOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -10788,6 +12778,30 @@ export namespace Prisma {
   export type PanenScalarFieldEnum = (typeof PanenScalarFieldEnum)[keyof typeof PanenScalarFieldEnum]
 
 
+  export const BelanjaScalarFieldEnum: {
+    id: 'id',
+    nama: 'nama',
+    jumlah: 'jumlah',
+    harga: 'harga',
+    deleted: 'deleted',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BelanjaScalarFieldEnum = (typeof BelanjaScalarFieldEnum)[keyof typeof BelanjaScalarFieldEnum]
+
+
+  export const NotificationsScalarFieldEnum: {
+    id: 'id',
+    message: 'message',
+    read: 'read',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type NotificationsScalarFieldEnum = (typeof NotificationsScalarFieldEnum)[keyof typeof NotificationsScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -10920,6 +12934,22 @@ export namespace Prisma {
   };
 
   export type panenOrderByRelevanceFieldEnum = (typeof panenOrderByRelevanceFieldEnum)[keyof typeof panenOrderByRelevanceFieldEnum]
+
+
+  export const belanjaOrderByRelevanceFieldEnum: {
+    id: 'id',
+    nama: 'nama'
+  };
+
+  export type belanjaOrderByRelevanceFieldEnum = (typeof belanjaOrderByRelevanceFieldEnum)[keyof typeof belanjaOrderByRelevanceFieldEnum]
+
+
+  export const notificationsOrderByRelevanceFieldEnum: {
+    id: 'id',
+    message: 'message'
+  };
+
+  export type notificationsOrderByRelevanceFieldEnum = (typeof notificationsOrderByRelevanceFieldEnum)[keyof typeof notificationsOrderByRelevanceFieldEnum]
 
 
   /**
@@ -11690,6 +13720,124 @@ export namespace Prisma {
     deleted?: BoolWithAggregatesFilter<"panen"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"panen"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"panen"> | Date | string
+  }
+
+  export type belanjaWhereInput = {
+    AND?: belanjaWhereInput | belanjaWhereInput[]
+    OR?: belanjaWhereInput[]
+    NOT?: belanjaWhereInput | belanjaWhereInput[]
+    id?: StringFilter<"belanja"> | string
+    nama?: StringFilter<"belanja"> | string
+    jumlah?: IntFilter<"belanja"> | number
+    harga?: IntFilter<"belanja"> | number
+    deleted?: BoolFilter<"belanja"> | boolean
+    createdAt?: DateTimeFilter<"belanja"> | Date | string
+    updatedAt?: DateTimeFilter<"belanja"> | Date | string
+  }
+
+  export type belanjaOrderByWithRelationInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    jumlah?: SortOrder
+    harga?: SortOrder
+    deleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _relevance?: belanjaOrderByRelevanceInput
+  }
+
+  export type belanjaWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: belanjaWhereInput | belanjaWhereInput[]
+    OR?: belanjaWhereInput[]
+    NOT?: belanjaWhereInput | belanjaWhereInput[]
+    nama?: StringFilter<"belanja"> | string
+    jumlah?: IntFilter<"belanja"> | number
+    harga?: IntFilter<"belanja"> | number
+    deleted?: BoolFilter<"belanja"> | boolean
+    createdAt?: DateTimeFilter<"belanja"> | Date | string
+    updatedAt?: DateTimeFilter<"belanja"> | Date | string
+  }, "id">
+
+  export type belanjaOrderByWithAggregationInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    jumlah?: SortOrder
+    harga?: SortOrder
+    deleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: belanjaCountOrderByAggregateInput
+    _avg?: belanjaAvgOrderByAggregateInput
+    _max?: belanjaMaxOrderByAggregateInput
+    _min?: belanjaMinOrderByAggregateInput
+    _sum?: belanjaSumOrderByAggregateInput
+  }
+
+  export type belanjaScalarWhereWithAggregatesInput = {
+    AND?: belanjaScalarWhereWithAggregatesInput | belanjaScalarWhereWithAggregatesInput[]
+    OR?: belanjaScalarWhereWithAggregatesInput[]
+    NOT?: belanjaScalarWhereWithAggregatesInput | belanjaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"belanja"> | string
+    nama?: StringWithAggregatesFilter<"belanja"> | string
+    jumlah?: IntWithAggregatesFilter<"belanja"> | number
+    harga?: IntWithAggregatesFilter<"belanja"> | number
+    deleted?: BoolWithAggregatesFilter<"belanja"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"belanja"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"belanja"> | Date | string
+  }
+
+  export type notificationsWhereInput = {
+    AND?: notificationsWhereInput | notificationsWhereInput[]
+    OR?: notificationsWhereInput[]
+    NOT?: notificationsWhereInput | notificationsWhereInput[]
+    id?: StringFilter<"notifications"> | string
+    message?: StringFilter<"notifications"> | string
+    read?: BoolFilter<"notifications"> | boolean
+    createdAt?: DateTimeFilter<"notifications"> | Date | string
+    updatedAt?: DateTimeFilter<"notifications"> | Date | string
+  }
+
+  export type notificationsOrderByWithRelationInput = {
+    id?: SortOrder
+    message?: SortOrder
+    read?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _relevance?: notificationsOrderByRelevanceInput
+  }
+
+  export type notificationsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: notificationsWhereInput | notificationsWhereInput[]
+    OR?: notificationsWhereInput[]
+    NOT?: notificationsWhereInput | notificationsWhereInput[]
+    message?: StringFilter<"notifications"> | string
+    read?: BoolFilter<"notifications"> | boolean
+    createdAt?: DateTimeFilter<"notifications"> | Date | string
+    updatedAt?: DateTimeFilter<"notifications"> | Date | string
+  }, "id">
+
+  export type notificationsOrderByWithAggregationInput = {
+    id?: SortOrder
+    message?: SortOrder
+    read?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: notificationsCountOrderByAggregateInput
+    _max?: notificationsMaxOrderByAggregateInput
+    _min?: notificationsMinOrderByAggregateInput
+  }
+
+  export type notificationsScalarWhereWithAggregatesInput = {
+    AND?: notificationsScalarWhereWithAggregatesInput | notificationsScalarWhereWithAggregatesInput[]
+    OR?: notificationsScalarWhereWithAggregatesInput[]
+    NOT?: notificationsScalarWhereWithAggregatesInput | notificationsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"notifications"> | string
+    message?: StringWithAggregatesFilter<"notifications"> | string
+    read?: BoolWithAggregatesFilter<"notifications"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"notifications"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"notifications"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -12463,6 +14611,132 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type belanjaCreateInput = {
+    id?: string
+    nama: string
+    jumlah: number
+    harga: number
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type belanjaUncheckedCreateInput = {
+    id?: string
+    nama: string
+    jumlah: number
+    harga: number
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type belanjaUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jumlah?: IntFieldUpdateOperationsInput | number
+    harga?: IntFieldUpdateOperationsInput | number
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type belanjaUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jumlah?: IntFieldUpdateOperationsInput | number
+    harga?: IntFieldUpdateOperationsInput | number
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type belanjaCreateManyInput = {
+    id?: string
+    nama: string
+    jumlah: number
+    harga: number
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type belanjaUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jumlah?: IntFieldUpdateOperationsInput | number
+    harga?: IntFieldUpdateOperationsInput | number
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type belanjaUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jumlah?: IntFieldUpdateOperationsInput | number
+    harga?: IntFieldUpdateOperationsInput | number
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type notificationsCreateInput = {
+    id?: string
+    message: string
+    read?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type notificationsUncheckedCreateInput = {
+    id?: string
+    message: string
+    read?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type notificationsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    read?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type notificationsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    read?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type notificationsCreateManyInput = {
+    id?: string
+    message: string
+    read?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type notificationsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    read?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type notificationsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    read?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -13145,6 +15419,82 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type belanjaOrderByRelevanceInput = {
+    fields: belanjaOrderByRelevanceFieldEnum | belanjaOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type belanjaCountOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    jumlah?: SortOrder
+    harga?: SortOrder
+    deleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type belanjaAvgOrderByAggregateInput = {
+    jumlah?: SortOrder
+    harga?: SortOrder
+  }
+
+  export type belanjaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    jumlah?: SortOrder
+    harga?: SortOrder
+    deleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type belanjaMinOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    jumlah?: SortOrder
+    harga?: SortOrder
+    deleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type belanjaSumOrderByAggregateInput = {
+    jumlah?: SortOrder
+    harga?: SortOrder
+  }
+
+  export type notificationsOrderByRelevanceInput = {
+    fields: notificationsOrderByRelevanceFieldEnum | notificationsOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type notificationsCountOrderByAggregateInput = {
+    id?: SortOrder
+    message?: SortOrder
+    read?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type notificationsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    message?: SortOrder
+    read?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type notificationsMinOrderByAggregateInput = {
+    id?: SortOrder
+    message?: SortOrder
+    read?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {

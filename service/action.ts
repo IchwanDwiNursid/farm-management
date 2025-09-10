@@ -1,7 +1,7 @@
 "use server"
 
 import { DB } from "@/config/database";
-import { AyamType, ObatType, PakanType, PanenType, PenyakitType, RegisterType, VaksinType } from "@/types/input";
+import { AyamType, BelanjaType, ObatType, PakanType, PanenType, PenyakitType, RegisterType, VaksinType } from "@/types/input";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Jenis, Tindakan} from "@/app/generated/prisma";
@@ -245,6 +245,22 @@ export const createPanen = async (data: PanenType) => {
     redirect("/panen");
 }
 
+export const createBelanja = async (data: BelanjaType) => {
+    try {
+        await DB.belanja.create({
+            data: {
+                nama: data.nama,
+                jumlah: Number(data.jumlah),
+                harga: Number(data.harga),
+            }
+        })
+
+        redirect("/admin/daftar-belanja")
+    } catch(error){
+        console.log(error)
+    }
+}
+
 export const login = async (username: string, password: string) => {
     const user = await DB.user.findFirst({
         where: {
@@ -272,7 +288,7 @@ export const login = async (username: string, password: string) => {
         maxAge: 60 * 60 * 24 * 15
     });
 
-    redirect("/");
+    return {success: true};
 }
 
 export const getIncome = async () => {

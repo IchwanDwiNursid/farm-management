@@ -1,5 +1,5 @@
 import { getIncome } from '@/service/action';
-import {getAllPanen, getAllPanenBesedOnMont } from '@/service/query'
+import {getAllPanen, getAllPanenBesedOnMonth } from '@/service/query'
 import Link from 'next/link'
 import { redirect } from 'next/navigation';
 import React from 'react'
@@ -9,19 +9,12 @@ const PanenPage = async() => {
   if (panens.length === 0) {
     redirect('/panen/tambah')
   }
-  const monthPanen = await getAllPanenBesedOnMont()
+  const monthPanen = await getAllPanenBesedOnMonth()
   const telur = monthPanen?.find(item => item.jenis === "telur")?.total || 0;
   const daging = monthPanen?.find(item => item.jenis === "daging")?.total || 0;
   const income = await getIncome()
-  console.log(income)
   return (
     <div className="row" style={{ marginTop: 50 }}>
-      {/* <div className="col-12 text-end mb-3 px-5 d-flex justify-content-between">
-            <h3>List Panen</h3>
-            <Link href="/panen/tambah" className="btn btn-primary" style={{ width: 80 }}>
-                Tambah
-            </Link>
-      </div> */}
       <div className="col-12 mb-3 px-5">
         <div className="d-flex justify-content-between align-items-center">
           <table className="table table-borderless w-25 mb-0">

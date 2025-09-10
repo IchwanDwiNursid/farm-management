@@ -4,6 +4,7 @@ import { logout } from "@/service/action";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { GoBellFill } from "react-icons/go";
 
 const Navbar = () => {
 
@@ -19,7 +20,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg bg-primary">
+    <nav className="navbar navbar-expand-lg bg-primary fixed-top">
       <div className="container-fluid d-flex mx-2">
         <a className="navbar-brand" href="#">
           <Image src="/logo_ayam.png" alt="logo" width={50} height={50} />
@@ -65,7 +66,7 @@ const Navbar = () => {
             {!loading && (
                 <li className="nav-item dropdown">
                   <button
-                    className="btn btn-primary dropdown-toggle"
+                    className="btn btn-primary"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
@@ -102,8 +103,28 @@ const Navbar = () => {
                     </form>
                     </li>
                   </ul>
-              </li>
+                </li>
             )}
+            <li className="nav-item dropdown">
+              <div
+                className="btn btn-primary position-relative"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <GoBellFill size={25} />
+                <span
+                  className="position-absolute bg-danger rounded-circle"
+                  style={{
+                    padding: "6px",
+                    top: "2px",
+                    left: "24px"
+                  }}
+                ></span>
+              </div>
+              <ul className="dropdown-menu dropdown-menu-end">
+                <li className="p-2">No Have Notification</li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>

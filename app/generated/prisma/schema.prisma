@@ -161,3 +161,23 @@ model panen {
 
   @@map("panen")
 }
+
+model belanja {
+  id        String   @id @default(cuid())
+  nama      String
+  jumlah    Int
+  harga     Int
+  deleted   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("belanja")
+}
+
+model notifications {
+  id        String   @id @default(cuid())
+  message   String   @db.Text
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

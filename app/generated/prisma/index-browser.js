@@ -228,6 +228,24 @@ exports.Prisma.PanenScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.BelanjaScalarFieldEnum = {
+  id: 'id',
+  nama: 'nama',
+  jumlah: 'jumlah',
+  harga: 'harga',
+  deleted: 'deleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.NotificationsScalarFieldEnum = {
+  id: 'id',
+  message: 'message',
+  read: 'read',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -319,6 +337,16 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.panenOrderByRelevanceFieldEnum = {
   id: 'id'
 };
+
+exports.Prisma.belanjaOrderByRelevanceFieldEnum = {
+  id: 'id',
+  nama: 'nama'
+};
+
+exports.Prisma.notificationsOrderByRelevanceFieldEnum = {
+  id: 'id',
+  message: 'message'
+};
 exports.Jenis = exports.$Enums.Jenis = {
   telur: 'telur',
   daging: 'daging'
@@ -338,7 +366,9 @@ exports.Prisma.ModelName = {
   jadwal_vaksinasi: 'jadwal_vaksinasi',
   penyakit: 'penyakit',
   mortalitas: 'mortalitas',
-  panen: 'panen'
+  panen: 'panen',
+  belanja: 'belanja',
+  notifications: 'notifications'
 };
 
 /**

@@ -176,13 +176,22 @@ export const getPenyakitPalingBanyak = async () => {
     }
 }
 
-export const getAllPanenBesedOnMont = async() => {
+export const getAllBelanja = async() => {
+    const belanja = await DB.belanja.findMany({
+        where: {
+            deleted: false
+        },
+        orderBy: {
+            createdAt: 'desc'
+        }
+    })
+    return belanja
+}
+
+export const getAllPanenBesedOnMonth = async() => {
     const now = new Date();
     const start = startOfMonth(now);
     const end = endOfMonth(now);
-
-    const startDate = format(start, "yyyy-MM-dd");
-    const endDate = format(end, "yyyy-MM-dd");
 
     const result = await DB.$queryRaw<
     { jenis: string; total: number }[]
@@ -195,5 +204,19 @@ export const getAllPanenBesedOnMont = async() => {
   `;
 
   return result
+}
 
+export const getAllBelanjaBesedOnMonth = async() => {
+    const now = new Date();
+    const start = startOfMonth(now);
+    const end = endOfMonth(now);
+
+    const result = await DB.$queryRaw<any>`
+        SELECT SUM(harga) as total
+        FROM belanja
+        WHERE deleted = false
+            AND createdAt BETWEEN ${start} AND ${end}
+    `;
+
+    return result[0]?.total || 0; 
 }

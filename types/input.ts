@@ -54,6 +54,12 @@ export const PanenSchema = z.object({
     harga: z.string().optional()
 })
 
+export const BelanjaSchema = z.object({
+    nama: z.string().min(1, "Nama harus diisi"),
+    jumlah: z.string().min(1, "Jumlah harus diisi"),
+    harga: z.string().min(1, "Harga harus diisi"),
+})
+
 export const LoginSchema = z.object({
     username: z.string().min(1, "Username harus diisi"),
     password: z.string().min(1, "Password harus diisi"),
@@ -73,3 +79,4 @@ export type PenyakitType = z.infer<typeof PenyakitSchema>;
 export type PanenType = z.infer<typeof PanenSchema>;
 export type LoginType = z.infer<typeof LoginSchema>;
 export type RegisterType = z.infer<typeof RegisterSchema>
+export type BelanjaType = z.infer<typeof BelanjaSchema>

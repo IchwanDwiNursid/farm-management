@@ -1,12 +1,16 @@
 "use client"
+import { useUser } from '@/context/UserContext';
 import { login } from '@/service/action';
 import { LoginSchema, LoginType } from '@/types/input'
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from 'react';
 import {useForm } from "react-hook-form";
+import { useRouter } from 'next/navigation';
 
 const LoginForm = () => {
     const [error,setError] = useState<string| null>(null);
+    const {refetchUser} = useUser()
+    const router = useRouter();
     const {
         handleSubmit,
         formState:{ errors},
@@ -28,8 +32,10 @@ const LoginForm = () => {
 
     const onSubmit = async (data: LoginType) => {
             const result = await login(data.username,data.password)
-            if (result.error){
-                setError(result.error);
+            if (result.success){
+                await refetchUser();
+                router.push('/');
+                setError(null);
             }
         }
   return (

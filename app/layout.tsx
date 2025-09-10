@@ -49,10 +49,10 @@ export default async function RootLayout({
       >
         <UserProvider>
           <Navbar/>
+          <div className="container-fluid" style={{marginTop: "100px"}}>
+              {children}
+          </div>
         </UserProvider>
-        <div className="container-fluid mt-3">
-            {children}
-        </div>
         <BootstrapClient/>
       </body>
     </html>
