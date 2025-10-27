@@ -254,8 +254,6 @@ export const createBelanja = async (data: BelanjaType) => {
                 harga: Number(data.harga),
             }
         })
-
-        redirect("/admin/daftar-belanja")
     } catch(error){
         console.log(error)
     }

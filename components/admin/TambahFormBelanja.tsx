@@ -4,8 +4,11 @@ import { BelanjaSchema, BelanjaType } from '@/types/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react'
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 
 const TambahFormBelanja = () => {
+    const router = useRouter()
+
     const {
         handleSubmit,
         formState:{ errors},
@@ -17,10 +20,12 @@ const TambahFormBelanja = () => {
 
     const onSubmit = async (data: BelanjaType) => {
         await createBelanja(data);
+        router.push("/admin/daftar-belanja")
     }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <h1>Tambah Belanjaan</h1>
       <div className="mb-3">
             <label htmlFor="nama" className="form-label">Nama</label>
             <input
