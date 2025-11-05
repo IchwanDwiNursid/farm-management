@@ -330,51 +330,16 @@ export const logout = async () => {
     redirect("/login");
 }
 
-const vaksinSchedule = async () => {
-    // const fourteenDaysAgo = subDays(new Date(), 14);
-    const sevenDaysAgo = subDays(new Date(), 7); 
 
-    const ayam = await DB.ayam.findMany({
-        where: {
-            createdAt:{
-                lte: endOfDay(sevenDaysAgo)
-            }
-        }
-    })
-
-    for (const ayamItem of ayam) {
-
-        const haveVaksin = await DB.jadwal_vaksinasi.findFirst({
+export const deleteAyam = async (ayamId: string) => {
+    try{
+        await DB.ayam.delete({
             where: {
-                ayamId: ayamItem.id,
-                vaksinId: "cmeb9p1y90007nrmmipu03r9t"
+                id: ayamId
             }
         })
-
-        if (haveVaksin) {
-            continue;
-        } else {
-            await DB.jadwal_vaksinasi.create({
-                data: {
-                    ayamId: ayamItem.id,
-                    keterangan: "Vaksin wajib kedua",
-                    vaksinId: "cmeb9p1y90007nrmmipu03r9t",
-                    tanggal: new Date(),
-                    dosis: 1,
-                }
-            });
-        }
+    }catch(e){
+        console.log((e as Error).message)
     }
-} 
+}
 
-// const dewormingSchedule = async () => {
-    
-// }
-
-cron.schedule("*/30 * * * *", async() => {
-    try {
-        await vaksinSchedule();
-    } catch (error) {
-        console.log(error)
-    }
-});

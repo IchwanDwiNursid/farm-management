@@ -1,9 +1,20 @@
 "use client"
 
+import { deleteAyam } from '@/service/action';
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation';
 
 const TableAyamClient = ({ayam} : {ayam : any}) => {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const router = useRouter()
+    const handleDeleteAyam = async(ayamId: string) => {
+      try{
+        await deleteAyam(ayamId)
+        router.refresh()
+      }catch(e){
+        console.log((e as Error).message)
+      }
+    }
   return (
     <table className="table table-striped table-bordered">
       <thead className="table-primary">
@@ -27,7 +38,7 @@ const TableAyamClient = ({ayam} : {ayam : any}) => {
             Pakan
           </th>
           <th scope="col" className="text-center">
-            Vaksin Terakhir
+            Vaksin
           </th>
           <th scope="col" className="text-center">
             Obat
@@ -104,7 +115,7 @@ const TableAyamClient = ({ayam} : {ayam : any}) => {
               {item.obat?.toLocaleString()}
             </td>
             <td className='align-middle text-center'>
-              <button className='btn btn-danger'>Delete</button>
+              <button className='btn btn-danger me-2' onClick={() => handleDeleteAyam(item.id as string)}>Delete</button>
               <button className='btn btn-success'>Update</button>
             </td>
           </tr>

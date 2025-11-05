@@ -31,7 +31,7 @@ const TambahFormBelanja = () => {
             <input
                 {...register("nama")}
                 type="text"
-                className="form-control"
+                className="form-control bg-transparent"
                 id="nama"
                 name="nama"
             />
@@ -46,7 +46,7 @@ const TambahFormBelanja = () => {
         <input
           {...register("jumlah")}
           type="text"
-          className="form-control"
+          className="form-control bg-transparent"
           id="jumlah"
           name="jumlah"
         />
@@ -59,7 +59,7 @@ const TambahFormBelanja = () => {
             <input
                 {...register("harga")}
                 type="text"
-                className="form-control"
+                className="form-control bg-transparent"
                 id="harga"
                 name="harga"
             />

@@ -101,7 +101,7 @@ model jadwal_vaksinasi {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  ayam   Ayam   @relation(fields: [ayamId], references: [id])
+  ayam   Ayam   @relation(fields: [ayamId], references: [id], onDelete: Cascade)
   vaksin Vaksin @relation(fields: [vaksinId], references: [id])
 
   @@map("jadwal_vaksinasi")
@@ -118,7 +118,7 @@ model penyakit {
   deleted    Boolean  @default(false)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  ayam       Ayam     @relation(fields: [ayamId], references: [id])
+  ayam       Ayam     @relation(fields: [ayamId], references: [id], onDelete: Cascade)
   obat       Obat     @relation(fields: [pengobatan], references: [id])
 
   @@map("penyakit")
@@ -134,7 +134,7 @@ model mortalitas {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  ayam Ayam @relation(fields: [ayamId], references: [id])
+  ayam Ayam @relation(fields: [ayamId], references: [id], onDelete: Cascade)
 
   @@map("mortalitas")
 }

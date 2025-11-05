@@ -12,7 +12,6 @@ export const getAllAyam = async () => {
             a.pakan,
             a.gambar,
             DATE_FORMAT(a.createdAt, '%Y-%m-%d') AS createdAt,
-            DATE_FORMAT(jv.tanggal, '%Y-%m-%d') AS tanggal_vaksin_terakhir,
             COALESCE(SUM(m.jumlah), 0) AS jumlah_mortalitas,
             v.nama AS nama_vaksin
         FROM ayam a
@@ -219,4 +218,22 @@ export const getAllBelanjaBesedOnMonth = async() => {
     `;
 
     return result[0]?.total || 0; 
+}
+
+export const getTotalBelanjaPerBulan = async() =>{
+    try{
+        const data = await DB.$queryRaw`
+            SELECT
+                DATE_FORMAT(createdAt, '%Y-%m') as bulan,
+                SUM(harga) as total_harga
+            FROM belanja
+            WHERE deleted = 0
+            GROUP BY DATE_FORMAT(createdAt, '%Y-%m')
+            ORDER BY bulan DESC;
+        `
+
+        return data
+    }catch(e){
+        console.log((e as Error).message)
+    }
 }
