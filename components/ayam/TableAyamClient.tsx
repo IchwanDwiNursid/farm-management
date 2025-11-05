@@ -32,6 +32,9 @@ const TableAyamClient = ({ayam} : {ayam : any}) => {
           <th scope="col" className="text-center">
             Obat
           </th>
+          <th scope="col" className="text-center">
+            Action
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -99,6 +102,10 @@ const TableAyamClient = ({ayam} : {ayam : any}) => {
             <td className="align-middle text-center">{item.nama_vaksin}</td>
             <td className="align-middle text-center">
               {item.obat?.toLocaleString()}
+            </td>
+            <td className='align-middle text-center'>
+              <button className='btn btn-danger'>Delete</button>
+              <button className='btn btn-success'>Update</button>
             </td>
           </tr>
         ))}
