@@ -194,6 +194,20 @@ exports.Prisma.Jadwal_vaksinasiScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.Jadwal_ObatScalarFieldEnum = {
+  id: 'id',
+  ayamId: 'ayamId',
+  obatId: 'obatId',
+  tanggal: 'tanggal',
+  dosis: 'dosis',
+  keterangan: 'keterangan',
+  sudah: 'sudah',
+  send_notification: 'send_notification',
+  deleted: 'deleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.PenyakitScalarFieldEnum = {
   id: 'id',
   nama: 'nama',
@@ -315,6 +329,13 @@ exports.Prisma.jadwal_vaksinasiOrderByRelevanceFieldEnum = {
   keterangan: 'keterangan'
 };
 
+exports.Prisma.Jadwal_ObatOrderByRelevanceFieldEnum = {
+  id: 'id',
+  ayamId: 'ayamId',
+  obatId: 'obatId',
+  keterangan: 'keterangan'
+};
+
 exports.Prisma.penyakitOrderByRelevanceFieldEnum = {
   id: 'id',
   nama: 'nama',
@@ -370,6 +391,7 @@ exports.Prisma.ModelName = {
   Pakan: 'Pakan',
   Obat: 'Obat',
   jadwal_vaksinasi: 'jadwal_vaksinasi',
+  Jadwal_Obat: 'Jadwal_Obat',
   penyakit: 'penyakit',
   mortalitas: 'mortalitas',
   panen: 'panen',

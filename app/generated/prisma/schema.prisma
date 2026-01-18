@@ -39,6 +39,7 @@ model Ayam {
   createdAt       DateTime           @default(now())
   updatedAt       DateTime           @updatedAt
   JadwalVaksinasi jadwal_vaksinasi[]
+  JadwalObat      Jadwal_Obat[]
   Penyakit        penyakit[]
   Mortalitas      mortalitas[]
 
@@ -76,15 +77,16 @@ model Pakan {
 }
 
 model Obat {
-  id        String     @id @default(cuid())
-  nama      String
-  indikasi  String
-  harga     String
-  deleted   Boolean    @default(false)
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  gambar    String
-  penyakit  penyakit[]
+  id          String        @id @default(cuid())
+  nama        String
+  indikasi    String
+  harga       String
+  deleted     Boolean       @default(false)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  gambar      String
+  Penyakit    penyakit[]
+  Jadwal_Obat Jadwal_Obat[]
 
   @@map("obat")
 }
@@ -106,6 +108,25 @@ model jadwal_vaksinasi {
   vaksin Vaksin @relation(fields: [vaksinId], references: [id])
 
   @@map("jadwal_vaksinasi")
+}
+
+model Jadwal_Obat {
+  id                String   @id @default(cuid())
+  ayamId            String
+  obatId            String
+  tanggal           DateTime
+  dosis             Int
+  keterangan        String
+  sudah             Boolean  @default(false)
+  send_notification Boolean  @default(false)
+  deleted           Boolean  @default(false)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  ayam Ayam @relation(fields: [ayamId], references: [id], onDelete: Cascade)
+  obat Obat @relation(fields: [obatId], references: [id])
+
+  @@map("jadwal_obat")
 }
 
 model penyakit {

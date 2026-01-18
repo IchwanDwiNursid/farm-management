@@ -44,6 +44,11 @@ export type Obat = $Result.DefaultSelection<Prisma.$ObatPayload>
  */
 export type jadwal_vaksinasi = $Result.DefaultSelection<Prisma.$jadwal_vaksinasiPayload>
 /**
+ * Model Jadwal_Obat
+ * 
+ */
+export type Jadwal_Obat = $Result.DefaultSelection<Prisma.$Jadwal_ObatPayload>
+/**
  * Model penyakit
  * 
  */
@@ -293,6 +298,16 @@ export class PrismaClient<
     * ```
     */
   get jadwal_vaksinasi(): Prisma.jadwal_vaksinasiDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.jadwal_Obat`: Exposes CRUD operations for the **Jadwal_Obat** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Jadwal_Obats
+    * const jadwal_Obats = await prisma.jadwal_Obat.findMany()
+    * ```
+    */
+  get jadwal_Obat(): Prisma.Jadwal_ObatDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.penyakit`: Exposes CRUD operations for the **penyakit** model.
@@ -789,6 +804,7 @@ export namespace Prisma {
     Pakan: 'Pakan',
     Obat: 'Obat',
     jadwal_vaksinasi: 'jadwal_vaksinasi',
+    Jadwal_Obat: 'Jadwal_Obat',
     penyakit: 'penyakit',
     mortalitas: 'mortalitas',
     panen: 'panen',
@@ -812,7 +828,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "ayam" | "vaksin" | "pakan" | "obat" | "jadwal_vaksinasi" | "penyakit" | "mortalitas" | "panen" | "belanja" | "notifications"
+      modelProps: "user" | "ayam" | "vaksin" | "pakan" | "obat" | "jadwal_vaksinasi" | "jadwal_Obat" | "penyakit" | "mortalitas" | "panen" | "belanja" | "notifications"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1209,6 +1225,72 @@ export namespace Prisma {
           count: {
             args: Prisma.jadwal_vaksinasiCountArgs<ExtArgs>
             result: $Utils.Optional<Jadwal_vaksinasiCountAggregateOutputType> | number
+          }
+        }
+      }
+      Jadwal_Obat: {
+        payload: Prisma.$Jadwal_ObatPayload<ExtArgs>
+        fields: Prisma.Jadwal_ObatFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.Jadwal_ObatFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Jadwal_ObatPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.Jadwal_ObatFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Jadwal_ObatPayload>
+          }
+          findFirst: {
+            args: Prisma.Jadwal_ObatFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Jadwal_ObatPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.Jadwal_ObatFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Jadwal_ObatPayload>
+          }
+          findMany: {
+            args: Prisma.Jadwal_ObatFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Jadwal_ObatPayload>[]
+          }
+          create: {
+            args: Prisma.Jadwal_ObatCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Jadwal_ObatPayload>
+          }
+          createMany: {
+            args: Prisma.Jadwal_ObatCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.Jadwal_ObatDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Jadwal_ObatPayload>
+          }
+          update: {
+            args: Prisma.Jadwal_ObatUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Jadwal_ObatPayload>
+          }
+          deleteMany: {
+            args: Prisma.Jadwal_ObatDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.Jadwal_ObatUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.Jadwal_ObatUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Jadwal_ObatPayload>
+          }
+          aggregate: {
+            args: Prisma.Jadwal_ObatAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateJadwal_Obat>
+          }
+          groupBy: {
+            args: Prisma.Jadwal_ObatGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Jadwal_ObatGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.Jadwal_ObatCountArgs<ExtArgs>
+            result: $Utils.Optional<Jadwal_ObatCountAggregateOutputType> | number
           }
         }
       }
@@ -1640,6 +1722,7 @@ export namespace Prisma {
     pakan?: PakanOmit
     obat?: ObatOmit
     jadwal_vaksinasi?: jadwal_vaksinasiOmit
+    jadwal_Obat?: Jadwal_ObatOmit
     penyakit?: penyakitOmit
     mortalitas?: mortalitasOmit
     panen?: panenOmit
@@ -1745,12 +1828,14 @@ export namespace Prisma {
 
   export type AyamCountOutputType = {
     JadwalVaksinasi: number
+    JadwalObat: number
     Penyakit: number
     Mortalitas: number
   }
 
   export type AyamCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     JadwalVaksinasi?: boolean | AyamCountOutputTypeCountJadwalVaksinasiArgs
+    JadwalObat?: boolean | AyamCountOutputTypeCountJadwalObatArgs
     Penyakit?: boolean | AyamCountOutputTypeCountPenyakitArgs
     Mortalitas?: boolean | AyamCountOutputTypeCountMortalitasArgs
   }
@@ -1771,6 +1856,13 @@ export namespace Prisma {
    */
   export type AyamCountOutputTypeCountJadwalVaksinasiArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: jadwal_vaksinasiWhereInput
+  }
+
+  /**
+   * AyamCountOutputType without action
+   */
+  export type AyamCountOutputTypeCountJadwalObatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Jadwal_ObatWhereInput
   }
 
   /**
@@ -1824,11 +1916,13 @@ export namespace Prisma {
    */
 
   export type ObatCountOutputType = {
-    penyakit: number
+    Penyakit: number
+    Jadwal_Obat: number
   }
 
   export type ObatCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    penyakit?: boolean | ObatCountOutputTypeCountPenyakitArgs
+    Penyakit?: boolean | ObatCountOutputTypeCountPenyakitArgs
+    Jadwal_Obat?: boolean | ObatCountOutputTypeCountJadwal_ObatArgs
   }
 
   // Custom InputTypes
@@ -1847,6 +1941,13 @@ export namespace Prisma {
    */
   export type ObatCountOutputTypeCountPenyakitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: penyakitWhereInput
+  }
+
+  /**
+   * ObatCountOutputType without action
+   */
+  export type ObatCountOutputTypeCountJadwal_ObatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Jadwal_ObatWhereInput
   }
 
 
@@ -2998,6 +3099,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     JadwalVaksinasi?: boolean | Ayam$JadwalVaksinasiArgs<ExtArgs>
+    JadwalObat?: boolean | Ayam$JadwalObatArgs<ExtArgs>
     Penyakit?: boolean | Ayam$PenyakitArgs<ExtArgs>
     Mortalitas?: boolean | Ayam$MortalitasArgs<ExtArgs>
     _count?: boolean | AyamCountOutputTypeDefaultArgs<ExtArgs>
@@ -3023,6 +3125,7 @@ export namespace Prisma {
   export type AyamOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama" | "jumlah" | "jenis" | "umur" | "gambar" | "kandang" | "pakan" | "obat" | "deleted" | "createdAt" | "updatedAt", ExtArgs["result"]["ayam"]>
   export type AyamInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     JadwalVaksinasi?: boolean | Ayam$JadwalVaksinasiArgs<ExtArgs>
+    JadwalObat?: boolean | Ayam$JadwalObatArgs<ExtArgs>
     Penyakit?: boolean | Ayam$PenyakitArgs<ExtArgs>
     Mortalitas?: boolean | Ayam$MortalitasArgs<ExtArgs>
     _count?: boolean | AyamCountOutputTypeDefaultArgs<ExtArgs>
@@ -3032,6 +3135,7 @@ export namespace Prisma {
     name: "Ayam"
     objects: {
       JadwalVaksinasi: Prisma.$jadwal_vaksinasiPayload<ExtArgs>[]
+      JadwalObat: Prisma.$Jadwal_ObatPayload<ExtArgs>[]
       Penyakit: Prisma.$penyakitPayload<ExtArgs>[]
       Mortalitas: Prisma.$mortalitasPayload<ExtArgs>[]
     }
@@ -3389,6 +3493,7 @@ export namespace Prisma {
   export interface Prisma__AyamClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     JadwalVaksinasi<T extends Ayam$JadwalVaksinasiArgs<ExtArgs> = {}>(args?: Subset<T, Ayam$JadwalVaksinasiArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$jadwal_vaksinasiPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    JadwalObat<T extends Ayam$JadwalObatArgs<ExtArgs> = {}>(args?: Subset<T, Ayam$JadwalObatArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Jadwal_ObatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Penyakit<T extends Ayam$PenyakitArgs<ExtArgs> = {}>(args?: Subset<T, Ayam$PenyakitArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$penyakitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Mortalitas<T extends Ayam$MortalitasArgs<ExtArgs> = {}>(args?: Subset<T, Ayam$MortalitasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$mortalitasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -3796,6 +3901,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Jadwal_vaksinasiScalarFieldEnum | Jadwal_vaksinasiScalarFieldEnum[]
+  }
+
+  /**
+   * Ayam.JadwalObat
+   */
+  export type Ayam$JadwalObatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal_Obat
+     */
+    select?: Jadwal_ObatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal_Obat
+     */
+    omit?: Jadwal_ObatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Jadwal_ObatInclude<ExtArgs> | null
+    where?: Jadwal_ObatWhereInput
+    orderBy?: Jadwal_ObatOrderByWithRelationInput | Jadwal_ObatOrderByWithRelationInput[]
+    cursor?: Jadwal_ObatWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Jadwal_ObatScalarFieldEnum | Jadwal_ObatScalarFieldEnum[]
   }
 
   /**
@@ -6057,7 +6186,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     gambar?: boolean
-    penyakit?: boolean | Obat$penyakitArgs<ExtArgs>
+    Penyakit?: boolean | Obat$PenyakitArgs<ExtArgs>
+    Jadwal_Obat?: boolean | Obat$Jadwal_ObatArgs<ExtArgs>
     _count?: boolean | ObatCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["obat"]>
 
@@ -6076,14 +6206,16 @@ export namespace Prisma {
 
   export type ObatOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama" | "indikasi" | "harga" | "deleted" | "createdAt" | "updatedAt" | "gambar", ExtArgs["result"]["obat"]>
   export type ObatInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    penyakit?: boolean | Obat$penyakitArgs<ExtArgs>
+    Penyakit?: boolean | Obat$PenyakitArgs<ExtArgs>
+    Jadwal_Obat?: boolean | Obat$Jadwal_ObatArgs<ExtArgs>
     _count?: boolean | ObatCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $ObatPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Obat"
     objects: {
-      penyakit: Prisma.$penyakitPayload<ExtArgs>[]
+      Penyakit: Prisma.$penyakitPayload<ExtArgs>[]
+      Jadwal_Obat: Prisma.$Jadwal_ObatPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6434,7 +6566,8 @@ export namespace Prisma {
    */
   export interface Prisma__ObatClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    penyakit<T extends Obat$penyakitArgs<ExtArgs> = {}>(args?: Subset<T, Obat$penyakitArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$penyakitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Penyakit<T extends Obat$PenyakitArgs<ExtArgs> = {}>(args?: Subset<T, Obat$PenyakitArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$penyakitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Jadwal_Obat<T extends Obat$Jadwal_ObatArgs<ExtArgs> = {}>(args?: Subset<T, Obat$Jadwal_ObatArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Jadwal_ObatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6815,9 +6948,9 @@ export namespace Prisma {
   }
 
   /**
-   * Obat.penyakit
+   * Obat.Penyakit
    */
-  export type Obat$penyakitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Obat$PenyakitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the penyakit
      */
@@ -6836,6 +6969,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PenyakitScalarFieldEnum | PenyakitScalarFieldEnum[]
+  }
+
+  /**
+   * Obat.Jadwal_Obat
+   */
+  export type Obat$Jadwal_ObatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal_Obat
+     */
+    select?: Jadwal_ObatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal_Obat
+     */
+    omit?: Jadwal_ObatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Jadwal_ObatInclude<ExtArgs> | null
+    where?: Jadwal_ObatWhereInput
+    orderBy?: Jadwal_ObatOrderByWithRelationInput | Jadwal_ObatOrderByWithRelationInput[]
+    cursor?: Jadwal_ObatWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Jadwal_ObatScalarFieldEnum | Jadwal_ObatScalarFieldEnum[]
   }
 
   /**
@@ -7887,6 +8044,1039 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: jadwal_vaksinasiInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Jadwal_Obat
+   */
+
+  export type AggregateJadwal_Obat = {
+    _count: Jadwal_ObatCountAggregateOutputType | null
+    _avg: Jadwal_ObatAvgAggregateOutputType | null
+    _sum: Jadwal_ObatSumAggregateOutputType | null
+    _min: Jadwal_ObatMinAggregateOutputType | null
+    _max: Jadwal_ObatMaxAggregateOutputType | null
+  }
+
+  export type Jadwal_ObatAvgAggregateOutputType = {
+    dosis: number | null
+  }
+
+  export type Jadwal_ObatSumAggregateOutputType = {
+    dosis: number | null
+  }
+
+  export type Jadwal_ObatMinAggregateOutputType = {
+    id: string | null
+    ayamId: string | null
+    obatId: string | null
+    tanggal: Date | null
+    dosis: number | null
+    keterangan: string | null
+    sudah: boolean | null
+    send_notification: boolean | null
+    deleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type Jadwal_ObatMaxAggregateOutputType = {
+    id: string | null
+    ayamId: string | null
+    obatId: string | null
+    tanggal: Date | null
+    dosis: number | null
+    keterangan: string | null
+    sudah: boolean | null
+    send_notification: boolean | null
+    deleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type Jadwal_ObatCountAggregateOutputType = {
+    id: number
+    ayamId: number
+    obatId: number
+    tanggal: number
+    dosis: number
+    keterangan: number
+    sudah: number
+    send_notification: number
+    deleted: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type Jadwal_ObatAvgAggregateInputType = {
+    dosis?: true
+  }
+
+  export type Jadwal_ObatSumAggregateInputType = {
+    dosis?: true
+  }
+
+  export type Jadwal_ObatMinAggregateInputType = {
+    id?: true
+    ayamId?: true
+    obatId?: true
+    tanggal?: true
+    dosis?: true
+    keterangan?: true
+    sudah?: true
+    send_notification?: true
+    deleted?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type Jadwal_ObatMaxAggregateInputType = {
+    id?: true
+    ayamId?: true
+    obatId?: true
+    tanggal?: true
+    dosis?: true
+    keterangan?: true
+    sudah?: true
+    send_notification?: true
+    deleted?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type Jadwal_ObatCountAggregateInputType = {
+    id?: true
+    ayamId?: true
+    obatId?: true
+    tanggal?: true
+    dosis?: true
+    keterangan?: true
+    sudah?: true
+    send_notification?: true
+    deleted?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type Jadwal_ObatAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Jadwal_Obat to aggregate.
+     */
+    where?: Jadwal_ObatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Jadwal_Obats to fetch.
+     */
+    orderBy?: Jadwal_ObatOrderByWithRelationInput | Jadwal_ObatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: Jadwal_ObatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Jadwal_Obats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Jadwal_Obats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Jadwal_Obats
+    **/
+    _count?: true | Jadwal_ObatCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Jadwal_ObatAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Jadwal_ObatSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Jadwal_ObatMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Jadwal_ObatMaxAggregateInputType
+  }
+
+  export type GetJadwal_ObatAggregateType<T extends Jadwal_ObatAggregateArgs> = {
+        [P in keyof T & keyof AggregateJadwal_Obat]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateJadwal_Obat[P]>
+      : GetScalarType<T[P], AggregateJadwal_Obat[P]>
+  }
+
+
+
+
+  export type Jadwal_ObatGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Jadwal_ObatWhereInput
+    orderBy?: Jadwal_ObatOrderByWithAggregationInput | Jadwal_ObatOrderByWithAggregationInput[]
+    by: Jadwal_ObatScalarFieldEnum[] | Jadwal_ObatScalarFieldEnum
+    having?: Jadwal_ObatScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Jadwal_ObatCountAggregateInputType | true
+    _avg?: Jadwal_ObatAvgAggregateInputType
+    _sum?: Jadwal_ObatSumAggregateInputType
+    _min?: Jadwal_ObatMinAggregateInputType
+    _max?: Jadwal_ObatMaxAggregateInputType
+  }
+
+  export type Jadwal_ObatGroupByOutputType = {
+    id: string
+    ayamId: string
+    obatId: string
+    tanggal: Date
+    dosis: number
+    keterangan: string
+    sudah: boolean
+    send_notification: boolean
+    deleted: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: Jadwal_ObatCountAggregateOutputType | null
+    _avg: Jadwal_ObatAvgAggregateOutputType | null
+    _sum: Jadwal_ObatSumAggregateOutputType | null
+    _min: Jadwal_ObatMinAggregateOutputType | null
+    _max: Jadwal_ObatMaxAggregateOutputType | null
+  }
+
+  type GetJadwal_ObatGroupByPayload<T extends Jadwal_ObatGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Jadwal_ObatGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Jadwal_ObatGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Jadwal_ObatGroupByOutputType[P]>
+            : GetScalarType<T[P], Jadwal_ObatGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type Jadwal_ObatSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ayamId?: boolean
+    obatId?: boolean
+    tanggal?: boolean
+    dosis?: boolean
+    keterangan?: boolean
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ayam?: boolean | AyamDefaultArgs<ExtArgs>
+    obat?: boolean | ObatDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["jadwal_Obat"]>
+
+
+
+  export type Jadwal_ObatSelectScalar = {
+    id?: boolean
+    ayamId?: boolean
+    obatId?: boolean
+    tanggal?: boolean
+    dosis?: boolean
+    keterangan?: boolean
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type Jadwal_ObatOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ayamId" | "obatId" | "tanggal" | "dosis" | "keterangan" | "sudah" | "send_notification" | "deleted" | "createdAt" | "updatedAt", ExtArgs["result"]["jadwal_Obat"]>
+  export type Jadwal_ObatInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ayam?: boolean | AyamDefaultArgs<ExtArgs>
+    obat?: boolean | ObatDefaultArgs<ExtArgs>
+  }
+
+  export type $Jadwal_ObatPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Jadwal_Obat"
+    objects: {
+      ayam: Prisma.$AyamPayload<ExtArgs>
+      obat: Prisma.$ObatPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      ayamId: string
+      obatId: string
+      tanggal: Date
+      dosis: number
+      keterangan: string
+      sudah: boolean
+      send_notification: boolean
+      deleted: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["jadwal_Obat"]>
+    composites: {}
+  }
+
+  type Jadwal_ObatGetPayload<S extends boolean | null | undefined | Jadwal_ObatDefaultArgs> = $Result.GetResult<Prisma.$Jadwal_ObatPayload, S>
+
+  type Jadwal_ObatCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<Jadwal_ObatFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Jadwal_ObatCountAggregateInputType | true
+    }
+
+  export interface Jadwal_ObatDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Jadwal_Obat'], meta: { name: 'Jadwal_Obat' } }
+    /**
+     * Find zero or one Jadwal_Obat that matches the filter.
+     * @param {Jadwal_ObatFindUniqueArgs} args - Arguments to find a Jadwal_Obat
+     * @example
+     * // Get one Jadwal_Obat
+     * const jadwal_Obat = await prisma.jadwal_Obat.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends Jadwal_ObatFindUniqueArgs>(args: SelectSubset<T, Jadwal_ObatFindUniqueArgs<ExtArgs>>): Prisma__Jadwal_ObatClient<$Result.GetResult<Prisma.$Jadwal_ObatPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Jadwal_Obat that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {Jadwal_ObatFindUniqueOrThrowArgs} args - Arguments to find a Jadwal_Obat
+     * @example
+     * // Get one Jadwal_Obat
+     * const jadwal_Obat = await prisma.jadwal_Obat.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends Jadwal_ObatFindUniqueOrThrowArgs>(args: SelectSubset<T, Jadwal_ObatFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Jadwal_ObatClient<$Result.GetResult<Prisma.$Jadwal_ObatPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Jadwal_Obat that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Jadwal_ObatFindFirstArgs} args - Arguments to find a Jadwal_Obat
+     * @example
+     * // Get one Jadwal_Obat
+     * const jadwal_Obat = await prisma.jadwal_Obat.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends Jadwal_ObatFindFirstArgs>(args?: SelectSubset<T, Jadwal_ObatFindFirstArgs<ExtArgs>>): Prisma__Jadwal_ObatClient<$Result.GetResult<Prisma.$Jadwal_ObatPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Jadwal_Obat that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Jadwal_ObatFindFirstOrThrowArgs} args - Arguments to find a Jadwal_Obat
+     * @example
+     * // Get one Jadwal_Obat
+     * const jadwal_Obat = await prisma.jadwal_Obat.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends Jadwal_ObatFindFirstOrThrowArgs>(args?: SelectSubset<T, Jadwal_ObatFindFirstOrThrowArgs<ExtArgs>>): Prisma__Jadwal_ObatClient<$Result.GetResult<Prisma.$Jadwal_ObatPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Jadwal_Obats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Jadwal_ObatFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Jadwal_Obats
+     * const jadwal_Obats = await prisma.jadwal_Obat.findMany()
+     * 
+     * // Get first 10 Jadwal_Obats
+     * const jadwal_Obats = await prisma.jadwal_Obat.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const jadwal_ObatWithIdOnly = await prisma.jadwal_Obat.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends Jadwal_ObatFindManyArgs>(args?: SelectSubset<T, Jadwal_ObatFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Jadwal_ObatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Jadwal_Obat.
+     * @param {Jadwal_ObatCreateArgs} args - Arguments to create a Jadwal_Obat.
+     * @example
+     * // Create one Jadwal_Obat
+     * const Jadwal_Obat = await prisma.jadwal_Obat.create({
+     *   data: {
+     *     // ... data to create a Jadwal_Obat
+     *   }
+     * })
+     * 
+     */
+    create<T extends Jadwal_ObatCreateArgs>(args: SelectSubset<T, Jadwal_ObatCreateArgs<ExtArgs>>): Prisma__Jadwal_ObatClient<$Result.GetResult<Prisma.$Jadwal_ObatPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Jadwal_Obats.
+     * @param {Jadwal_ObatCreateManyArgs} args - Arguments to create many Jadwal_Obats.
+     * @example
+     * // Create many Jadwal_Obats
+     * const jadwal_Obat = await prisma.jadwal_Obat.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends Jadwal_ObatCreateManyArgs>(args?: SelectSubset<T, Jadwal_ObatCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Jadwal_Obat.
+     * @param {Jadwal_ObatDeleteArgs} args - Arguments to delete one Jadwal_Obat.
+     * @example
+     * // Delete one Jadwal_Obat
+     * const Jadwal_Obat = await prisma.jadwal_Obat.delete({
+     *   where: {
+     *     // ... filter to delete one Jadwal_Obat
+     *   }
+     * })
+     * 
+     */
+    delete<T extends Jadwal_ObatDeleteArgs>(args: SelectSubset<T, Jadwal_ObatDeleteArgs<ExtArgs>>): Prisma__Jadwal_ObatClient<$Result.GetResult<Prisma.$Jadwal_ObatPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Jadwal_Obat.
+     * @param {Jadwal_ObatUpdateArgs} args - Arguments to update one Jadwal_Obat.
+     * @example
+     * // Update one Jadwal_Obat
+     * const jadwal_Obat = await prisma.jadwal_Obat.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends Jadwal_ObatUpdateArgs>(args: SelectSubset<T, Jadwal_ObatUpdateArgs<ExtArgs>>): Prisma__Jadwal_ObatClient<$Result.GetResult<Prisma.$Jadwal_ObatPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Jadwal_Obats.
+     * @param {Jadwal_ObatDeleteManyArgs} args - Arguments to filter Jadwal_Obats to delete.
+     * @example
+     * // Delete a few Jadwal_Obats
+     * const { count } = await prisma.jadwal_Obat.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends Jadwal_ObatDeleteManyArgs>(args?: SelectSubset<T, Jadwal_ObatDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Jadwal_Obats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Jadwal_ObatUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Jadwal_Obats
+     * const jadwal_Obat = await prisma.jadwal_Obat.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends Jadwal_ObatUpdateManyArgs>(args: SelectSubset<T, Jadwal_ObatUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Jadwal_Obat.
+     * @param {Jadwal_ObatUpsertArgs} args - Arguments to update or create a Jadwal_Obat.
+     * @example
+     * // Update or create a Jadwal_Obat
+     * const jadwal_Obat = await prisma.jadwal_Obat.upsert({
+     *   create: {
+     *     // ... data to create a Jadwal_Obat
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Jadwal_Obat we want to update
+     *   }
+     * })
+     */
+    upsert<T extends Jadwal_ObatUpsertArgs>(args: SelectSubset<T, Jadwal_ObatUpsertArgs<ExtArgs>>): Prisma__Jadwal_ObatClient<$Result.GetResult<Prisma.$Jadwal_ObatPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Jadwal_Obats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Jadwal_ObatCountArgs} args - Arguments to filter Jadwal_Obats to count.
+     * @example
+     * // Count the number of Jadwal_Obats
+     * const count = await prisma.jadwal_Obat.count({
+     *   where: {
+     *     // ... the filter for the Jadwal_Obats we want to count
+     *   }
+     * })
+    **/
+    count<T extends Jadwal_ObatCountArgs>(
+      args?: Subset<T, Jadwal_ObatCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Jadwal_ObatCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Jadwal_Obat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Jadwal_ObatAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Jadwal_ObatAggregateArgs>(args: Subset<T, Jadwal_ObatAggregateArgs>): Prisma.PrismaPromise<GetJadwal_ObatAggregateType<T>>
+
+    /**
+     * Group by Jadwal_Obat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Jadwal_ObatGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends Jadwal_ObatGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: Jadwal_ObatGroupByArgs['orderBy'] }
+        : { orderBy?: Jadwal_ObatGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, Jadwal_ObatGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetJadwal_ObatGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Jadwal_Obat model
+   */
+  readonly fields: Jadwal_ObatFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Jadwal_Obat.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__Jadwal_ObatClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ayam<T extends AyamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AyamDefaultArgs<ExtArgs>>): Prisma__AyamClient<$Result.GetResult<Prisma.$AyamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    obat<T extends ObatDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ObatDefaultArgs<ExtArgs>>): Prisma__ObatClient<$Result.GetResult<Prisma.$ObatPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Jadwal_Obat model
+   */
+  interface Jadwal_ObatFieldRefs {
+    readonly id: FieldRef<"Jadwal_Obat", 'String'>
+    readonly ayamId: FieldRef<"Jadwal_Obat", 'String'>
+    readonly obatId: FieldRef<"Jadwal_Obat", 'String'>
+    readonly tanggal: FieldRef<"Jadwal_Obat", 'DateTime'>
+    readonly dosis: FieldRef<"Jadwal_Obat", 'Int'>
+    readonly keterangan: FieldRef<"Jadwal_Obat", 'String'>
+    readonly sudah: FieldRef<"Jadwal_Obat", 'Boolean'>
+    readonly send_notification: FieldRef<"Jadwal_Obat", 'Boolean'>
+    readonly deleted: FieldRef<"Jadwal_Obat", 'Boolean'>
+    readonly createdAt: FieldRef<"Jadwal_Obat", 'DateTime'>
+    readonly updatedAt: FieldRef<"Jadwal_Obat", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Jadwal_Obat findUnique
+   */
+  export type Jadwal_ObatFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal_Obat
+     */
+    select?: Jadwal_ObatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal_Obat
+     */
+    omit?: Jadwal_ObatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Jadwal_ObatInclude<ExtArgs> | null
+    /**
+     * Filter, which Jadwal_Obat to fetch.
+     */
+    where: Jadwal_ObatWhereUniqueInput
+  }
+
+  /**
+   * Jadwal_Obat findUniqueOrThrow
+   */
+  export type Jadwal_ObatFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal_Obat
+     */
+    select?: Jadwal_ObatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal_Obat
+     */
+    omit?: Jadwal_ObatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Jadwal_ObatInclude<ExtArgs> | null
+    /**
+     * Filter, which Jadwal_Obat to fetch.
+     */
+    where: Jadwal_ObatWhereUniqueInput
+  }
+
+  /**
+   * Jadwal_Obat findFirst
+   */
+  export type Jadwal_ObatFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal_Obat
+     */
+    select?: Jadwal_ObatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal_Obat
+     */
+    omit?: Jadwal_ObatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Jadwal_ObatInclude<ExtArgs> | null
+    /**
+     * Filter, which Jadwal_Obat to fetch.
+     */
+    where?: Jadwal_ObatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Jadwal_Obats to fetch.
+     */
+    orderBy?: Jadwal_ObatOrderByWithRelationInput | Jadwal_ObatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Jadwal_Obats.
+     */
+    cursor?: Jadwal_ObatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Jadwal_Obats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Jadwal_Obats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Jadwal_Obats.
+     */
+    distinct?: Jadwal_ObatScalarFieldEnum | Jadwal_ObatScalarFieldEnum[]
+  }
+
+  /**
+   * Jadwal_Obat findFirstOrThrow
+   */
+  export type Jadwal_ObatFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal_Obat
+     */
+    select?: Jadwal_ObatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal_Obat
+     */
+    omit?: Jadwal_ObatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Jadwal_ObatInclude<ExtArgs> | null
+    /**
+     * Filter, which Jadwal_Obat to fetch.
+     */
+    where?: Jadwal_ObatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Jadwal_Obats to fetch.
+     */
+    orderBy?: Jadwal_ObatOrderByWithRelationInput | Jadwal_ObatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Jadwal_Obats.
+     */
+    cursor?: Jadwal_ObatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Jadwal_Obats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Jadwal_Obats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Jadwal_Obats.
+     */
+    distinct?: Jadwal_ObatScalarFieldEnum | Jadwal_ObatScalarFieldEnum[]
+  }
+
+  /**
+   * Jadwal_Obat findMany
+   */
+  export type Jadwal_ObatFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal_Obat
+     */
+    select?: Jadwal_ObatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal_Obat
+     */
+    omit?: Jadwal_ObatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Jadwal_ObatInclude<ExtArgs> | null
+    /**
+     * Filter, which Jadwal_Obats to fetch.
+     */
+    where?: Jadwal_ObatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Jadwal_Obats to fetch.
+     */
+    orderBy?: Jadwal_ObatOrderByWithRelationInput | Jadwal_ObatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Jadwal_Obats.
+     */
+    cursor?: Jadwal_ObatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Jadwal_Obats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Jadwal_Obats.
+     */
+    skip?: number
+    distinct?: Jadwal_ObatScalarFieldEnum | Jadwal_ObatScalarFieldEnum[]
+  }
+
+  /**
+   * Jadwal_Obat create
+   */
+  export type Jadwal_ObatCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal_Obat
+     */
+    select?: Jadwal_ObatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal_Obat
+     */
+    omit?: Jadwal_ObatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Jadwal_ObatInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Jadwal_Obat.
+     */
+    data: XOR<Jadwal_ObatCreateInput, Jadwal_ObatUncheckedCreateInput>
+  }
+
+  /**
+   * Jadwal_Obat createMany
+   */
+  export type Jadwal_ObatCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Jadwal_Obats.
+     */
+    data: Jadwal_ObatCreateManyInput | Jadwal_ObatCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Jadwal_Obat update
+   */
+  export type Jadwal_ObatUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal_Obat
+     */
+    select?: Jadwal_ObatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal_Obat
+     */
+    omit?: Jadwal_ObatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Jadwal_ObatInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Jadwal_Obat.
+     */
+    data: XOR<Jadwal_ObatUpdateInput, Jadwal_ObatUncheckedUpdateInput>
+    /**
+     * Choose, which Jadwal_Obat to update.
+     */
+    where: Jadwal_ObatWhereUniqueInput
+  }
+
+  /**
+   * Jadwal_Obat updateMany
+   */
+  export type Jadwal_ObatUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Jadwal_Obats.
+     */
+    data: XOR<Jadwal_ObatUpdateManyMutationInput, Jadwal_ObatUncheckedUpdateManyInput>
+    /**
+     * Filter which Jadwal_Obats to update
+     */
+    where?: Jadwal_ObatWhereInput
+    /**
+     * Limit how many Jadwal_Obats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Jadwal_Obat upsert
+   */
+  export type Jadwal_ObatUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal_Obat
+     */
+    select?: Jadwal_ObatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal_Obat
+     */
+    omit?: Jadwal_ObatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Jadwal_ObatInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Jadwal_Obat to update in case it exists.
+     */
+    where: Jadwal_ObatWhereUniqueInput
+    /**
+     * In case the Jadwal_Obat found by the `where` argument doesn't exist, create a new Jadwal_Obat with this data.
+     */
+    create: XOR<Jadwal_ObatCreateInput, Jadwal_ObatUncheckedCreateInput>
+    /**
+     * In case the Jadwal_Obat was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<Jadwal_ObatUpdateInput, Jadwal_ObatUncheckedUpdateInput>
+  }
+
+  /**
+   * Jadwal_Obat delete
+   */
+  export type Jadwal_ObatDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal_Obat
+     */
+    select?: Jadwal_ObatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal_Obat
+     */
+    omit?: Jadwal_ObatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Jadwal_ObatInclude<ExtArgs> | null
+    /**
+     * Filter which Jadwal_Obat to delete.
+     */
+    where: Jadwal_ObatWhereUniqueInput
+  }
+
+  /**
+   * Jadwal_Obat deleteMany
+   */
+  export type Jadwal_ObatDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Jadwal_Obats to delete
+     */
+    where?: Jadwal_ObatWhereInput
+    /**
+     * Limit how many Jadwal_Obats to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Jadwal_Obat without action
+   */
+  export type Jadwal_ObatDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal_Obat
+     */
+    select?: Jadwal_ObatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal_Obat
+     */
+    omit?: Jadwal_ObatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Jadwal_ObatInclude<ExtArgs> | null
   }
 
 
@@ -12768,6 +13958,23 @@ export namespace Prisma {
   export type Jadwal_vaksinasiScalarFieldEnum = (typeof Jadwal_vaksinasiScalarFieldEnum)[keyof typeof Jadwal_vaksinasiScalarFieldEnum]
 
 
+  export const Jadwal_ObatScalarFieldEnum: {
+    id: 'id',
+    ayamId: 'ayamId',
+    obatId: 'obatId',
+    tanggal: 'tanggal',
+    dosis: 'dosis',
+    keterangan: 'keterangan',
+    sudah: 'sudah',
+    send_notification: 'send_notification',
+    deleted: 'deleted',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type Jadwal_ObatScalarFieldEnum = (typeof Jadwal_ObatScalarFieldEnum)[keyof typeof Jadwal_ObatScalarFieldEnum]
+
+
   export const PenyakitScalarFieldEnum: {
     id: 'id',
     nama: 'nama',
@@ -12932,6 +14139,16 @@ export namespace Prisma {
   };
 
   export type jadwal_vaksinasiOrderByRelevanceFieldEnum = (typeof jadwal_vaksinasiOrderByRelevanceFieldEnum)[keyof typeof jadwal_vaksinasiOrderByRelevanceFieldEnum]
+
+
+  export const Jadwal_ObatOrderByRelevanceFieldEnum: {
+    id: 'id',
+    ayamId: 'ayamId',
+    obatId: 'obatId',
+    keterangan: 'keterangan'
+  };
+
+  export type Jadwal_ObatOrderByRelevanceFieldEnum = (typeof Jadwal_ObatOrderByRelevanceFieldEnum)[keyof typeof Jadwal_ObatOrderByRelevanceFieldEnum]
 
 
   export const penyakitOrderByRelevanceFieldEnum: {
@@ -13140,6 +14357,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Ayam"> | Date | string
     updatedAt?: DateTimeFilter<"Ayam"> | Date | string
     JadwalVaksinasi?: Jadwal_vaksinasiListRelationFilter
+    JadwalObat?: Jadwal_ObatListRelationFilter
     Penyakit?: PenyakitListRelationFilter
     Mortalitas?: MortalitasListRelationFilter
   }
@@ -13158,6 +14376,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     JadwalVaksinasi?: jadwal_vaksinasiOrderByRelationAggregateInput
+    JadwalObat?: Jadwal_ObatOrderByRelationAggregateInput
     Penyakit?: penyakitOrderByRelationAggregateInput
     Mortalitas?: mortalitasOrderByRelationAggregateInput
     _relevance?: AyamOrderByRelevanceInput
@@ -13180,6 +14399,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Ayam"> | Date | string
     updatedAt?: DateTimeFilter<"Ayam"> | Date | string
     JadwalVaksinasi?: Jadwal_vaksinasiListRelationFilter
+    JadwalObat?: Jadwal_ObatListRelationFilter
     Penyakit?: PenyakitListRelationFilter
     Mortalitas?: MortalitasListRelationFilter
   }, "id">
@@ -13392,7 +14612,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Obat"> | Date | string
     updatedAt?: DateTimeFilter<"Obat"> | Date | string
     gambar?: StringFilter<"Obat"> | string
-    penyakit?: PenyakitListRelationFilter
+    Penyakit?: PenyakitListRelationFilter
+    Jadwal_Obat?: Jadwal_ObatListRelationFilter
   }
 
   export type ObatOrderByWithRelationInput = {
@@ -13404,7 +14625,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     gambar?: SortOrder
-    penyakit?: penyakitOrderByRelationAggregateInput
+    Penyakit?: penyakitOrderByRelationAggregateInput
+    Jadwal_Obat?: Jadwal_ObatOrderByRelationAggregateInput
     _relevance?: ObatOrderByRelevanceInput
   }
 
@@ -13420,7 +14642,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Obat"> | Date | string
     updatedAt?: DateTimeFilter<"Obat"> | Date | string
     gambar?: StringFilter<"Obat"> | string
-    penyakit?: PenyakitListRelationFilter
+    Penyakit?: PenyakitListRelationFilter
+    Jadwal_Obat?: Jadwal_ObatListRelationFilter
   }, "id">
 
   export type ObatOrderByWithAggregationInput = {
@@ -13540,6 +14763,97 @@ export namespace Prisma {
     deleted?: BoolWithAggregatesFilter<"jadwal_vaksinasi"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"jadwal_vaksinasi"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"jadwal_vaksinasi"> | Date | string
+  }
+
+  export type Jadwal_ObatWhereInput = {
+    AND?: Jadwal_ObatWhereInput | Jadwal_ObatWhereInput[]
+    OR?: Jadwal_ObatWhereInput[]
+    NOT?: Jadwal_ObatWhereInput | Jadwal_ObatWhereInput[]
+    id?: StringFilter<"Jadwal_Obat"> | string
+    ayamId?: StringFilter<"Jadwal_Obat"> | string
+    obatId?: StringFilter<"Jadwal_Obat"> | string
+    tanggal?: DateTimeFilter<"Jadwal_Obat"> | Date | string
+    dosis?: IntFilter<"Jadwal_Obat"> | number
+    keterangan?: StringFilter<"Jadwal_Obat"> | string
+    sudah?: BoolFilter<"Jadwal_Obat"> | boolean
+    send_notification?: BoolFilter<"Jadwal_Obat"> | boolean
+    deleted?: BoolFilter<"Jadwal_Obat"> | boolean
+    createdAt?: DateTimeFilter<"Jadwal_Obat"> | Date | string
+    updatedAt?: DateTimeFilter<"Jadwal_Obat"> | Date | string
+    ayam?: XOR<AyamScalarRelationFilter, AyamWhereInput>
+    obat?: XOR<ObatScalarRelationFilter, ObatWhereInput>
+  }
+
+  export type Jadwal_ObatOrderByWithRelationInput = {
+    id?: SortOrder
+    ayamId?: SortOrder
+    obatId?: SortOrder
+    tanggal?: SortOrder
+    dosis?: SortOrder
+    keterangan?: SortOrder
+    sudah?: SortOrder
+    send_notification?: SortOrder
+    deleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    ayam?: AyamOrderByWithRelationInput
+    obat?: ObatOrderByWithRelationInput
+    _relevance?: Jadwal_ObatOrderByRelevanceInput
+  }
+
+  export type Jadwal_ObatWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: Jadwal_ObatWhereInput | Jadwal_ObatWhereInput[]
+    OR?: Jadwal_ObatWhereInput[]
+    NOT?: Jadwal_ObatWhereInput | Jadwal_ObatWhereInput[]
+    ayamId?: StringFilter<"Jadwal_Obat"> | string
+    obatId?: StringFilter<"Jadwal_Obat"> | string
+    tanggal?: DateTimeFilter<"Jadwal_Obat"> | Date | string
+    dosis?: IntFilter<"Jadwal_Obat"> | number
+    keterangan?: StringFilter<"Jadwal_Obat"> | string
+    sudah?: BoolFilter<"Jadwal_Obat"> | boolean
+    send_notification?: BoolFilter<"Jadwal_Obat"> | boolean
+    deleted?: BoolFilter<"Jadwal_Obat"> | boolean
+    createdAt?: DateTimeFilter<"Jadwal_Obat"> | Date | string
+    updatedAt?: DateTimeFilter<"Jadwal_Obat"> | Date | string
+    ayam?: XOR<AyamScalarRelationFilter, AyamWhereInput>
+    obat?: XOR<ObatScalarRelationFilter, ObatWhereInput>
+  }, "id">
+
+  export type Jadwal_ObatOrderByWithAggregationInput = {
+    id?: SortOrder
+    ayamId?: SortOrder
+    obatId?: SortOrder
+    tanggal?: SortOrder
+    dosis?: SortOrder
+    keterangan?: SortOrder
+    sudah?: SortOrder
+    send_notification?: SortOrder
+    deleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: Jadwal_ObatCountOrderByAggregateInput
+    _avg?: Jadwal_ObatAvgOrderByAggregateInput
+    _max?: Jadwal_ObatMaxOrderByAggregateInput
+    _min?: Jadwal_ObatMinOrderByAggregateInput
+    _sum?: Jadwal_ObatSumOrderByAggregateInput
+  }
+
+  export type Jadwal_ObatScalarWhereWithAggregatesInput = {
+    AND?: Jadwal_ObatScalarWhereWithAggregatesInput | Jadwal_ObatScalarWhereWithAggregatesInput[]
+    OR?: Jadwal_ObatScalarWhereWithAggregatesInput[]
+    NOT?: Jadwal_ObatScalarWhereWithAggregatesInput | Jadwal_ObatScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Jadwal_Obat"> | string
+    ayamId?: StringWithAggregatesFilter<"Jadwal_Obat"> | string
+    obatId?: StringWithAggregatesFilter<"Jadwal_Obat"> | string
+    tanggal?: DateTimeWithAggregatesFilter<"Jadwal_Obat"> | Date | string
+    dosis?: IntWithAggregatesFilter<"Jadwal_Obat"> | number
+    keterangan?: StringWithAggregatesFilter<"Jadwal_Obat"> | string
+    sudah?: BoolWithAggregatesFilter<"Jadwal_Obat"> | boolean
+    send_notification?: BoolWithAggregatesFilter<"Jadwal_Obat"> | boolean
+    deleted?: BoolWithAggregatesFilter<"Jadwal_Obat"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Jadwal_Obat"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Jadwal_Obat"> | Date | string
   }
 
   export type penyakitWhereInput = {
@@ -13969,6 +15283,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     JadwalVaksinasi?: jadwal_vaksinasiCreateNestedManyWithoutAyamInput
+    JadwalObat?: Jadwal_ObatCreateNestedManyWithoutAyamInput
     Penyakit?: penyakitCreateNestedManyWithoutAyamInput
     Mortalitas?: mortalitasCreateNestedManyWithoutAyamInput
   }
@@ -13987,6 +15302,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     JadwalVaksinasi?: jadwal_vaksinasiUncheckedCreateNestedManyWithoutAyamInput
+    JadwalObat?: Jadwal_ObatUncheckedCreateNestedManyWithoutAyamInput
     Penyakit?: penyakitUncheckedCreateNestedManyWithoutAyamInput
     Mortalitas?: mortalitasUncheckedCreateNestedManyWithoutAyamInput
   }
@@ -14005,6 +15321,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     JadwalVaksinasi?: jadwal_vaksinasiUpdateManyWithoutAyamNestedInput
+    JadwalObat?: Jadwal_ObatUpdateManyWithoutAyamNestedInput
     Penyakit?: penyakitUpdateManyWithoutAyamNestedInput
     Mortalitas?: mortalitasUpdateManyWithoutAyamNestedInput
   }
@@ -14023,6 +15340,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     JadwalVaksinasi?: jadwal_vaksinasiUncheckedUpdateManyWithoutAyamNestedInput
+    JadwalObat?: Jadwal_ObatUncheckedUpdateManyWithoutAyamNestedInput
     Penyakit?: penyakitUncheckedUpdateManyWithoutAyamNestedInput
     Mortalitas?: mortalitasUncheckedUpdateManyWithoutAyamNestedInput
   }
@@ -14260,7 +15578,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     gambar: string
-    penyakit?: penyakitCreateNestedManyWithoutObatInput
+    Penyakit?: penyakitCreateNestedManyWithoutObatInput
+    Jadwal_Obat?: Jadwal_ObatCreateNestedManyWithoutObatInput
   }
 
   export type ObatUncheckedCreateInput = {
@@ -14272,7 +15591,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     gambar: string
-    penyakit?: penyakitUncheckedCreateNestedManyWithoutObatInput
+    Penyakit?: penyakitUncheckedCreateNestedManyWithoutObatInput
+    Jadwal_Obat?: Jadwal_ObatUncheckedCreateNestedManyWithoutObatInput
   }
 
   export type ObatUpdateInput = {
@@ -14284,7 +15604,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gambar?: StringFieldUpdateOperationsInput | string
-    penyakit?: penyakitUpdateManyWithoutObatNestedInput
+    Penyakit?: penyakitUpdateManyWithoutObatNestedInput
+    Jadwal_Obat?: Jadwal_ObatUpdateManyWithoutObatNestedInput
   }
 
   export type ObatUncheckedUpdateInput = {
@@ -14296,7 +15617,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gambar?: StringFieldUpdateOperationsInput | string
-    penyakit?: penyakitUncheckedUpdateManyWithoutObatNestedInput
+    Penyakit?: penyakitUncheckedUpdateManyWithoutObatNestedInput
+    Jadwal_Obat?: Jadwal_ObatUncheckedUpdateManyWithoutObatNestedInput
   }
 
   export type ObatCreateManyInput = {
@@ -14418,6 +15740,102 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     ayamId?: StringFieldUpdateOperationsInput | string
     vaksinId?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    dosis?: IntFieldUpdateOperationsInput | number
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Jadwal_ObatCreateInput = {
+    id?: string
+    tanggal: Date | string
+    dosis: number
+    keterangan: string
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ayam: AyamCreateNestedOneWithoutJadwalObatInput
+    obat: ObatCreateNestedOneWithoutJadwal_ObatInput
+  }
+
+  export type Jadwal_ObatUncheckedCreateInput = {
+    id?: string
+    ayamId: string
+    obatId: string
+    tanggal: Date | string
+    dosis: number
+    keterangan: string
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type Jadwal_ObatUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    dosis?: IntFieldUpdateOperationsInput | number
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ayam?: AyamUpdateOneRequiredWithoutJadwalObatNestedInput
+    obat?: ObatUpdateOneRequiredWithoutJadwal_ObatNestedInput
+  }
+
+  export type Jadwal_ObatUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ayamId?: StringFieldUpdateOperationsInput | string
+    obatId?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    dosis?: IntFieldUpdateOperationsInput | number
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Jadwal_ObatCreateManyInput = {
+    id?: string
+    ayamId: string
+    obatId: string
+    tanggal: Date | string
+    dosis: number
+    keterangan: string
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type Jadwal_ObatUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    dosis?: IntFieldUpdateOperationsInput | number
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Jadwal_ObatUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ayamId?: StringFieldUpdateOperationsInput | string
+    obatId?: StringFieldUpdateOperationsInput | string
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
     dosis?: IntFieldUpdateOperationsInput | number
     keterangan?: StringFieldUpdateOperationsInput | string
@@ -14939,6 +16357,12 @@ export namespace Prisma {
     none?: jadwal_vaksinasiWhereInput
   }
 
+  export type Jadwal_ObatListRelationFilter = {
+    every?: Jadwal_ObatWhereInput
+    some?: Jadwal_ObatWhereInput
+    none?: Jadwal_ObatWhereInput
+  }
+
   export type PenyakitListRelationFilter = {
     every?: penyakitWhereInput
     some?: penyakitWhereInput
@@ -14952,6 +16376,10 @@ export namespace Prisma {
   }
 
   export type jadwal_vaksinasiOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type Jadwal_ObatOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -15283,6 +16711,62 @@ export namespace Prisma {
     isNot?: ObatWhereInput
   }
 
+  export type Jadwal_ObatOrderByRelevanceInput = {
+    fields: Jadwal_ObatOrderByRelevanceFieldEnum | Jadwal_ObatOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type Jadwal_ObatCountOrderByAggregateInput = {
+    id?: SortOrder
+    ayamId?: SortOrder
+    obatId?: SortOrder
+    tanggal?: SortOrder
+    dosis?: SortOrder
+    keterangan?: SortOrder
+    sudah?: SortOrder
+    send_notification?: SortOrder
+    deleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type Jadwal_ObatAvgOrderByAggregateInput = {
+    dosis?: SortOrder
+  }
+
+  export type Jadwal_ObatMaxOrderByAggregateInput = {
+    id?: SortOrder
+    ayamId?: SortOrder
+    obatId?: SortOrder
+    tanggal?: SortOrder
+    dosis?: SortOrder
+    keterangan?: SortOrder
+    sudah?: SortOrder
+    send_notification?: SortOrder
+    deleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type Jadwal_ObatMinOrderByAggregateInput = {
+    id?: SortOrder
+    ayamId?: SortOrder
+    obatId?: SortOrder
+    tanggal?: SortOrder
+    dosis?: SortOrder
+    keterangan?: SortOrder
+    sudah?: SortOrder
+    send_notification?: SortOrder
+    deleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type Jadwal_ObatSumOrderByAggregateInput = {
+    dosis?: SortOrder
+  }
+
   export type penyakitOrderByRelevanceInput = {
     fields: penyakitOrderByRelevanceFieldEnum | penyakitOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -15601,6 +17085,13 @@ export namespace Prisma {
     connect?: jadwal_vaksinasiWhereUniqueInput | jadwal_vaksinasiWhereUniqueInput[]
   }
 
+  export type Jadwal_ObatCreateNestedManyWithoutAyamInput = {
+    create?: XOR<Jadwal_ObatCreateWithoutAyamInput, Jadwal_ObatUncheckedCreateWithoutAyamInput> | Jadwal_ObatCreateWithoutAyamInput[] | Jadwal_ObatUncheckedCreateWithoutAyamInput[]
+    connectOrCreate?: Jadwal_ObatCreateOrConnectWithoutAyamInput | Jadwal_ObatCreateOrConnectWithoutAyamInput[]
+    createMany?: Jadwal_ObatCreateManyAyamInputEnvelope
+    connect?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+  }
+
   export type penyakitCreateNestedManyWithoutAyamInput = {
     create?: XOR<penyakitCreateWithoutAyamInput, penyakitUncheckedCreateWithoutAyamInput> | penyakitCreateWithoutAyamInput[] | penyakitUncheckedCreateWithoutAyamInput[]
     connectOrCreate?: penyakitCreateOrConnectWithoutAyamInput | penyakitCreateOrConnectWithoutAyamInput[]
@@ -15620,6 +17111,13 @@ export namespace Prisma {
     connectOrCreate?: jadwal_vaksinasiCreateOrConnectWithoutAyamInput | jadwal_vaksinasiCreateOrConnectWithoutAyamInput[]
     createMany?: jadwal_vaksinasiCreateManyAyamInputEnvelope
     connect?: jadwal_vaksinasiWhereUniqueInput | jadwal_vaksinasiWhereUniqueInput[]
+  }
+
+  export type Jadwal_ObatUncheckedCreateNestedManyWithoutAyamInput = {
+    create?: XOR<Jadwal_ObatCreateWithoutAyamInput, Jadwal_ObatUncheckedCreateWithoutAyamInput> | Jadwal_ObatCreateWithoutAyamInput[] | Jadwal_ObatUncheckedCreateWithoutAyamInput[]
+    connectOrCreate?: Jadwal_ObatCreateOrConnectWithoutAyamInput | Jadwal_ObatCreateOrConnectWithoutAyamInput[]
+    createMany?: Jadwal_ObatCreateManyAyamInputEnvelope
+    connect?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
   }
 
   export type penyakitUncheckedCreateNestedManyWithoutAyamInput = {
@@ -15662,6 +17160,20 @@ export namespace Prisma {
     deleteMany?: jadwal_vaksinasiScalarWhereInput | jadwal_vaksinasiScalarWhereInput[]
   }
 
+  export type Jadwal_ObatUpdateManyWithoutAyamNestedInput = {
+    create?: XOR<Jadwal_ObatCreateWithoutAyamInput, Jadwal_ObatUncheckedCreateWithoutAyamInput> | Jadwal_ObatCreateWithoutAyamInput[] | Jadwal_ObatUncheckedCreateWithoutAyamInput[]
+    connectOrCreate?: Jadwal_ObatCreateOrConnectWithoutAyamInput | Jadwal_ObatCreateOrConnectWithoutAyamInput[]
+    upsert?: Jadwal_ObatUpsertWithWhereUniqueWithoutAyamInput | Jadwal_ObatUpsertWithWhereUniqueWithoutAyamInput[]
+    createMany?: Jadwal_ObatCreateManyAyamInputEnvelope
+    set?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+    disconnect?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+    delete?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+    connect?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+    update?: Jadwal_ObatUpdateWithWhereUniqueWithoutAyamInput | Jadwal_ObatUpdateWithWhereUniqueWithoutAyamInput[]
+    updateMany?: Jadwal_ObatUpdateManyWithWhereWithoutAyamInput | Jadwal_ObatUpdateManyWithWhereWithoutAyamInput[]
+    deleteMany?: Jadwal_ObatScalarWhereInput | Jadwal_ObatScalarWhereInput[]
+  }
+
   export type penyakitUpdateManyWithoutAyamNestedInput = {
     create?: XOR<penyakitCreateWithoutAyamInput, penyakitUncheckedCreateWithoutAyamInput> | penyakitCreateWithoutAyamInput[] | penyakitUncheckedCreateWithoutAyamInput[]
     connectOrCreate?: penyakitCreateOrConnectWithoutAyamInput | penyakitCreateOrConnectWithoutAyamInput[]
@@ -15702,6 +17214,20 @@ export namespace Prisma {
     update?: jadwal_vaksinasiUpdateWithWhereUniqueWithoutAyamInput | jadwal_vaksinasiUpdateWithWhereUniqueWithoutAyamInput[]
     updateMany?: jadwal_vaksinasiUpdateManyWithWhereWithoutAyamInput | jadwal_vaksinasiUpdateManyWithWhereWithoutAyamInput[]
     deleteMany?: jadwal_vaksinasiScalarWhereInput | jadwal_vaksinasiScalarWhereInput[]
+  }
+
+  export type Jadwal_ObatUncheckedUpdateManyWithoutAyamNestedInput = {
+    create?: XOR<Jadwal_ObatCreateWithoutAyamInput, Jadwal_ObatUncheckedCreateWithoutAyamInput> | Jadwal_ObatCreateWithoutAyamInput[] | Jadwal_ObatUncheckedCreateWithoutAyamInput[]
+    connectOrCreate?: Jadwal_ObatCreateOrConnectWithoutAyamInput | Jadwal_ObatCreateOrConnectWithoutAyamInput[]
+    upsert?: Jadwal_ObatUpsertWithWhereUniqueWithoutAyamInput | Jadwal_ObatUpsertWithWhereUniqueWithoutAyamInput[]
+    createMany?: Jadwal_ObatCreateManyAyamInputEnvelope
+    set?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+    disconnect?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+    delete?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+    connect?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+    update?: Jadwal_ObatUpdateWithWhereUniqueWithoutAyamInput | Jadwal_ObatUpdateWithWhereUniqueWithoutAyamInput[]
+    updateMany?: Jadwal_ObatUpdateManyWithWhereWithoutAyamInput | Jadwal_ObatUpdateManyWithWhereWithoutAyamInput[]
+    deleteMany?: Jadwal_ObatScalarWhereInput | Jadwal_ObatScalarWhereInput[]
   }
 
   export type penyakitUncheckedUpdateManyWithoutAyamNestedInput = {
@@ -15781,11 +17307,25 @@ export namespace Prisma {
     connect?: penyakitWhereUniqueInput | penyakitWhereUniqueInput[]
   }
 
+  export type Jadwal_ObatCreateNestedManyWithoutObatInput = {
+    create?: XOR<Jadwal_ObatCreateWithoutObatInput, Jadwal_ObatUncheckedCreateWithoutObatInput> | Jadwal_ObatCreateWithoutObatInput[] | Jadwal_ObatUncheckedCreateWithoutObatInput[]
+    connectOrCreate?: Jadwal_ObatCreateOrConnectWithoutObatInput | Jadwal_ObatCreateOrConnectWithoutObatInput[]
+    createMany?: Jadwal_ObatCreateManyObatInputEnvelope
+    connect?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+  }
+
   export type penyakitUncheckedCreateNestedManyWithoutObatInput = {
     create?: XOR<penyakitCreateWithoutObatInput, penyakitUncheckedCreateWithoutObatInput> | penyakitCreateWithoutObatInput[] | penyakitUncheckedCreateWithoutObatInput[]
     connectOrCreate?: penyakitCreateOrConnectWithoutObatInput | penyakitCreateOrConnectWithoutObatInput[]
     createMany?: penyakitCreateManyObatInputEnvelope
     connect?: penyakitWhereUniqueInput | penyakitWhereUniqueInput[]
+  }
+
+  export type Jadwal_ObatUncheckedCreateNestedManyWithoutObatInput = {
+    create?: XOR<Jadwal_ObatCreateWithoutObatInput, Jadwal_ObatUncheckedCreateWithoutObatInput> | Jadwal_ObatCreateWithoutObatInput[] | Jadwal_ObatUncheckedCreateWithoutObatInput[]
+    connectOrCreate?: Jadwal_ObatCreateOrConnectWithoutObatInput | Jadwal_ObatCreateOrConnectWithoutObatInput[]
+    createMany?: Jadwal_ObatCreateManyObatInputEnvelope
+    connect?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
   }
 
   export type penyakitUpdateManyWithoutObatNestedInput = {
@@ -15802,6 +17342,20 @@ export namespace Prisma {
     deleteMany?: penyakitScalarWhereInput | penyakitScalarWhereInput[]
   }
 
+  export type Jadwal_ObatUpdateManyWithoutObatNestedInput = {
+    create?: XOR<Jadwal_ObatCreateWithoutObatInput, Jadwal_ObatUncheckedCreateWithoutObatInput> | Jadwal_ObatCreateWithoutObatInput[] | Jadwal_ObatUncheckedCreateWithoutObatInput[]
+    connectOrCreate?: Jadwal_ObatCreateOrConnectWithoutObatInput | Jadwal_ObatCreateOrConnectWithoutObatInput[]
+    upsert?: Jadwal_ObatUpsertWithWhereUniqueWithoutObatInput | Jadwal_ObatUpsertWithWhereUniqueWithoutObatInput[]
+    createMany?: Jadwal_ObatCreateManyObatInputEnvelope
+    set?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+    disconnect?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+    delete?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+    connect?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+    update?: Jadwal_ObatUpdateWithWhereUniqueWithoutObatInput | Jadwal_ObatUpdateWithWhereUniqueWithoutObatInput[]
+    updateMany?: Jadwal_ObatUpdateManyWithWhereWithoutObatInput | Jadwal_ObatUpdateManyWithWhereWithoutObatInput[]
+    deleteMany?: Jadwal_ObatScalarWhereInput | Jadwal_ObatScalarWhereInput[]
+  }
+
   export type penyakitUncheckedUpdateManyWithoutObatNestedInput = {
     create?: XOR<penyakitCreateWithoutObatInput, penyakitUncheckedCreateWithoutObatInput> | penyakitCreateWithoutObatInput[] | penyakitUncheckedCreateWithoutObatInput[]
     connectOrCreate?: penyakitCreateOrConnectWithoutObatInput | penyakitCreateOrConnectWithoutObatInput[]
@@ -15814,6 +17368,20 @@ export namespace Prisma {
     update?: penyakitUpdateWithWhereUniqueWithoutObatInput | penyakitUpdateWithWhereUniqueWithoutObatInput[]
     updateMany?: penyakitUpdateManyWithWhereWithoutObatInput | penyakitUpdateManyWithWhereWithoutObatInput[]
     deleteMany?: penyakitScalarWhereInput | penyakitScalarWhereInput[]
+  }
+
+  export type Jadwal_ObatUncheckedUpdateManyWithoutObatNestedInput = {
+    create?: XOR<Jadwal_ObatCreateWithoutObatInput, Jadwal_ObatUncheckedCreateWithoutObatInput> | Jadwal_ObatCreateWithoutObatInput[] | Jadwal_ObatUncheckedCreateWithoutObatInput[]
+    connectOrCreate?: Jadwal_ObatCreateOrConnectWithoutObatInput | Jadwal_ObatCreateOrConnectWithoutObatInput[]
+    upsert?: Jadwal_ObatUpsertWithWhereUniqueWithoutObatInput | Jadwal_ObatUpsertWithWhereUniqueWithoutObatInput[]
+    createMany?: Jadwal_ObatCreateManyObatInputEnvelope
+    set?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+    disconnect?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+    delete?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+    connect?: Jadwal_ObatWhereUniqueInput | Jadwal_ObatWhereUniqueInput[]
+    update?: Jadwal_ObatUpdateWithWhereUniqueWithoutObatInput | Jadwal_ObatUpdateWithWhereUniqueWithoutObatInput[]
+    updateMany?: Jadwal_ObatUpdateManyWithWhereWithoutObatInput | Jadwal_ObatUpdateManyWithWhereWithoutObatInput[]
+    deleteMany?: Jadwal_ObatScalarWhereInput | Jadwal_ObatScalarWhereInput[]
   }
 
   export type AyamCreateNestedOneWithoutJadwalVaksinasiInput = {
@@ -15842,6 +17410,34 @@ export namespace Prisma {
     upsert?: VaksinUpsertWithoutJasadwalVaksinasiInput
     connect?: VaksinWhereUniqueInput
     update?: XOR<XOR<VaksinUpdateToOneWithWhereWithoutJasadwalVaksinasiInput, VaksinUpdateWithoutJasadwalVaksinasiInput>, VaksinUncheckedUpdateWithoutJasadwalVaksinasiInput>
+  }
+
+  export type AyamCreateNestedOneWithoutJadwalObatInput = {
+    create?: XOR<AyamCreateWithoutJadwalObatInput, AyamUncheckedCreateWithoutJadwalObatInput>
+    connectOrCreate?: AyamCreateOrConnectWithoutJadwalObatInput
+    connect?: AyamWhereUniqueInput
+  }
+
+  export type ObatCreateNestedOneWithoutJadwal_ObatInput = {
+    create?: XOR<ObatCreateWithoutJadwal_ObatInput, ObatUncheckedCreateWithoutJadwal_ObatInput>
+    connectOrCreate?: ObatCreateOrConnectWithoutJadwal_ObatInput
+    connect?: ObatWhereUniqueInput
+  }
+
+  export type AyamUpdateOneRequiredWithoutJadwalObatNestedInput = {
+    create?: XOR<AyamCreateWithoutJadwalObatInput, AyamUncheckedCreateWithoutJadwalObatInput>
+    connectOrCreate?: AyamCreateOrConnectWithoutJadwalObatInput
+    upsert?: AyamUpsertWithoutJadwalObatInput
+    connect?: AyamWhereUniqueInput
+    update?: XOR<XOR<AyamUpdateToOneWithWhereWithoutJadwalObatInput, AyamUpdateWithoutJadwalObatInput>, AyamUncheckedUpdateWithoutJadwalObatInput>
+  }
+
+  export type ObatUpdateOneRequiredWithoutJadwal_ObatNestedInput = {
+    create?: XOR<ObatCreateWithoutJadwal_ObatInput, ObatUncheckedCreateWithoutJadwal_ObatInput>
+    connectOrCreate?: ObatCreateOrConnectWithoutJadwal_ObatInput
+    upsert?: ObatUpsertWithoutJadwal_ObatInput
+    connect?: ObatWhereUniqueInput
+    update?: XOR<XOR<ObatUpdateToOneWithWhereWithoutJadwal_ObatInput, ObatUpdateWithoutJadwal_ObatInput>, ObatUncheckedUpdateWithoutJadwal_ObatInput>
   }
 
   export type AyamCreateNestedOneWithoutPenyakitInput = {
@@ -16163,6 +17759,42 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type Jadwal_ObatCreateWithoutAyamInput = {
+    id?: string
+    tanggal: Date | string
+    dosis: number
+    keterangan: string
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    obat: ObatCreateNestedOneWithoutJadwal_ObatInput
+  }
+
+  export type Jadwal_ObatUncheckedCreateWithoutAyamInput = {
+    id?: string
+    obatId: string
+    tanggal: Date | string
+    dosis: number
+    keterangan: string
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type Jadwal_ObatCreateOrConnectWithoutAyamInput = {
+    where: Jadwal_ObatWhereUniqueInput
+    create: XOR<Jadwal_ObatCreateWithoutAyamInput, Jadwal_ObatUncheckedCreateWithoutAyamInput>
+  }
+
+  export type Jadwal_ObatCreateManyAyamInputEnvelope = {
+    data: Jadwal_ObatCreateManyAyamInput | Jadwal_ObatCreateManyAyamInput[]
+    skipDuplicates?: boolean
+  }
+
   export type penyakitCreateWithoutAyamInput = {
     id?: string
     nama: string
@@ -16258,6 +17890,39 @@ export namespace Prisma {
     deleted?: BoolFilter<"jadwal_vaksinasi"> | boolean
     createdAt?: DateTimeFilter<"jadwal_vaksinasi"> | Date | string
     updatedAt?: DateTimeFilter<"jadwal_vaksinasi"> | Date | string
+  }
+
+  export type Jadwal_ObatUpsertWithWhereUniqueWithoutAyamInput = {
+    where: Jadwal_ObatWhereUniqueInput
+    update: XOR<Jadwal_ObatUpdateWithoutAyamInput, Jadwal_ObatUncheckedUpdateWithoutAyamInput>
+    create: XOR<Jadwal_ObatCreateWithoutAyamInput, Jadwal_ObatUncheckedCreateWithoutAyamInput>
+  }
+
+  export type Jadwal_ObatUpdateWithWhereUniqueWithoutAyamInput = {
+    where: Jadwal_ObatWhereUniqueInput
+    data: XOR<Jadwal_ObatUpdateWithoutAyamInput, Jadwal_ObatUncheckedUpdateWithoutAyamInput>
+  }
+
+  export type Jadwal_ObatUpdateManyWithWhereWithoutAyamInput = {
+    where: Jadwal_ObatScalarWhereInput
+    data: XOR<Jadwal_ObatUpdateManyMutationInput, Jadwal_ObatUncheckedUpdateManyWithoutAyamInput>
+  }
+
+  export type Jadwal_ObatScalarWhereInput = {
+    AND?: Jadwal_ObatScalarWhereInput | Jadwal_ObatScalarWhereInput[]
+    OR?: Jadwal_ObatScalarWhereInput[]
+    NOT?: Jadwal_ObatScalarWhereInput | Jadwal_ObatScalarWhereInput[]
+    id?: StringFilter<"Jadwal_Obat"> | string
+    ayamId?: StringFilter<"Jadwal_Obat"> | string
+    obatId?: StringFilter<"Jadwal_Obat"> | string
+    tanggal?: DateTimeFilter<"Jadwal_Obat"> | Date | string
+    dosis?: IntFilter<"Jadwal_Obat"> | number
+    keterangan?: StringFilter<"Jadwal_Obat"> | string
+    sudah?: BoolFilter<"Jadwal_Obat"> | boolean
+    send_notification?: BoolFilter<"Jadwal_Obat"> | boolean
+    deleted?: BoolFilter<"Jadwal_Obat"> | boolean
+    createdAt?: DateTimeFilter<"Jadwal_Obat"> | Date | string
+    updatedAt?: DateTimeFilter<"Jadwal_Obat"> | Date | string
   }
 
   export type penyakitUpsertWithWhereUniqueWithoutAyamInput = {
@@ -16408,6 +18073,42 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type Jadwal_ObatCreateWithoutObatInput = {
+    id?: string
+    tanggal: Date | string
+    dosis: number
+    keterangan: string
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ayam: AyamCreateNestedOneWithoutJadwalObatInput
+  }
+
+  export type Jadwal_ObatUncheckedCreateWithoutObatInput = {
+    id?: string
+    ayamId: string
+    tanggal: Date | string
+    dosis: number
+    keterangan: string
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type Jadwal_ObatCreateOrConnectWithoutObatInput = {
+    where: Jadwal_ObatWhereUniqueInput
+    create: XOR<Jadwal_ObatCreateWithoutObatInput, Jadwal_ObatUncheckedCreateWithoutObatInput>
+  }
+
+  export type Jadwal_ObatCreateManyObatInputEnvelope = {
+    data: Jadwal_ObatCreateManyObatInput | Jadwal_ObatCreateManyObatInput[]
+    skipDuplicates?: boolean
+  }
+
   export type penyakitUpsertWithWhereUniqueWithoutObatInput = {
     where: penyakitWhereUniqueInput
     update: XOR<penyakitUpdateWithoutObatInput, penyakitUncheckedUpdateWithoutObatInput>
@@ -16424,6 +18125,22 @@ export namespace Prisma {
     data: XOR<penyakitUpdateManyMutationInput, penyakitUncheckedUpdateManyWithoutObatInput>
   }
 
+  export type Jadwal_ObatUpsertWithWhereUniqueWithoutObatInput = {
+    where: Jadwal_ObatWhereUniqueInput
+    update: XOR<Jadwal_ObatUpdateWithoutObatInput, Jadwal_ObatUncheckedUpdateWithoutObatInput>
+    create: XOR<Jadwal_ObatCreateWithoutObatInput, Jadwal_ObatUncheckedCreateWithoutObatInput>
+  }
+
+  export type Jadwal_ObatUpdateWithWhereUniqueWithoutObatInput = {
+    where: Jadwal_ObatWhereUniqueInput
+    data: XOR<Jadwal_ObatUpdateWithoutObatInput, Jadwal_ObatUncheckedUpdateWithoutObatInput>
+  }
+
+  export type Jadwal_ObatUpdateManyWithWhereWithoutObatInput = {
+    where: Jadwal_ObatScalarWhereInput
+    data: XOR<Jadwal_ObatUpdateManyMutationInput, Jadwal_ObatUncheckedUpdateManyWithoutObatInput>
+  }
+
   export type AyamCreateWithoutJadwalVaksinasiInput = {
     id?: string
     nama: string
@@ -16437,6 +18154,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    JadwalObat?: Jadwal_ObatCreateNestedManyWithoutAyamInput
     Penyakit?: penyakitCreateNestedManyWithoutAyamInput
     Mortalitas?: mortalitasCreateNestedManyWithoutAyamInput
   }
@@ -16454,6 +18172,7 @@ export namespace Prisma {
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    JadwalObat?: Jadwal_ObatUncheckedCreateNestedManyWithoutAyamInput
     Penyakit?: penyakitUncheckedCreateNestedManyWithoutAyamInput
     Mortalitas?: mortalitasUncheckedCreateNestedManyWithoutAyamInput
   }
@@ -16518,6 +18237,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    JadwalObat?: Jadwal_ObatUpdateManyWithoutAyamNestedInput
     Penyakit?: penyakitUpdateManyWithoutAyamNestedInput
     Mortalitas?: mortalitasUpdateManyWithoutAyamNestedInput
   }
@@ -16535,6 +18255,7 @@ export namespace Prisma {
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    JadwalObat?: Jadwal_ObatUncheckedUpdateManyWithoutAyamNestedInput
     Penyakit?: penyakitUncheckedUpdateManyWithoutAyamNestedInput
     Mortalitas?: mortalitasUncheckedUpdateManyWithoutAyamNestedInput
   }
@@ -16576,6 +18297,158 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AyamCreateWithoutJadwalObatInput = {
+    id?: string
+    nama: string
+    jumlah: number
+    jenis: string
+    umur: number
+    gambar: string
+    kandang: string
+    pakan: JsonNullValueInput | InputJsonValue
+    obat: JsonNullValueInput | InputJsonValue
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    JadwalVaksinasi?: jadwal_vaksinasiCreateNestedManyWithoutAyamInput
+    Penyakit?: penyakitCreateNestedManyWithoutAyamInput
+    Mortalitas?: mortalitasCreateNestedManyWithoutAyamInput
+  }
+
+  export type AyamUncheckedCreateWithoutJadwalObatInput = {
+    id?: string
+    nama: string
+    jumlah: number
+    jenis: string
+    umur: number
+    gambar: string
+    kandang: string
+    pakan: JsonNullValueInput | InputJsonValue
+    obat: JsonNullValueInput | InputJsonValue
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    JadwalVaksinasi?: jadwal_vaksinasiUncheckedCreateNestedManyWithoutAyamInput
+    Penyakit?: penyakitUncheckedCreateNestedManyWithoutAyamInput
+    Mortalitas?: mortalitasUncheckedCreateNestedManyWithoutAyamInput
+  }
+
+  export type AyamCreateOrConnectWithoutJadwalObatInput = {
+    where: AyamWhereUniqueInput
+    create: XOR<AyamCreateWithoutJadwalObatInput, AyamUncheckedCreateWithoutJadwalObatInput>
+  }
+
+  export type ObatCreateWithoutJadwal_ObatInput = {
+    id?: string
+    nama: string
+    indikasi: string
+    harga: string
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gambar: string
+    Penyakit?: penyakitCreateNestedManyWithoutObatInput
+  }
+
+  export type ObatUncheckedCreateWithoutJadwal_ObatInput = {
+    id?: string
+    nama: string
+    indikasi: string
+    harga: string
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    gambar: string
+    Penyakit?: penyakitUncheckedCreateNestedManyWithoutObatInput
+  }
+
+  export type ObatCreateOrConnectWithoutJadwal_ObatInput = {
+    where: ObatWhereUniqueInput
+    create: XOR<ObatCreateWithoutJadwal_ObatInput, ObatUncheckedCreateWithoutJadwal_ObatInput>
+  }
+
+  export type AyamUpsertWithoutJadwalObatInput = {
+    update: XOR<AyamUpdateWithoutJadwalObatInput, AyamUncheckedUpdateWithoutJadwalObatInput>
+    create: XOR<AyamCreateWithoutJadwalObatInput, AyamUncheckedCreateWithoutJadwalObatInput>
+    where?: AyamWhereInput
+  }
+
+  export type AyamUpdateToOneWithWhereWithoutJadwalObatInput = {
+    where?: AyamWhereInput
+    data: XOR<AyamUpdateWithoutJadwalObatInput, AyamUncheckedUpdateWithoutJadwalObatInput>
+  }
+
+  export type AyamUpdateWithoutJadwalObatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jumlah?: IntFieldUpdateOperationsInput | number
+    jenis?: StringFieldUpdateOperationsInput | string
+    umur?: IntFieldUpdateOperationsInput | number
+    gambar?: StringFieldUpdateOperationsInput | string
+    kandang?: StringFieldUpdateOperationsInput | string
+    pakan?: JsonNullValueInput | InputJsonValue
+    obat?: JsonNullValueInput | InputJsonValue
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    JadwalVaksinasi?: jadwal_vaksinasiUpdateManyWithoutAyamNestedInput
+    Penyakit?: penyakitUpdateManyWithoutAyamNestedInput
+    Mortalitas?: mortalitasUpdateManyWithoutAyamNestedInput
+  }
+
+  export type AyamUncheckedUpdateWithoutJadwalObatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jumlah?: IntFieldUpdateOperationsInput | number
+    jenis?: StringFieldUpdateOperationsInput | string
+    umur?: IntFieldUpdateOperationsInput | number
+    gambar?: StringFieldUpdateOperationsInput | string
+    kandang?: StringFieldUpdateOperationsInput | string
+    pakan?: JsonNullValueInput | InputJsonValue
+    obat?: JsonNullValueInput | InputJsonValue
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    JadwalVaksinasi?: jadwal_vaksinasiUncheckedUpdateManyWithoutAyamNestedInput
+    Penyakit?: penyakitUncheckedUpdateManyWithoutAyamNestedInput
+    Mortalitas?: mortalitasUncheckedUpdateManyWithoutAyamNestedInput
+  }
+
+  export type ObatUpsertWithoutJadwal_ObatInput = {
+    update: XOR<ObatUpdateWithoutJadwal_ObatInput, ObatUncheckedUpdateWithoutJadwal_ObatInput>
+    create: XOR<ObatCreateWithoutJadwal_ObatInput, ObatUncheckedCreateWithoutJadwal_ObatInput>
+    where?: ObatWhereInput
+  }
+
+  export type ObatUpdateToOneWithWhereWithoutJadwal_ObatInput = {
+    where?: ObatWhereInput
+    data: XOR<ObatUpdateWithoutJadwal_ObatInput, ObatUncheckedUpdateWithoutJadwal_ObatInput>
+  }
+
+  export type ObatUpdateWithoutJadwal_ObatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    indikasi?: StringFieldUpdateOperationsInput | string
+    harga?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gambar?: StringFieldUpdateOperationsInput | string
+    Penyakit?: penyakitUpdateManyWithoutObatNestedInput
+  }
+
+  export type ObatUncheckedUpdateWithoutJadwal_ObatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    indikasi?: StringFieldUpdateOperationsInput | string
+    harga?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gambar?: StringFieldUpdateOperationsInput | string
+    Penyakit?: penyakitUncheckedUpdateManyWithoutObatNestedInput
+  }
+
   export type AyamCreateWithoutPenyakitInput = {
     id?: string
     nama: string
@@ -16590,6 +18463,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     JadwalVaksinasi?: jadwal_vaksinasiCreateNestedManyWithoutAyamInput
+    JadwalObat?: Jadwal_ObatCreateNestedManyWithoutAyamInput
     Mortalitas?: mortalitasCreateNestedManyWithoutAyamInput
   }
 
@@ -16607,6 +18481,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     JadwalVaksinasi?: jadwal_vaksinasiUncheckedCreateNestedManyWithoutAyamInput
+    JadwalObat?: Jadwal_ObatUncheckedCreateNestedManyWithoutAyamInput
     Mortalitas?: mortalitasUncheckedCreateNestedManyWithoutAyamInput
   }
 
@@ -16624,6 +18499,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     gambar: string
+    Jadwal_Obat?: Jadwal_ObatCreateNestedManyWithoutObatInput
   }
 
   export type ObatUncheckedCreateWithoutPenyakitInput = {
@@ -16635,6 +18511,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     gambar: string
+    Jadwal_Obat?: Jadwal_ObatUncheckedCreateNestedManyWithoutObatInput
   }
 
   export type ObatCreateOrConnectWithoutPenyakitInput = {
@@ -16667,6 +18544,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     JadwalVaksinasi?: jadwal_vaksinasiUpdateManyWithoutAyamNestedInput
+    JadwalObat?: Jadwal_ObatUpdateManyWithoutAyamNestedInput
     Mortalitas?: mortalitasUpdateManyWithoutAyamNestedInput
   }
 
@@ -16684,6 +18562,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     JadwalVaksinasi?: jadwal_vaksinasiUncheckedUpdateManyWithoutAyamNestedInput
+    JadwalObat?: Jadwal_ObatUncheckedUpdateManyWithoutAyamNestedInput
     Mortalitas?: mortalitasUncheckedUpdateManyWithoutAyamNestedInput
   }
 
@@ -16707,6 +18586,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gambar?: StringFieldUpdateOperationsInput | string
+    Jadwal_Obat?: Jadwal_ObatUpdateManyWithoutObatNestedInput
   }
 
   export type ObatUncheckedUpdateWithoutPenyakitInput = {
@@ -16718,6 +18598,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gambar?: StringFieldUpdateOperationsInput | string
+    Jadwal_Obat?: Jadwal_ObatUncheckedUpdateManyWithoutObatNestedInput
   }
 
   export type AyamCreateWithoutMortalitasInput = {
@@ -16734,6 +18615,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     JadwalVaksinasi?: jadwal_vaksinasiCreateNestedManyWithoutAyamInput
+    JadwalObat?: Jadwal_ObatCreateNestedManyWithoutAyamInput
     Penyakit?: penyakitCreateNestedManyWithoutAyamInput
   }
 
@@ -16751,6 +18633,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     JadwalVaksinasi?: jadwal_vaksinasiUncheckedCreateNestedManyWithoutAyamInput
+    JadwalObat?: Jadwal_ObatUncheckedCreateNestedManyWithoutAyamInput
     Penyakit?: penyakitUncheckedCreateNestedManyWithoutAyamInput
   }
 
@@ -16784,6 +18667,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     JadwalVaksinasi?: jadwal_vaksinasiUpdateManyWithoutAyamNestedInput
+    JadwalObat?: Jadwal_ObatUpdateManyWithoutAyamNestedInput
     Penyakit?: penyakitUpdateManyWithoutAyamNestedInput
   }
 
@@ -16801,12 +18685,26 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     JadwalVaksinasi?: jadwal_vaksinasiUncheckedUpdateManyWithoutAyamNestedInput
+    JadwalObat?: Jadwal_ObatUncheckedUpdateManyWithoutAyamNestedInput
     Penyakit?: penyakitUncheckedUpdateManyWithoutAyamNestedInput
   }
 
   export type jadwal_vaksinasiCreateManyAyamInput = {
     id?: string
     vaksinId: string
+    tanggal: Date | string
+    dosis: number
+    keterangan: string
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type Jadwal_ObatCreateManyAyamInput = {
+    id?: string
+    obatId: string
     tanggal: Date | string
     dosis: number
     keterangan: string
@@ -16868,6 +18766,45 @@ export namespace Prisma {
   export type jadwal_vaksinasiUncheckedUpdateManyWithoutAyamInput = {
     id?: StringFieldUpdateOperationsInput | string
     vaksinId?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    dosis?: IntFieldUpdateOperationsInput | number
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Jadwal_ObatUpdateWithoutAyamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    dosis?: IntFieldUpdateOperationsInput | number
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    obat?: ObatUpdateOneRequiredWithoutJadwal_ObatNestedInput
+  }
+
+  export type Jadwal_ObatUncheckedUpdateWithoutAyamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    obatId?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    dosis?: IntFieldUpdateOperationsInput | number
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Jadwal_ObatUncheckedUpdateManyWithoutAyamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    obatId?: StringFieldUpdateOperationsInput | string
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
     dosis?: IntFieldUpdateOperationsInput | number
     keterangan?: StringFieldUpdateOperationsInput | string
@@ -17008,6 +18945,19 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type Jadwal_ObatCreateManyObatInput = {
+    id?: string
+    ayamId: string
+    tanggal: Date | string
+    dosis: number
+    keterangan: string
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type penyakitUpdateWithoutObatInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
@@ -17039,6 +18989,45 @@ export namespace Prisma {
     gejala?: StringFieldUpdateOperationsInput | string
     gambar?: StringFieldUpdateOperationsInput | string
     ayamId?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Jadwal_ObatUpdateWithoutObatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    dosis?: IntFieldUpdateOperationsInput | number
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ayam?: AyamUpdateOneRequiredWithoutJadwalObatNestedInput
+  }
+
+  export type Jadwal_ObatUncheckedUpdateWithoutObatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ayamId?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    dosis?: IntFieldUpdateOperationsInput | number
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Jadwal_ObatUncheckedUpdateManyWithoutObatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ayamId?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    dosis?: IntFieldUpdateOperationsInput | number
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

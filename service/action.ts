@@ -1,7 +1,7 @@
 "use server"
 
 import { DB } from "@/config/database";
-import { AyamType, BelanjaType, JadwalVaksinType, ObatType, PakanType, PanenType, PenyakitType, RegisterType, VaksinType } from "@/types/input";
+import { AyamType, BelanjaType, JadwalObatType, JadwalVaksinType, ObatType, PakanType, PanenType, PenyakitType, RegisterType, VaksinType } from "@/types/input";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Jenis, Tindakan} from "@/app/generated/prisma";
@@ -136,9 +136,45 @@ export const updateJadwalVaksinasi = async (id: string) => {
     revalidatePath("/jadwal-vaksinasi");
 }
 
+export const updateJadwalObat = async (id: string) => {
+    try {
+        await DB.jadwal_Obat.update({
+            where: {
+                id: id
+            },
+            data: {
+                sudah: true
+            }
+        })
+    } catch (error) {
+        console.error("Error updating jadwal vaksinasi:", error);
+        throw error;
+    }
+    
+    revalidatePath("/jadwal-vaksinasi");
+}
+
 export const deleteJadwalVaksinasi = async (id: string) => {
     try {
         await DB.jadwal_vaksinasi.update({
+            where: {
+                id: id
+            },
+            data: {
+                deleted: true
+            }
+        })
+    } catch (error) {
+        console.error("Error deleting jadwal vaksinasi:", error);
+        throw error;
+    }
+    
+    revalidatePath("/jadwal-vaksinasi");
+}
+
+export const deleteJadwalObat = async (id: string) => {
+    try {
+        await DB.jadwal_Obat.update({
             where: {
                 id: id
             },
@@ -366,6 +402,28 @@ export const createJadwalVaksin = async (data: JadwalVaksinType) => {
     }
 }
 
+export const createJadwalObat = async (data: JadwalObatType) => {
+    try {
+        const vaksinasi =  await DB.jadwal_Obat.create({
+            data:{
+                dosis: 1,
+                ayamId: data.nama,
+                obatId: data.obat,
+                tanggal: data.tanggal as Date,
+                keterangan: data.keterangan || "tolong segera di vaksin"
+            }
+        })
+
+        console.log(vaksinasi)
+
+    } catch (e){
+        console.log(e)
+        throw e;
+    }finally{
+        redirect('/jadwal-vaksin')
+    }
+}
+
 
 const notificationsAlertVaksin = async() => {
     try{
@@ -423,7 +481,7 @@ const notificationsAlertVaksin = async() => {
 
 // cron job
 cron.schedule(
-    "*/10 * * * * *",
+    "0 0 * * * *",
     async() => {
       await notificationsAlertVaksin();
     },

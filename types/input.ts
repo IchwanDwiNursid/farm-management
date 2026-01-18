@@ -78,6 +78,13 @@ export const JadwalVaksinSchema = z.object({
     keterangan: z.string().nullable()
 })
 
+export const JadwalObatSchema = z.object({
+    nama : z.string(),
+    obat: z.string(),
+    tanggal: z.coerce.date(),
+    keterangan: z.string().nullable()
+})
+
 export type AyamType = z.infer<typeof AyamSchema>;
 export type VaksinType = z.infer<typeof VaksinSchema>;
 export type ObatType = z.infer<typeof ObatSchema>;
@@ -88,3 +95,4 @@ export type LoginType = z.infer<typeof LoginSchema>;
 export type RegisterType = z.infer<typeof RegisterSchema>
 export type BelanjaType = z.infer<typeof BelanjaSchema>
 export type JadwalVaksinType = z.infer<typeof JadwalVaksinSchema>
+export type JadwalObatType = z.infer<typeof JadwalObatSchema>
