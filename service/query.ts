@@ -1,6 +1,6 @@
 import { DB } from "@/config/database"
 import { convertDecimalToPlainObject } from "@/utils/converterDesimal";
-import { endOfMonth, format, startOfMonth } from "date-fns";
+import { endOfMonth, startOfMonth } from "date-fns";
 
 export const getAllAyam = async () => {
     const rawData = await DB.$queryRaw`
@@ -205,21 +205,26 @@ export const getAllPanenBesedOnMonth = async() => {
   return result
 }
 
-export const getAllBelanjaBesedOnMonth = async() => {
-    const now = new Date();
-    const start = startOfMonth(now);
-    const end = endOfMonth(now);
+export const getTotalPanenPerBulan = async() =>{
+    try{
+        const rawData = await DB.$queryRaw`
+            SELECT
+                DATE_FORMAT(createdAt, '%Y-%m') AS bulan,
 
-    const result = await DB.$queryRaw<any>`
-        SELECT SUM(harga) as total
-        FROM belanja
-        WHERE deleted = false
-            AND createdAt BETWEEN ${start} AND ${end}
-    `;
+                SUM(CASE WHEN jenis = 'telur' THEN jumlah ELSE 0 END) AS jumlah_telur,
+                SUM(CASE WHEN jenis = 'daging' THEN jumlah ELSE 0 END) AS jumlah_daging,
 
-    return result[0]?.total || 0; 
+                CAST(SUM(harga) AS SIGNED) AS total_harga
+            FROM panen
+            WHERE deleted = 0
+            GROUP BY bulan
+            ORDER BY bulan DESC;
+        `
+        return convertDecimalToPlainObject(rawData)
+    }catch(e){
+        console.log((e as Error).message)
+    }
 }
-
 export const getTotalBelanjaPerBulan = async() =>{
     try{
         const data = await DB.$queryRaw`
@@ -235,5 +240,22 @@ export const getTotalBelanjaPerBulan = async() =>{
         return data
     }catch(e){
         console.log((e as Error).message)
+    }
+}
+
+export const getAllNotifications = async() => {
+    try{
+        const notif = await DB.notifications.findMany({
+            where: {
+                read: false,
+            },
+            orderBy: {
+                createdAt: "asc"
+            }
+        })
+
+        return notif
+    }catch(e){
+        console.log(e)
     }
 }

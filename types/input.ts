@@ -1,4 +1,4 @@
-import z from "zod";
+import z, { date } from "zod";
 
 export const AyamSchema = z.object({
     nama: z.string().min(1, "Nama harus diisi"),
@@ -71,6 +71,13 @@ export const RegisterSchema = z.object({
     role: z.string().min(1, "Role Harus Di Isi")
 })
 
+export const JadwalVaksinSchema = z.object({
+    nama : z.string(),
+    vaksin: z.string(),
+    tanggal: z.coerce.date(),
+    keterangan: z.string().nullable()
+})
+
 export type AyamType = z.infer<typeof AyamSchema>;
 export type VaksinType = z.infer<typeof VaksinSchema>;
 export type ObatType = z.infer<typeof ObatSchema>;
@@ -80,3 +87,4 @@ export type PanenType = z.infer<typeof PanenSchema>;
 export type LoginType = z.infer<typeof LoginSchema>;
 export type RegisterType = z.infer<typeof RegisterSchema>
 export type BelanjaType = z.infer<typeof BelanjaSchema>
+export type JadwalVaksinType = z.infer<typeof JadwalVaksinSchema>

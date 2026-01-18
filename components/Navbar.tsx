@@ -1,19 +1,38 @@
 "use client";
+import React from "react";
+import { notifications, NotificationsType } from "@/app/generated/prisma";
 import { useUser } from "@/context/UserContext";
 import { logout } from "@/service/action";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { GoBellFill } from "react-icons/go";
+import SoundNotification from "./notification/SoundNotification";
 
 const Navbar = () => {
-
+  const [notifications, setNotifications] = useState<notifications[]>([])
   const pathname = usePathname();
 
   const linkClass = (path: string) =>
     `nav-link text-white ${pathname === path ? "fw-bold" : ""}`;
 
   const {userData, loading} = useUser()
+
+  useEffect(() => {
+    const getNotifications = async () => {
+      const res = await fetch('/api/notifications');
+      if (!res.ok) {
+          throw new Error("Failed to fetch ayam");
+      }
+      const data = await res.json();
+      setNotifications(data)
+    }
+
+    getNotifications();
+  },[])
+
+  console.log(notifications)
 
   if (pathname === "/login" || pathname === "/register") {
     return null;
@@ -55,7 +74,7 @@ const Navbar = () => {
               <Link className={linkClass('/obat')} href={"/obat"}>OBAT</Link>
             </li>
             <li className="nav-item">
-              <Link className={linkClass('/jadwal-vaksin')} href={"/jadwal-vaksin"}>JADWAL VAKSIN</Link>
+              <Link className={linkClass('/jadwal-vaksin')} href={"/jadwal-vaksin"}>SCHEDULE</Link>
             </li>
             <li className="nav-item">
               <Link className={linkClass('/penyakit')} href={"/penyakit"}>PENYAKIT</Link>
@@ -111,18 +130,30 @@ const Navbar = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <GoBellFill size={25} />
-                <span
-                  className="position-absolute bg-danger rounded-circle"
-                  style={{
-                    padding: "6px",
-                    top: "2px",
-                    left: "24px"
-                  }}
-                ></span>
+                  <GoBellFill size={25}/>
+                {notifications.length > 0 && (
+                  <span
+                    className="position-absolute bg-danger rounded-circle"
+                    style={{
+                      padding: "6px",
+                      top: "2px",
+                      left: "24px"
+                    }}
+                  />
+                )}
               </div>
               <ul className="dropdown-menu dropdown-menu-end">
-                <li className="p-2">No Have Notification</li>
+                {notifications?.map((notif, index) => (
+                  <React.Fragment key={notif.id}>
+                    <li className="p-2 fs-6 fw-semibold dropdown-item">{notif.message}</li>
+
+                    {index !== notifications.length - 1 && (
+                      <li>
+                        <hr className="dropdown-divider" />
+                      </li>
+                    )}
+                  </React.Fragment>
+                ))}
               </ul>
             </li>
           </ul>

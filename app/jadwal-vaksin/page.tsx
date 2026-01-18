@@ -1,12 +1,19 @@
 import { deleteJadwalVaksinasi, updateJadwalVaksinasi } from '@/service/action'
 import { getAllJadwalVaksinasi} from '@/service/query'
+import Link from 'next/link'
 import React from 'react'
 
 const JadwalVaksin = async () => {
     const vaksinasi = await getAllJadwalVaksinasi()
+    // console.log(isOneWeekPassed(item.tanggal))
   if (!vaksinasi || vaksinasi.length === 0) {
     return (
         <div className="row" style={{ marginTop: 50 }}>
+          <div className="col-12 text-end px-5">
+            <Link href="/jadwal-vaksin/tambah" className="btn btn-primary" style={{ width: 80 }}>
+                Tambah
+            </Link>
+          </div>
         <div className="col-12 w-xl-50 px-4 mx-auto table-responsive">
             <h3>Jadwal Vaksin</h3>
             <table className="table table-striped table-bordered border-primary">
@@ -34,6 +41,11 @@ const JadwalVaksin = async () => {
   }
   return (
     <div className="row" style={{ marginTop: 50 }}>
+      <div className="col-12 text-end px-5">
+          <Link href="/jadwal-vaksin/tambah" className="btn btn-primary" style={{ width: 80 }}>
+              Tambah
+          </Link>
+      </div>
       <div className="col-12 w-xl-50 px-4 mx-auto table-responsive">
         <h3 className='mb-2 p-3'>Jadwal Vaksin</h3>
         <table className="table table-striped table-bordered border-primary">
@@ -67,8 +79,8 @@ const JadwalVaksin = async () => {
                 <td className="align-middle text-center">{item.ayam.nama}</td>
                 <td className="align-middle text-center">{item.vaksin.nama}</td>
                 <td className="align-middle text-center">{item.dosis}</td>
-                <td className="align-middle text-center">{item.tanggal.toDateString()}</td>
-                <td className="align-middle text-center">{item.keterangan} Minggu</td>
+                <td className="align-middle text-center">{new Date(item.tanggal).toLocaleDateString("id-ID")}</td>
+                <td className="align-middle text-center">{item.keterangan}</td>
                 {item.sudah ? (
                     <td className="align-middle text-center">
                         <form action={async () => {

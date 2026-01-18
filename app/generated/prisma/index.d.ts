@@ -88,6 +88,13 @@ export const Tindakan: {
 
 export type Tindakan = (typeof Tindakan)[keyof typeof Tindakan]
 
+
+export const NotificationsType: {
+  vaksin: 'vaksin'
+};
+
+export type NotificationsType = (typeof NotificationsType)[keyof typeof NotificationsType]
+
 }
 
 export type Jenis = $Enums.Jenis
@@ -97,6 +104,10 @@ export const Jenis: typeof $Enums.Jenis
 export type Tindakan = $Enums.Tindakan
 
 export const Tindakan: typeof $Enums.Tindakan
+
+export type NotificationsType = $Enums.NotificationsType
+
+export const NotificationsType: typeof $Enums.NotificationsType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -6874,6 +6885,7 @@ export namespace Prisma {
     dosis: number | null
     keterangan: string | null
     sudah: boolean | null
+    send_notification: boolean | null
     deleted: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6887,6 +6899,7 @@ export namespace Prisma {
     dosis: number | null
     keterangan: string | null
     sudah: boolean | null
+    send_notification: boolean | null
     deleted: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6900,6 +6913,7 @@ export namespace Prisma {
     dosis: number
     keterangan: number
     sudah: number
+    send_notification: number
     deleted: number
     createdAt: number
     updatedAt: number
@@ -6923,6 +6937,7 @@ export namespace Prisma {
     dosis?: true
     keterangan?: true
     sudah?: true
+    send_notification?: true
     deleted?: true
     createdAt?: true
     updatedAt?: true
@@ -6936,6 +6951,7 @@ export namespace Prisma {
     dosis?: true
     keterangan?: true
     sudah?: true
+    send_notification?: true
     deleted?: true
     createdAt?: true
     updatedAt?: true
@@ -6949,6 +6965,7 @@ export namespace Prisma {
     dosis?: true
     keterangan?: true
     sudah?: true
+    send_notification?: true
     deleted?: true
     createdAt?: true
     updatedAt?: true
@@ -7049,6 +7066,7 @@ export namespace Prisma {
     dosis: number
     keterangan: string
     sudah: boolean
+    send_notification: boolean
     deleted: boolean
     createdAt: Date
     updatedAt: Date
@@ -7081,6 +7099,7 @@ export namespace Prisma {
     dosis?: boolean
     keterangan?: boolean
     sudah?: boolean
+    send_notification?: boolean
     deleted?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7098,12 +7117,13 @@ export namespace Prisma {
     dosis?: boolean
     keterangan?: boolean
     sudah?: boolean
+    send_notification?: boolean
     deleted?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type jadwal_vaksinasiOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ayamId" | "vaksinId" | "tanggal" | "dosis" | "keterangan" | "sudah" | "deleted" | "createdAt" | "updatedAt", ExtArgs["result"]["jadwal_vaksinasi"]>
+  export type jadwal_vaksinasiOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ayamId" | "vaksinId" | "tanggal" | "dosis" | "keterangan" | "sudah" | "send_notification" | "deleted" | "createdAt" | "updatedAt", ExtArgs["result"]["jadwal_vaksinasi"]>
   export type jadwal_vaksinasiInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ayam?: boolean | AyamDefaultArgs<ExtArgs>
     vaksin?: boolean | VaksinDefaultArgs<ExtArgs>
@@ -7123,6 +7143,7 @@ export namespace Prisma {
       dosis: number
       keterangan: string
       sudah: boolean
+      send_notification: boolean
       deleted: boolean
       createdAt: Date
       updatedAt: Date
@@ -7504,6 +7525,7 @@ export namespace Prisma {
     readonly dosis: FieldRef<"jadwal_vaksinasi", 'Int'>
     readonly keterangan: FieldRef<"jadwal_vaksinasi", 'String'>
     readonly sudah: FieldRef<"jadwal_vaksinasi", 'Boolean'>
+    readonly send_notification: FieldRef<"jadwal_vaksinasi", 'Boolean'>
     readonly deleted: FieldRef<"jadwal_vaksinasi", 'Boolean'>
     readonly createdAt: FieldRef<"jadwal_vaksinasi", 'DateTime'>
     readonly updatedAt: FieldRef<"jadwal_vaksinasi", 'DateTime'>
@@ -11759,6 +11781,7 @@ export namespace Prisma {
 
   export type NotificationsMinAggregateOutputType = {
     id: string | null
+    type: $Enums.NotificationsType | null
     message: string | null
     read: boolean | null
     createdAt: Date | null
@@ -11767,6 +11790,7 @@ export namespace Prisma {
 
   export type NotificationsMaxAggregateOutputType = {
     id: string | null
+    type: $Enums.NotificationsType | null
     message: string | null
     read: boolean | null
     createdAt: Date | null
@@ -11775,6 +11799,7 @@ export namespace Prisma {
 
   export type NotificationsCountAggregateOutputType = {
     id: number
+    type: number
     message: number
     read: number
     createdAt: number
@@ -11785,6 +11810,7 @@ export namespace Prisma {
 
   export type NotificationsMinAggregateInputType = {
     id?: true
+    type?: true
     message?: true
     read?: true
     createdAt?: true
@@ -11793,6 +11819,7 @@ export namespace Prisma {
 
   export type NotificationsMaxAggregateInputType = {
     id?: true
+    type?: true
     message?: true
     read?: true
     createdAt?: true
@@ -11801,6 +11828,7 @@ export namespace Prisma {
 
   export type NotificationsCountAggregateInputType = {
     id?: true
+    type?: true
     message?: true
     read?: true
     createdAt?: true
@@ -11882,6 +11910,7 @@ export namespace Prisma {
 
   export type NotificationsGroupByOutputType = {
     id: string
+    type: $Enums.NotificationsType
     message: string
     read: boolean
     createdAt: Date
@@ -11907,6 +11936,7 @@ export namespace Prisma {
 
   export type notificationsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    type?: boolean
     message?: boolean
     read?: boolean
     createdAt?: boolean
@@ -11917,19 +11947,21 @@ export namespace Prisma {
 
   export type notificationsSelectScalar = {
     id?: boolean
+    type?: boolean
     message?: boolean
     read?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type notificationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "message" | "read" | "createdAt" | "updatedAt", ExtArgs["result"]["notifications"]>
+  export type notificationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "message" | "read" | "createdAt" | "updatedAt", ExtArgs["result"]["notifications"]>
 
   export type $notificationsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "notifications"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      type: $Enums.NotificationsType
       message: string
       read: boolean
       createdAt: Date
@@ -12304,6 +12336,7 @@ export namespace Prisma {
    */
   interface notificationsFieldRefs {
     readonly id: FieldRef<"notifications", 'String'>
+    readonly type: FieldRef<"notifications", 'NotificationsType'>
     readonly message: FieldRef<"notifications", 'String'>
     readonly read: FieldRef<"notifications", 'Boolean'>
     readonly createdAt: FieldRef<"notifications", 'DateTime'>
@@ -12726,6 +12759,7 @@ export namespace Prisma {
     dosis: 'dosis',
     keterangan: 'keterangan',
     sudah: 'sudah',
+    send_notification: 'send_notification',
     deleted: 'deleted',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -12793,6 +12827,7 @@ export namespace Prisma {
 
   export const NotificationsScalarFieldEnum: {
     id: 'id',
+    type: 'type',
     message: 'message',
     read: 'read',
     createdAt: 'createdAt',
@@ -13010,6 +13045,13 @@ export namespace Prisma {
    * Reference to a field of type 'Tindakan'
    */
   export type EnumTindakanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Tindakan'>
+    
+
+
+  /**
+   * Reference to a field of type 'NotificationsType'
+   */
+  export type EnumNotificationsTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NotificationsType'>
     
 
 
@@ -13420,6 +13462,7 @@ export namespace Prisma {
     dosis?: IntFilter<"jadwal_vaksinasi"> | number
     keterangan?: StringFilter<"jadwal_vaksinasi"> | string
     sudah?: BoolFilter<"jadwal_vaksinasi"> | boolean
+    send_notification?: BoolFilter<"jadwal_vaksinasi"> | boolean
     deleted?: BoolFilter<"jadwal_vaksinasi"> | boolean
     createdAt?: DateTimeFilter<"jadwal_vaksinasi"> | Date | string
     updatedAt?: DateTimeFilter<"jadwal_vaksinasi"> | Date | string
@@ -13435,6 +13478,7 @@ export namespace Prisma {
     dosis?: SortOrder
     keterangan?: SortOrder
     sudah?: SortOrder
+    send_notification?: SortOrder
     deleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13454,6 +13498,7 @@ export namespace Prisma {
     dosis?: IntFilter<"jadwal_vaksinasi"> | number
     keterangan?: StringFilter<"jadwal_vaksinasi"> | string
     sudah?: BoolFilter<"jadwal_vaksinasi"> | boolean
+    send_notification?: BoolFilter<"jadwal_vaksinasi"> | boolean
     deleted?: BoolFilter<"jadwal_vaksinasi"> | boolean
     createdAt?: DateTimeFilter<"jadwal_vaksinasi"> | Date | string
     updatedAt?: DateTimeFilter<"jadwal_vaksinasi"> | Date | string
@@ -13469,6 +13514,7 @@ export namespace Prisma {
     dosis?: SortOrder
     keterangan?: SortOrder
     sudah?: SortOrder
+    send_notification?: SortOrder
     deleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13490,6 +13536,7 @@ export namespace Prisma {
     dosis?: IntWithAggregatesFilter<"jadwal_vaksinasi"> | number
     keterangan?: StringWithAggregatesFilter<"jadwal_vaksinasi"> | string
     sudah?: BoolWithAggregatesFilter<"jadwal_vaksinasi"> | boolean
+    send_notification?: BoolWithAggregatesFilter<"jadwal_vaksinasi"> | boolean
     deleted?: BoolWithAggregatesFilter<"jadwal_vaksinasi"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"jadwal_vaksinasi"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"jadwal_vaksinasi"> | Date | string
@@ -13792,6 +13839,7 @@ export namespace Prisma {
     OR?: notificationsWhereInput[]
     NOT?: notificationsWhereInput | notificationsWhereInput[]
     id?: StringFilter<"notifications"> | string
+    type?: EnumNotificationsTypeFilter<"notifications"> | $Enums.NotificationsType
     message?: StringFilter<"notifications"> | string
     read?: BoolFilter<"notifications"> | boolean
     createdAt?: DateTimeFilter<"notifications"> | Date | string
@@ -13800,6 +13848,7 @@ export namespace Prisma {
 
   export type notificationsOrderByWithRelationInput = {
     id?: SortOrder
+    type?: SortOrder
     message?: SortOrder
     read?: SortOrder
     createdAt?: SortOrder
@@ -13812,6 +13861,7 @@ export namespace Prisma {
     AND?: notificationsWhereInput | notificationsWhereInput[]
     OR?: notificationsWhereInput[]
     NOT?: notificationsWhereInput | notificationsWhereInput[]
+    type?: EnumNotificationsTypeFilter<"notifications"> | $Enums.NotificationsType
     message?: StringFilter<"notifications"> | string
     read?: BoolFilter<"notifications"> | boolean
     createdAt?: DateTimeFilter<"notifications"> | Date | string
@@ -13820,6 +13870,7 @@ export namespace Prisma {
 
   export type notificationsOrderByWithAggregationInput = {
     id?: SortOrder
+    type?: SortOrder
     message?: SortOrder
     read?: SortOrder
     createdAt?: SortOrder
@@ -13834,6 +13885,7 @@ export namespace Prisma {
     OR?: notificationsScalarWhereWithAggregatesInput[]
     NOT?: notificationsScalarWhereWithAggregatesInput | notificationsScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"notifications"> | string
+    type?: EnumNotificationsTypeWithAggregatesFilter<"notifications"> | $Enums.NotificationsType
     message?: StringWithAggregatesFilter<"notifications"> | string
     read?: BoolWithAggregatesFilter<"notifications"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"notifications"> | Date | string
@@ -14286,6 +14338,7 @@ export namespace Prisma {
     dosis: number
     keterangan: string
     sudah?: boolean
+    send_notification?: boolean
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14301,6 +14354,7 @@ export namespace Prisma {
     dosis: number
     keterangan: string
     sudah?: boolean
+    send_notification?: boolean
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14312,6 +14366,7 @@ export namespace Prisma {
     dosis?: IntFieldUpdateOperationsInput | number
     keterangan?: StringFieldUpdateOperationsInput | string
     sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14327,6 +14382,7 @@ export namespace Prisma {
     dosis?: IntFieldUpdateOperationsInput | number
     keterangan?: StringFieldUpdateOperationsInput | string
     sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14340,6 +14396,7 @@ export namespace Prisma {
     dosis: number
     keterangan: string
     sudah?: boolean
+    send_notification?: boolean
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14351,6 +14408,7 @@ export namespace Prisma {
     dosis?: IntFieldUpdateOperationsInput | number
     keterangan?: StringFieldUpdateOperationsInput | string
     sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14364,6 +14422,7 @@ export namespace Prisma {
     dosis?: IntFieldUpdateOperationsInput | number
     keterangan?: StringFieldUpdateOperationsInput | string
     sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14683,6 +14742,7 @@ export namespace Prisma {
 
   export type notificationsCreateInput = {
     id?: string
+    type?: $Enums.NotificationsType
     message: string
     read?: boolean
     createdAt?: Date | string
@@ -14691,6 +14751,7 @@ export namespace Prisma {
 
   export type notificationsUncheckedCreateInput = {
     id?: string
+    type?: $Enums.NotificationsType
     message: string
     read?: boolean
     createdAt?: Date | string
@@ -14699,6 +14760,7 @@ export namespace Prisma {
 
   export type notificationsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationsTypeFieldUpdateOperationsInput | $Enums.NotificationsType
     message?: StringFieldUpdateOperationsInput | string
     read?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14707,6 +14769,7 @@ export namespace Prisma {
 
   export type notificationsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationsTypeFieldUpdateOperationsInput | $Enums.NotificationsType
     message?: StringFieldUpdateOperationsInput | string
     read?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14715,6 +14778,7 @@ export namespace Prisma {
 
   export type notificationsCreateManyInput = {
     id?: string
+    type?: $Enums.NotificationsType
     message: string
     read?: boolean
     createdAt?: Date | string
@@ -14723,6 +14787,7 @@ export namespace Prisma {
 
   export type notificationsUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationsTypeFieldUpdateOperationsInput | $Enums.NotificationsType
     message?: StringFieldUpdateOperationsInput | string
     read?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14731,6 +14796,7 @@ export namespace Prisma {
 
   export type notificationsUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationsTypeFieldUpdateOperationsInput | $Enums.NotificationsType
     message?: StringFieldUpdateOperationsInput | string
     read?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15170,6 +15236,7 @@ export namespace Prisma {
     dosis?: SortOrder
     keterangan?: SortOrder
     sudah?: SortOrder
+    send_notification?: SortOrder
     deleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -15187,6 +15254,7 @@ export namespace Prisma {
     dosis?: SortOrder
     keterangan?: SortOrder
     sudah?: SortOrder
+    send_notification?: SortOrder
     deleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -15200,6 +15268,7 @@ export namespace Prisma {
     dosis?: SortOrder
     keterangan?: SortOrder
     sudah?: SortOrder
+    send_notification?: SortOrder
     deleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -15467,6 +15536,13 @@ export namespace Prisma {
     harga?: SortOrder
   }
 
+  export type EnumNotificationsTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.NotificationsType | EnumNotificationsTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.NotificationsType[]
+    notIn?: $Enums.NotificationsType[]
+    not?: NestedEnumNotificationsTypeFilter<$PrismaModel> | $Enums.NotificationsType
+  }
+
   export type notificationsOrderByRelevanceInput = {
     fields: notificationsOrderByRelevanceFieldEnum | notificationsOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -15475,6 +15551,7 @@ export namespace Prisma {
 
   export type notificationsCountOrderByAggregateInput = {
     id?: SortOrder
+    type?: SortOrder
     message?: SortOrder
     read?: SortOrder
     createdAt?: SortOrder
@@ -15483,6 +15560,7 @@ export namespace Prisma {
 
   export type notificationsMaxOrderByAggregateInput = {
     id?: SortOrder
+    type?: SortOrder
     message?: SortOrder
     read?: SortOrder
     createdAt?: SortOrder
@@ -15491,10 +15569,21 @@ export namespace Prisma {
 
   export type notificationsMinOrderByAggregateInput = {
     id?: SortOrder
+    type?: SortOrder
     message?: SortOrder
     read?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type EnumNotificationsTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.NotificationsType | EnumNotificationsTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.NotificationsType[]
+    notIn?: $Enums.NotificationsType[]
+    not?: NestedEnumNotificationsTypeWithAggregatesFilter<$PrismaModel> | $Enums.NotificationsType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumNotificationsTypeFilter<$PrismaModel>
+    _max?: NestedEnumNotificationsTypeFilter<$PrismaModel>
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -15813,6 +15902,10 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type EnumNotificationsTypeFieldUpdateOperationsInput = {
+    set?: $Enums.NotificationsType
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -16017,12 +16110,30 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedEnumNotificationsTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.NotificationsType | EnumNotificationsTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.NotificationsType[]
+    notIn?: $Enums.NotificationsType[]
+    not?: NestedEnumNotificationsTypeFilter<$PrismaModel> | $Enums.NotificationsType
+  }
+
+  export type NestedEnumNotificationsTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.NotificationsType | EnumNotificationsTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.NotificationsType[]
+    notIn?: $Enums.NotificationsType[]
+    not?: NestedEnumNotificationsTypeWithAggregatesFilter<$PrismaModel> | $Enums.NotificationsType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumNotificationsTypeFilter<$PrismaModel>
+    _max?: NestedEnumNotificationsTypeFilter<$PrismaModel>
+  }
+
   export type jadwal_vaksinasiCreateWithoutAyamInput = {
     id?: string
     tanggal: Date | string
     dosis: number
     keterangan: string
     sudah?: boolean
+    send_notification?: boolean
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16036,6 +16147,7 @@ export namespace Prisma {
     dosis: number
     keterangan: string
     sudah?: boolean
+    send_notification?: boolean
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16142,6 +16254,7 @@ export namespace Prisma {
     dosis?: IntFilter<"jadwal_vaksinasi"> | number
     keterangan?: StringFilter<"jadwal_vaksinasi"> | string
     sudah?: BoolFilter<"jadwal_vaksinasi"> | boolean
+    send_notification?: BoolFilter<"jadwal_vaksinasi"> | boolean
     deleted?: BoolFilter<"jadwal_vaksinasi"> | boolean
     createdAt?: DateTimeFilter<"jadwal_vaksinasi"> | Date | string
     updatedAt?: DateTimeFilter<"jadwal_vaksinasi"> | Date | string
@@ -16215,6 +16328,7 @@ export namespace Prisma {
     dosis: number
     keterangan: string
     sudah?: boolean
+    send_notification?: boolean
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16228,6 +16342,7 @@ export namespace Prisma {
     dosis: number
     keterangan: string
     sudah?: boolean
+    send_notification?: boolean
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16696,6 +16811,7 @@ export namespace Prisma {
     dosis: number
     keterangan: string
     sudah?: boolean
+    send_notification?: boolean
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16729,6 +16845,7 @@ export namespace Prisma {
     dosis?: IntFieldUpdateOperationsInput | number
     keterangan?: StringFieldUpdateOperationsInput | string
     sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16742,6 +16859,7 @@ export namespace Prisma {
     dosis?: IntFieldUpdateOperationsInput | number
     keterangan?: StringFieldUpdateOperationsInput | string
     sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16754,6 +16872,7 @@ export namespace Prisma {
     dosis?: IntFieldUpdateOperationsInput | number
     keterangan?: StringFieldUpdateOperationsInput | string
     sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16832,6 +16951,7 @@ export namespace Prisma {
     dosis: number
     keterangan: string
     sudah?: boolean
+    send_notification?: boolean
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16843,6 +16963,7 @@ export namespace Prisma {
     dosis?: IntFieldUpdateOperationsInput | number
     keterangan?: StringFieldUpdateOperationsInput | string
     sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16856,6 +16977,7 @@ export namespace Prisma {
     dosis?: IntFieldUpdateOperationsInput | number
     keterangan?: StringFieldUpdateOperationsInput | string
     sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16868,6 +16990,7 @@ export namespace Prisma {
     dosis?: IntFieldUpdateOperationsInput | number
     keterangan?: StringFieldUpdateOperationsInput | string
     sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

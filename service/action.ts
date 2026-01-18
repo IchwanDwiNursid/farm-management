@@ -1,14 +1,15 @@
 "use server"
 
 import { DB } from "@/config/database";
-import { AyamType, BelanjaType, ObatType, PakanType, PanenType, PenyakitType, RegisterType, VaksinType } from "@/types/input";
+import { AyamType, BelanjaType, JadwalVaksinType, ObatType, PakanType, PanenType, PenyakitType, RegisterType, VaksinType } from "@/types/input";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Jenis, Tindakan} from "@/app/generated/prisma";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import cron from 'node-cron'
-import { subDays, startOfDay, endOfDay, startOfMonth, endOfMonth } from "date-fns";
+import {startOfMonth, endOfMonth } from "date-fns";
+import { logger } from "@/utils/logging";
 
 export const createAyam = async (data: AyamType) => {
     try {
@@ -342,4 +343,92 @@ export const deleteAyam = async (ayamId: string) => {
         console.log((e as Error).message)
     }
 }
+
+export const createJadwalVaksin = async (data: JadwalVaksinType) => {
+    try {
+        const vaksinasi =  await DB.jadwal_vaksinasi.create({
+            data:{
+                dosis: 1,
+                ayamId: data.nama,
+                vaksinId: data.vaksin,
+                tanggal: data.tanggal as Date,
+                keterangan: data.keterangan || "tolong segera di vaksin"
+            }
+        })
+
+        console.log(vaksinasi)
+
+    } catch (e){
+        console.log(e)
+        throw e;
+    }finally{
+        redirect('/jadwal-vaksin')
+    }
+}
+
+
+const notificationsAlertVaksin = async() => {
+    try{
+        const now = new Date();
+
+        const startOfDay = new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate(),
+            0, 0, 0, 0
+        );
+        
+        const endOfDay = new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate(),
+            23, 59, 59, 999
+        );
+
+        const s_vaksin = await DB.jadwal_vaksinasi.findFirst({
+            where: {
+                AND: {
+                    tanggal: {
+                        gte: startOfDay,
+                        lte: endOfDay,
+                    },
+                    send_notification: false
+                }
+            }
+        })
+
+        if(!s_vaksin){
+            logger.log("info", "No have limit schedule vaksin")
+            return
+        }
+
+        await DB.notifications.create({
+            data: {
+                message: `JADWAL VAKSIN ID: ${s_vaksin.id} , HARUS SEGERA DILAKUKAN !!!`,
+            }
+        })
+
+        await DB.jadwal_vaksinasi.update({
+            where: {
+                id: s_vaksin.id
+            },
+            data: {
+                send_notification: true
+            }
+        })
+    }catch(e){
+        console.log(e)
+    }
+};
+
+// cron job
+cron.schedule(
+    "*/10 * * * * *",
+    async() => {
+      await notificationsAlertVaksin();
+    },
+    {
+      timezone: "Asia/Jakarta",
+    }
+  );
 

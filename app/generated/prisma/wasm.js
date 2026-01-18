@@ -188,6 +188,7 @@ exports.Prisma.Jadwal_vaksinasiScalarFieldEnum = {
   dosis: 'dosis',
   keterangan: 'keterangan',
   sudah: 'sudah',
+  send_notification: 'send_notification',
   deleted: 'deleted',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -240,6 +241,7 @@ exports.Prisma.BelanjaScalarFieldEnum = {
 
 exports.Prisma.NotificationsScalarFieldEnum = {
   id: 'id',
+  type: 'type',
   message: 'message',
   read: 'read',
   createdAt: 'createdAt',
@@ -355,6 +357,10 @@ exports.Jenis = exports.$Enums.Jenis = {
 exports.Tindakan = exports.$Enums.Tindakan = {
   jual: 'jual',
   konsumsi: 'konsumsi'
+};
+
+exports.NotificationsType = exports.$Enums.NotificationsType = {
+  vaksin: 'vaksin'
 };
 
 exports.Prisma.ModelName = {

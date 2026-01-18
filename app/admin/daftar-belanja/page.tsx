@@ -1,12 +1,8 @@
-import {getAllBelanja, getAllBelanjaBesedOnMonth, getAllPanen, getTotalBelanjaPerBulan} from '@/service/query'
-import { logger } from '@/utils/logging'
+import {getAllBelanja, getTotalBelanjaPerBulan} from '@/service/query'
 import Link from 'next/link'
 import React from 'react'
 
 const DaftarBelanjaPage = async() => {
-
-  const outcome = Number(await getAllBelanjaBesedOnMonth())
-  console.log(outcome)
   const belanjaan = await getAllBelanja()
   const totalBelanjaPerBulan = await getTotalBelanjaPerBulan() as any
   console.info(totalBelanjaPerBulan)

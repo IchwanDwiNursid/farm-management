@@ -90,16 +90,17 @@ model Obat {
 }
 
 model jadwal_vaksinasi {
-  id         String   @id @default(cuid())
-  ayamId     String
-  vaksinId   String
-  tanggal    DateTime
-  dosis      Int
-  keterangan String
-  sudah      Boolean  @default(false)
-  deleted    Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id                String   @id @default(cuid())
+  ayamId            String
+  vaksinId          String
+  tanggal           DateTime
+  dosis             Int
+  keterangan        String
+  sudah             Boolean  @default(false)
+  send_notification Boolean  @default(false)
+  deleted           Boolean  @default(false)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
   ayam   Ayam   @relation(fields: [ayamId], references: [id], onDelete: Cascade)
   vaksin Vaksin @relation(fields: [vaksinId], references: [id])
@@ -174,10 +175,15 @@ model belanja {
   @@map("belanja")
 }
 
+enum NotificationsType {
+  vaksin
+}
+
 model notifications {
-  id        String   @id @default(cuid())
-  message   String   @db.Text
-  read      Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String            @id @default(cuid())
+  type      NotificationsType @default(vaksin)
+  message   String            @db.Text
+  read      Boolean           @default(false)
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
 }

@@ -32,7 +32,7 @@ const TambahFormPanen = () => {
         <input
           {...register("jumlah")}
           type="text"
-          className="form-control"
+          className="form-control bg-transparent"
           id="jumlah"
           name="jumlah"
         />
@@ -42,7 +42,7 @@ const TambahFormPanen = () => {
       </div>
       <div className="mb-3">
             <label htmlFor="jenis" className="form-label">Jenis</label>
-            <select {...register("jenis")} className="form-select" id="jenis">
+            <select {...register("jenis")} className="form-select bg-transparent" id="jenis">
                 <option defaultValue="telur">Telur</option>
                 <option value="daging">Daging</option>
             </select>
@@ -52,7 +52,7 @@ const TambahFormPanen = () => {
       </div>
       <div className="mb-3">
             <label htmlFor="tindakan" className="form-label">Tindakan</label>
-            <select {...register("tindakan")} className="form-select" id="tindakan">
+            <select {...register("tindakan")} className="form-select bg-transparent" id="tindakan">
                 <option defaultValue="jual">Jual</option>
                 <option value="konsumsi">Konsumsi</option>
             </select>
@@ -68,7 +68,7 @@ const TambahFormPanen = () => {
           <input
             {...register("harga")}
             type="text"
-            className="form-control"
+            className="form-control bg-transparent"
             id="harga"
             name="harga"
           />
