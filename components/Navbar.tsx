@@ -145,7 +145,9 @@ const Navbar = () => {
               <ul className="dropdown-menu dropdown-menu-end">
                 {notifications?.map((notif, index) => (
                   <React.Fragment key={notif.id}>
-                    <li className="p-2 fs-6 fw-semibold dropdown-item">{notif.message}</li>
+                    <li className="p-2 fs-6 fw-semibold dropdown-item">
+                      <Link href={"/"} className="text-decoration-none">{notif.message}</Link>
+                    </li>
 
                     {index !== notifications.length - 1 && (
                       <li>

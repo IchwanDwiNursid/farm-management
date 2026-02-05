@@ -381,7 +381,8 @@ exports.Tindakan = exports.$Enums.Tindakan = {
 };
 
 exports.NotificationsType = exports.$Enums.NotificationsType = {
-  vaksin: 'vaksin'
+  vaksin: 'vaksin',
+  obat: 'obat'
 };
 
 exports.Prisma.ModelName = {

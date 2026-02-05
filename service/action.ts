@@ -452,6 +452,13 @@ const notificationsAlertVaksin = async() => {
                     },
                     send_notification: false
                 }
+            },
+            include: {
+                vaksin: {
+                    select: {
+                        nama: true
+                    }
+                }
             }
         })
 
@@ -462,7 +469,7 @@ const notificationsAlertVaksin = async() => {
 
         await DB.notifications.create({
             data: {
-                message: `JADWAL VAKSIN ID: ${s_vaksin.id} , HARUS SEGERA DILAKUKAN !!!`,
+                message: `JADWAL VAKSIN ID: ${s_vaksin.vaksin.nama} , HARUS SEGERA DILAKUKAN !!!`,
             }
         })
 
@@ -479,11 +486,74 @@ const notificationsAlertVaksin = async() => {
     }
 };
 
+const notificationsAlertObat = async() => {
+    try{
+        const now = new Date();
+
+        const startOfDay = new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate(),
+            0, 0, 0, 0
+        );
+        
+        const endOfDay = new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate(),
+            23, 59, 59, 999
+        );
+
+        const s_obat = await DB.jadwal_Obat.findFirst({
+            where: {
+                AND: {
+                    tanggal: {
+                        gte: startOfDay,
+                        lte: endOfDay,
+                    },
+                    send_notification: false
+                }
+            },
+            include: {
+                obat: {
+                    select: {
+                        nama: true,
+                    }
+                }
+            }
+        })
+
+        if(!s_obat){
+            logger.log("info", "No have limit schedule vaksin")
+            return
+        }
+
+        await DB.notifications.create({
+            data: {
+                message: `JADWAL OBAT : ${s_obat.obat.nama} , HARUS SEGERA DILAKUKAN !!!`,
+                type: "obat"
+            }
+        })
+
+        await DB.jadwal_Obat.update({
+            where: {
+                id: s_obat.id
+            },
+            data: {
+                send_notification: true
+            }
+        })
+    }catch(e){
+        console.log(e)
+    }
+};
+
 // cron job
 cron.schedule(
     "0 0 * * * *",
     async() => {
       await notificationsAlertVaksin();
+      await notificationsAlertObat();
     },
     {
       timezone: "Asia/Jakarta",

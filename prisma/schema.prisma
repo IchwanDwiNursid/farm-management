@@ -194,6 +194,7 @@ model belanja {
 
 enum NotificationsType {
   vaksin
+  obat
 }
 
 model notifications {

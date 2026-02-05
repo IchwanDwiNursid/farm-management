@@ -95,7 +95,8 @@ export type Tindakan = (typeof Tindakan)[keyof typeof Tindakan]
 
 
 export const NotificationsType: {
-  vaksin: 'vaksin'
+  vaksin: 'vaksin',
+  obat: 'obat'
 };
 
 export type NotificationsType = (typeof NotificationsType)[keyof typeof NotificationsType]
