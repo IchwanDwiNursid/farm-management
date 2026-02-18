@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import BootstrapClient from "@/components/BoostrapClient";
+import './globals.css'
 import Navbar from "@/components/Navbar";
 import localFont from "next/font/local"
 import { UserProvider } from "@/context/UserContext";

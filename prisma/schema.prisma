@@ -173,6 +173,7 @@ model panen {
   tindakan Tindakan @default(konsumsi)
   jumlah Int
   harga Int?
+  keterangan String? @db.Text
   deleted   Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -204,4 +205,10 @@ model notifications {
   read Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model cost {
+  id String   @id @default(cuid())
+  harga Int
+  keterangan String @db.Text
 }

@@ -73,6 +73,11 @@ export type belanja = $Result.DefaultSelection<Prisma.$belanjaPayload>
  * 
  */
 export type notifications = $Result.DefaultSelection<Prisma.$notificationsPayload>
+/**
+ * Model cost
+ * 
+ */
+export type cost = $Result.DefaultSelection<Prisma.$costPayload>
 
 /**
  * Enums
@@ -163,13 +168,6 @@ export class PrismaClient<
    * Disconnect from the database
    */
   $disconnect(): $Utils.JsPromise<void>;
-
-  /**
-   * Add a middleware
-   * @deprecated since 4.16.0. For new code, prefer client extensions instead.
-   * @see https://pris.ly/d/extensions
-   */
-  $use(cb: Prisma.Middleware): void
 
 /**
    * Executes a prepared raw query and returns the number of affected rows.
@@ -359,6 +357,16 @@ export class PrismaClient<
     * ```
     */
   get notifications(): Prisma.notificationsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.cost`: Exposes CRUD operations for the **cost** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Costs
+    * const costs = await prisma.cost.findMany()
+    * ```
+    */
+  get cost(): Prisma.costDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -417,8 +425,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.13.0
-   * Query Engine version: 361e86d0ea4987e9f53a565309b3eed797a6bcbd
+   * Prisma Client JS version: 6.19.2
+   * Query Engine version: c2990dca591cba766e3b7ef5d9e8a84796e47ab7
    */
   export type PrismaVersion = {
     client: string
@@ -431,6 +439,7 @@ export namespace Prisma {
    */
 
 
+  export import Bytes = runtime.Bytes
   export import JsonObject = runtime.JsonObject
   export import JsonArray = runtime.JsonArray
   export import JsonValue = runtime.JsonValue
@@ -810,7 +819,8 @@ export namespace Prisma {
     mortalitas: 'mortalitas',
     panen: 'panen',
     belanja: 'belanja',
-    notifications: 'notifications'
+    notifications: 'notifications',
+    cost: 'cost'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -829,7 +839,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "ayam" | "vaksin" | "pakan" | "obat" | "jadwal_vaksinasi" | "jadwal_Obat" | "penyakit" | "mortalitas" | "panen" | "belanja" | "notifications"
+      modelProps: "user" | "ayam" | "vaksin" | "pakan" | "obat" | "jadwal_vaksinasi" | "jadwal_Obat" | "penyakit" | "mortalitas" | "panen" | "belanja" | "notifications" | "cost"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1625,6 +1635,72 @@ export namespace Prisma {
           }
         }
       }
+      cost: {
+        payload: Prisma.$costPayload<ExtArgs>
+        fields: Prisma.costFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.costFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$costPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.costFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$costPayload>
+          }
+          findFirst: {
+            args: Prisma.costFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$costPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.costFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$costPayload>
+          }
+          findMany: {
+            args: Prisma.costFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$costPayload>[]
+          }
+          create: {
+            args: Prisma.costCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$costPayload>
+          }
+          createMany: {
+            args: Prisma.costCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.costDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$costPayload>
+          }
+          update: {
+            args: Prisma.costUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$costPayload>
+          }
+          deleteMany: {
+            args: Prisma.costDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.costUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.costUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$costPayload>
+          }
+          aggregate: {
+            args: Prisma.CostAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCost>
+          }
+          groupBy: {
+            args: Prisma.costGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CostGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.costCountArgs<ExtArgs>
+            result: $Utils.Optional<CostCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1701,6 +1777,10 @@ export namespace Prisma {
       isolationLevel?: Prisma.TransactionIsolationLevel
     }
     /**
+     * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-planetscale`
+     */
+    adapter?: runtime.SqlDriverAdapterFactory | null
+    /**
      * Global configuration for omitting model fields by default.
      * 
      * @example
@@ -1729,6 +1809,7 @@ export namespace Prisma {
     panen?: panenOmit
     belanja?: belanjaOmit
     notifications?: notificationsOmit
+    cost?: costOmit
   }
 
   /* Types for Logging */
@@ -1786,25 +1867,6 @@ export namespace Prisma {
     | 'runCommandRaw'
     | 'findRaw'
     | 'groupBy'
-
-  /**
-   * These options are being passed into the middleware as "params"
-   */
-  export type MiddlewareParams = {
-    model?: ModelName
-    action: PrismaAction
-    args: any
-    dataPath: string[]
-    runInTransaction: boolean
-  }
-
-  /**
-   * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
-   */
-  export type Middleware<T = any> = (
-    params: MiddlewareParams,
-    next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
-  ) => $Utils.JsPromise<T>
 
   // tested in getLogLevel.test.ts
   export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
@@ -11093,6 +11155,7 @@ export namespace Prisma {
     tindakan: $Enums.Tindakan | null
     jumlah: number | null
     harga: number | null
+    keterangan: string | null
     deleted: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -11104,6 +11167,7 @@ export namespace Prisma {
     tindakan: $Enums.Tindakan | null
     jumlah: number | null
     harga: number | null
+    keterangan: string | null
     deleted: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -11115,6 +11179,7 @@ export namespace Prisma {
     tindakan: number
     jumlah: number
     harga: number
+    keterangan: number
     deleted: number
     createdAt: number
     updatedAt: number
@@ -11138,6 +11203,7 @@ export namespace Prisma {
     tindakan?: true
     jumlah?: true
     harga?: true
+    keterangan?: true
     deleted?: true
     createdAt?: true
     updatedAt?: true
@@ -11149,6 +11215,7 @@ export namespace Prisma {
     tindakan?: true
     jumlah?: true
     harga?: true
+    keterangan?: true
     deleted?: true
     createdAt?: true
     updatedAt?: true
@@ -11160,6 +11227,7 @@ export namespace Prisma {
     tindakan?: true
     jumlah?: true
     harga?: true
+    keterangan?: true
     deleted?: true
     createdAt?: true
     updatedAt?: true
@@ -11258,6 +11326,7 @@ export namespace Prisma {
     tindakan: $Enums.Tindakan
     jumlah: number
     harga: number | null
+    keterangan: string | null
     deleted: boolean
     createdAt: Date
     updatedAt: Date
@@ -11288,6 +11357,7 @@ export namespace Prisma {
     tindakan?: boolean
     jumlah?: boolean
     harga?: boolean
+    keterangan?: boolean
     deleted?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -11301,12 +11371,13 @@ export namespace Prisma {
     tindakan?: boolean
     jumlah?: boolean
     harga?: boolean
+    keterangan?: boolean
     deleted?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type panenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "jenis" | "tindakan" | "jumlah" | "harga" | "deleted" | "createdAt" | "updatedAt", ExtArgs["result"]["panen"]>
+  export type panenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "jenis" | "tindakan" | "jumlah" | "harga" | "keterangan" | "deleted" | "createdAt" | "updatedAt", ExtArgs["result"]["panen"]>
 
   export type $panenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "panen"
@@ -11317,6 +11388,7 @@ export namespace Prisma {
       tindakan: $Enums.Tindakan
       jumlah: number
       harga: number | null
+      keterangan: string | null
       deleted: boolean
       createdAt: Date
       updatedAt: Date
@@ -11694,6 +11766,7 @@ export namespace Prisma {
     readonly tindakan: FieldRef<"panen", 'Tindakan'>
     readonly jumlah: FieldRef<"panen", 'Int'>
     readonly harga: FieldRef<"panen", 'Int'>
+    readonly keterangan: FieldRef<"panen", 'String'>
     readonly deleted: FieldRef<"panen", 'Boolean'>
     readonly createdAt: FieldRef<"panen", 'DateTime'>
     readonly updatedAt: FieldRef<"panen", 'DateTime'>
@@ -13854,6 +13927,900 @@ export namespace Prisma {
 
 
   /**
+   * Model cost
+   */
+
+  export type AggregateCost = {
+    _count: CostCountAggregateOutputType | null
+    _avg: CostAvgAggregateOutputType | null
+    _sum: CostSumAggregateOutputType | null
+    _min: CostMinAggregateOutputType | null
+    _max: CostMaxAggregateOutputType | null
+  }
+
+  export type CostAvgAggregateOutputType = {
+    harga: number | null
+  }
+
+  export type CostSumAggregateOutputType = {
+    harga: number | null
+  }
+
+  export type CostMinAggregateOutputType = {
+    id: string | null
+    harga: number | null
+    keterangan: string | null
+  }
+
+  export type CostMaxAggregateOutputType = {
+    id: string | null
+    harga: number | null
+    keterangan: string | null
+  }
+
+  export type CostCountAggregateOutputType = {
+    id: number
+    harga: number
+    keterangan: number
+    _all: number
+  }
+
+
+  export type CostAvgAggregateInputType = {
+    harga?: true
+  }
+
+  export type CostSumAggregateInputType = {
+    harga?: true
+  }
+
+  export type CostMinAggregateInputType = {
+    id?: true
+    harga?: true
+    keterangan?: true
+  }
+
+  export type CostMaxAggregateInputType = {
+    id?: true
+    harga?: true
+    keterangan?: true
+  }
+
+  export type CostCountAggregateInputType = {
+    id?: true
+    harga?: true
+    keterangan?: true
+    _all?: true
+  }
+
+  export type CostAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which cost to aggregate.
+     */
+    where?: costWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of costs to fetch.
+     */
+    orderBy?: costOrderByWithRelationInput | costOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: costWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` costs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` costs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned costs
+    **/
+    _count?: true | CostCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CostAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CostSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CostMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CostMaxAggregateInputType
+  }
+
+  export type GetCostAggregateType<T extends CostAggregateArgs> = {
+        [P in keyof T & keyof AggregateCost]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCost[P]>
+      : GetScalarType<T[P], AggregateCost[P]>
+  }
+
+
+
+
+  export type costGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: costWhereInput
+    orderBy?: costOrderByWithAggregationInput | costOrderByWithAggregationInput[]
+    by: CostScalarFieldEnum[] | CostScalarFieldEnum
+    having?: costScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CostCountAggregateInputType | true
+    _avg?: CostAvgAggregateInputType
+    _sum?: CostSumAggregateInputType
+    _min?: CostMinAggregateInputType
+    _max?: CostMaxAggregateInputType
+  }
+
+  export type CostGroupByOutputType = {
+    id: string
+    harga: number
+    keterangan: string
+    _count: CostCountAggregateOutputType | null
+    _avg: CostAvgAggregateOutputType | null
+    _sum: CostSumAggregateOutputType | null
+    _min: CostMinAggregateOutputType | null
+    _max: CostMaxAggregateOutputType | null
+  }
+
+  type GetCostGroupByPayload<T extends costGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CostGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CostGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CostGroupByOutputType[P]>
+            : GetScalarType<T[P], CostGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type costSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    harga?: boolean
+    keterangan?: boolean
+  }, ExtArgs["result"]["cost"]>
+
+
+
+  export type costSelectScalar = {
+    id?: boolean
+    harga?: boolean
+    keterangan?: boolean
+  }
+
+  export type costOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "harga" | "keterangan", ExtArgs["result"]["cost"]>
+
+  export type $costPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "cost"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      harga: number
+      keterangan: string
+    }, ExtArgs["result"]["cost"]>
+    composites: {}
+  }
+
+  type costGetPayload<S extends boolean | null | undefined | costDefaultArgs> = $Result.GetResult<Prisma.$costPayload, S>
+
+  type costCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<costFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CostCountAggregateInputType | true
+    }
+
+  export interface costDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['cost'], meta: { name: 'cost' } }
+    /**
+     * Find zero or one Cost that matches the filter.
+     * @param {costFindUniqueArgs} args - Arguments to find a Cost
+     * @example
+     * // Get one Cost
+     * const cost = await prisma.cost.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends costFindUniqueArgs>(args: SelectSubset<T, costFindUniqueArgs<ExtArgs>>): Prisma__costClient<$Result.GetResult<Prisma.$costPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Cost that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {costFindUniqueOrThrowArgs} args - Arguments to find a Cost
+     * @example
+     * // Get one Cost
+     * const cost = await prisma.cost.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends costFindUniqueOrThrowArgs>(args: SelectSubset<T, costFindUniqueOrThrowArgs<ExtArgs>>): Prisma__costClient<$Result.GetResult<Prisma.$costPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Cost that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {costFindFirstArgs} args - Arguments to find a Cost
+     * @example
+     * // Get one Cost
+     * const cost = await prisma.cost.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends costFindFirstArgs>(args?: SelectSubset<T, costFindFirstArgs<ExtArgs>>): Prisma__costClient<$Result.GetResult<Prisma.$costPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Cost that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {costFindFirstOrThrowArgs} args - Arguments to find a Cost
+     * @example
+     * // Get one Cost
+     * const cost = await prisma.cost.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends costFindFirstOrThrowArgs>(args?: SelectSubset<T, costFindFirstOrThrowArgs<ExtArgs>>): Prisma__costClient<$Result.GetResult<Prisma.$costPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Costs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {costFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Costs
+     * const costs = await prisma.cost.findMany()
+     * 
+     * // Get first 10 Costs
+     * const costs = await prisma.cost.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const costWithIdOnly = await prisma.cost.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends costFindManyArgs>(args?: SelectSubset<T, costFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$costPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Cost.
+     * @param {costCreateArgs} args - Arguments to create a Cost.
+     * @example
+     * // Create one Cost
+     * const Cost = await prisma.cost.create({
+     *   data: {
+     *     // ... data to create a Cost
+     *   }
+     * })
+     * 
+     */
+    create<T extends costCreateArgs>(args: SelectSubset<T, costCreateArgs<ExtArgs>>): Prisma__costClient<$Result.GetResult<Prisma.$costPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Costs.
+     * @param {costCreateManyArgs} args - Arguments to create many Costs.
+     * @example
+     * // Create many Costs
+     * const cost = await prisma.cost.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends costCreateManyArgs>(args?: SelectSubset<T, costCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Cost.
+     * @param {costDeleteArgs} args - Arguments to delete one Cost.
+     * @example
+     * // Delete one Cost
+     * const Cost = await prisma.cost.delete({
+     *   where: {
+     *     // ... filter to delete one Cost
+     *   }
+     * })
+     * 
+     */
+    delete<T extends costDeleteArgs>(args: SelectSubset<T, costDeleteArgs<ExtArgs>>): Prisma__costClient<$Result.GetResult<Prisma.$costPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Cost.
+     * @param {costUpdateArgs} args - Arguments to update one Cost.
+     * @example
+     * // Update one Cost
+     * const cost = await prisma.cost.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends costUpdateArgs>(args: SelectSubset<T, costUpdateArgs<ExtArgs>>): Prisma__costClient<$Result.GetResult<Prisma.$costPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Costs.
+     * @param {costDeleteManyArgs} args - Arguments to filter Costs to delete.
+     * @example
+     * // Delete a few Costs
+     * const { count } = await prisma.cost.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends costDeleteManyArgs>(args?: SelectSubset<T, costDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Costs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {costUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Costs
+     * const cost = await prisma.cost.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends costUpdateManyArgs>(args: SelectSubset<T, costUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Cost.
+     * @param {costUpsertArgs} args - Arguments to update or create a Cost.
+     * @example
+     * // Update or create a Cost
+     * const cost = await prisma.cost.upsert({
+     *   create: {
+     *     // ... data to create a Cost
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Cost we want to update
+     *   }
+     * })
+     */
+    upsert<T extends costUpsertArgs>(args: SelectSubset<T, costUpsertArgs<ExtArgs>>): Prisma__costClient<$Result.GetResult<Prisma.$costPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Costs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {costCountArgs} args - Arguments to filter Costs to count.
+     * @example
+     * // Count the number of Costs
+     * const count = await prisma.cost.count({
+     *   where: {
+     *     // ... the filter for the Costs we want to count
+     *   }
+     * })
+    **/
+    count<T extends costCountArgs>(
+      args?: Subset<T, costCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CostCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Cost.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CostAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CostAggregateArgs>(args: Subset<T, CostAggregateArgs>): Prisma.PrismaPromise<GetCostAggregateType<T>>
+
+    /**
+     * Group by Cost.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {costGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends costGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: costGroupByArgs['orderBy'] }
+        : { orderBy?: costGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, costGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCostGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the cost model
+   */
+  readonly fields: costFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for cost.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__costClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the cost model
+   */
+  interface costFieldRefs {
+    readonly id: FieldRef<"cost", 'String'>
+    readonly harga: FieldRef<"cost", 'Int'>
+    readonly keterangan: FieldRef<"cost", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * cost findUnique
+   */
+  export type costFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cost
+     */
+    select?: costSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cost
+     */
+    omit?: costOmit<ExtArgs> | null
+    /**
+     * Filter, which cost to fetch.
+     */
+    where: costWhereUniqueInput
+  }
+
+  /**
+   * cost findUniqueOrThrow
+   */
+  export type costFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cost
+     */
+    select?: costSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cost
+     */
+    omit?: costOmit<ExtArgs> | null
+    /**
+     * Filter, which cost to fetch.
+     */
+    where: costWhereUniqueInput
+  }
+
+  /**
+   * cost findFirst
+   */
+  export type costFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cost
+     */
+    select?: costSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cost
+     */
+    omit?: costOmit<ExtArgs> | null
+    /**
+     * Filter, which cost to fetch.
+     */
+    where?: costWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of costs to fetch.
+     */
+    orderBy?: costOrderByWithRelationInput | costOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for costs.
+     */
+    cursor?: costWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` costs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` costs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of costs.
+     */
+    distinct?: CostScalarFieldEnum | CostScalarFieldEnum[]
+  }
+
+  /**
+   * cost findFirstOrThrow
+   */
+  export type costFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cost
+     */
+    select?: costSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cost
+     */
+    omit?: costOmit<ExtArgs> | null
+    /**
+     * Filter, which cost to fetch.
+     */
+    where?: costWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of costs to fetch.
+     */
+    orderBy?: costOrderByWithRelationInput | costOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for costs.
+     */
+    cursor?: costWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` costs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` costs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of costs.
+     */
+    distinct?: CostScalarFieldEnum | CostScalarFieldEnum[]
+  }
+
+  /**
+   * cost findMany
+   */
+  export type costFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cost
+     */
+    select?: costSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cost
+     */
+    omit?: costOmit<ExtArgs> | null
+    /**
+     * Filter, which costs to fetch.
+     */
+    where?: costWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of costs to fetch.
+     */
+    orderBy?: costOrderByWithRelationInput | costOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing costs.
+     */
+    cursor?: costWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` costs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` costs.
+     */
+    skip?: number
+    distinct?: CostScalarFieldEnum | CostScalarFieldEnum[]
+  }
+
+  /**
+   * cost create
+   */
+  export type costCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cost
+     */
+    select?: costSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cost
+     */
+    omit?: costOmit<ExtArgs> | null
+    /**
+     * The data needed to create a cost.
+     */
+    data: XOR<costCreateInput, costUncheckedCreateInput>
+  }
+
+  /**
+   * cost createMany
+   */
+  export type costCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many costs.
+     */
+    data: costCreateManyInput | costCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * cost update
+   */
+  export type costUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cost
+     */
+    select?: costSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cost
+     */
+    omit?: costOmit<ExtArgs> | null
+    /**
+     * The data needed to update a cost.
+     */
+    data: XOR<costUpdateInput, costUncheckedUpdateInput>
+    /**
+     * Choose, which cost to update.
+     */
+    where: costWhereUniqueInput
+  }
+
+  /**
+   * cost updateMany
+   */
+  export type costUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update costs.
+     */
+    data: XOR<costUpdateManyMutationInput, costUncheckedUpdateManyInput>
+    /**
+     * Filter which costs to update
+     */
+    where?: costWhereInput
+    /**
+     * Limit how many costs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * cost upsert
+   */
+  export type costUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cost
+     */
+    select?: costSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cost
+     */
+    omit?: costOmit<ExtArgs> | null
+    /**
+     * The filter to search for the cost to update in case it exists.
+     */
+    where: costWhereUniqueInput
+    /**
+     * In case the cost found by the `where` argument doesn't exist, create a new cost with this data.
+     */
+    create: XOR<costCreateInput, costUncheckedCreateInput>
+    /**
+     * In case the cost was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<costUpdateInput, costUncheckedUpdateInput>
+  }
+
+  /**
+   * cost delete
+   */
+  export type costDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cost
+     */
+    select?: costSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cost
+     */
+    omit?: costOmit<ExtArgs> | null
+    /**
+     * Filter which cost to delete.
+     */
+    where: costWhereUniqueInput
+  }
+
+  /**
+   * cost deleteMany
+   */
+  export type costDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which costs to delete
+     */
+    where?: costWhereInput
+    /**
+     * Limit how many costs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * cost without action
+   */
+  export type costDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the cost
+     */
+    select?: costSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the cost
+     */
+    omit?: costOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -14012,6 +14979,7 @@ export namespace Prisma {
     tindakan: 'tindakan',
     jumlah: 'jumlah',
     harga: 'harga',
+    keterangan: 'keterangan',
     deleted: 'deleted',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -14043,6 +15011,15 @@ export namespace Prisma {
   };
 
   export type NotificationsScalarFieldEnum = (typeof NotificationsScalarFieldEnum)[keyof typeof NotificationsScalarFieldEnum]
+
+
+  export const CostScalarFieldEnum: {
+    id: 'id',
+    harga: 'harga',
+    keterangan: 'keterangan'
+  };
+
+  export type CostScalarFieldEnum = (typeof CostScalarFieldEnum)[keyof typeof CostScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -14183,7 +15160,8 @@ export namespace Prisma {
 
 
   export const panenOrderByRelevanceFieldEnum: {
-    id: 'id'
+    id: 'id',
+    keterangan: 'keterangan'
   };
 
   export type panenOrderByRelevanceFieldEnum = (typeof panenOrderByRelevanceFieldEnum)[keyof typeof panenOrderByRelevanceFieldEnum]
@@ -14203,6 +15181,14 @@ export namespace Prisma {
   };
 
   export type notificationsOrderByRelevanceFieldEnum = (typeof notificationsOrderByRelevanceFieldEnum)[keyof typeof notificationsOrderByRelevanceFieldEnum]
+
+
+  export const costOrderByRelevanceFieldEnum: {
+    id: 'id',
+    keterangan: 'keterangan'
+  };
+
+  export type costOrderByRelevanceFieldEnum = (typeof costOrderByRelevanceFieldEnum)[keyof typeof costOrderByRelevanceFieldEnum]
 
 
   /**
@@ -15023,6 +16009,7 @@ export namespace Prisma {
     tindakan?: EnumTindakanFilter<"panen"> | $Enums.Tindakan
     jumlah?: IntFilter<"panen"> | number
     harga?: IntNullableFilter<"panen"> | number | null
+    keterangan?: StringNullableFilter<"panen"> | string | null
     deleted?: BoolFilter<"panen"> | boolean
     createdAt?: DateTimeFilter<"panen"> | Date | string
     updatedAt?: DateTimeFilter<"panen"> | Date | string
@@ -15034,6 +16021,7 @@ export namespace Prisma {
     tindakan?: SortOrder
     jumlah?: SortOrder
     harga?: SortOrderInput | SortOrder
+    keterangan?: SortOrderInput | SortOrder
     deleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -15049,6 +16037,7 @@ export namespace Prisma {
     tindakan?: EnumTindakanFilter<"panen"> | $Enums.Tindakan
     jumlah?: IntFilter<"panen"> | number
     harga?: IntNullableFilter<"panen"> | number | null
+    keterangan?: StringNullableFilter<"panen"> | string | null
     deleted?: BoolFilter<"panen"> | boolean
     createdAt?: DateTimeFilter<"panen"> | Date | string
     updatedAt?: DateTimeFilter<"panen"> | Date | string
@@ -15060,6 +16049,7 @@ export namespace Prisma {
     tindakan?: SortOrder
     jumlah?: SortOrder
     harga?: SortOrderInput | SortOrder
+    keterangan?: SortOrderInput | SortOrder
     deleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -15079,6 +16069,7 @@ export namespace Prisma {
     tindakan?: EnumTindakanWithAggregatesFilter<"panen"> | $Enums.Tindakan
     jumlah?: IntWithAggregatesFilter<"panen"> | number
     harga?: IntNullableWithAggregatesFilter<"panen"> | number | null
+    keterangan?: StringNullableWithAggregatesFilter<"panen"> | string | null
     deleted?: BoolWithAggregatesFilter<"panen"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"panen"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"panen"> | Date | string
@@ -15205,6 +16196,51 @@ export namespace Prisma {
     read?: BoolWithAggregatesFilter<"notifications"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"notifications"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"notifications"> | Date | string
+  }
+
+  export type costWhereInput = {
+    AND?: costWhereInput | costWhereInput[]
+    OR?: costWhereInput[]
+    NOT?: costWhereInput | costWhereInput[]
+    id?: StringFilter<"cost"> | string
+    harga?: IntFilter<"cost"> | number
+    keterangan?: StringFilter<"cost"> | string
+  }
+
+  export type costOrderByWithRelationInput = {
+    id?: SortOrder
+    harga?: SortOrder
+    keterangan?: SortOrder
+    _relevance?: costOrderByRelevanceInput
+  }
+
+  export type costWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: costWhereInput | costWhereInput[]
+    OR?: costWhereInput[]
+    NOT?: costWhereInput | costWhereInput[]
+    harga?: IntFilter<"cost"> | number
+    keterangan?: StringFilter<"cost"> | string
+  }, "id">
+
+  export type costOrderByWithAggregationInput = {
+    id?: SortOrder
+    harga?: SortOrder
+    keterangan?: SortOrder
+    _count?: costCountOrderByAggregateInput
+    _avg?: costAvgOrderByAggregateInput
+    _max?: costMaxOrderByAggregateInput
+    _min?: costMinOrderByAggregateInput
+    _sum?: costSumOrderByAggregateInput
+  }
+
+  export type costScalarWhereWithAggregatesInput = {
+    AND?: costScalarWhereWithAggregatesInput | costScalarWhereWithAggregatesInput[]
+    OR?: costScalarWhereWithAggregatesInput[]
+    NOT?: costScalarWhereWithAggregatesInput | costScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"cost"> | string
+    harga?: IntWithAggregatesFilter<"cost"> | number
+    keterangan?: StringWithAggregatesFilter<"cost"> | string
   }
 
   export type UserCreateInput = {
@@ -16018,6 +17054,7 @@ export namespace Prisma {
     tindakan?: $Enums.Tindakan
     jumlah: number
     harga?: number | null
+    keterangan?: string | null
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16029,6 +17066,7 @@ export namespace Prisma {
     tindakan?: $Enums.Tindakan
     jumlah: number
     harga?: number | null
+    keterangan?: string | null
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16040,6 +17078,7 @@ export namespace Prisma {
     tindakan?: EnumTindakanFieldUpdateOperationsInput | $Enums.Tindakan
     jumlah?: IntFieldUpdateOperationsInput | number
     harga?: NullableIntFieldUpdateOperationsInput | number | null
+    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16051,6 +17090,7 @@ export namespace Prisma {
     tindakan?: EnumTindakanFieldUpdateOperationsInput | $Enums.Tindakan
     jumlah?: IntFieldUpdateOperationsInput | number
     harga?: NullableIntFieldUpdateOperationsInput | number | null
+    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16062,6 +17102,7 @@ export namespace Prisma {
     tindakan?: $Enums.Tindakan
     jumlah: number
     harga?: number | null
+    keterangan?: string | null
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16073,6 +17114,7 @@ export namespace Prisma {
     tindakan?: EnumTindakanFieldUpdateOperationsInput | $Enums.Tindakan
     jumlah?: IntFieldUpdateOperationsInput | number
     harga?: NullableIntFieldUpdateOperationsInput | number | null
+    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16084,6 +17126,7 @@ export namespace Prisma {
     tindakan?: EnumTindakanFieldUpdateOperationsInput | $Enums.Tindakan
     jumlah?: IntFieldUpdateOperationsInput | number
     harga?: NullableIntFieldUpdateOperationsInput | number | null
+    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16220,6 +17263,48 @@ export namespace Prisma {
     read?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type costCreateInput = {
+    id?: string
+    harga: number
+    keterangan: string
+  }
+
+  export type costUncheckedCreateInput = {
+    id?: string
+    harga: number
+    keterangan: string
+  }
+
+  export type costUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    harga?: IntFieldUpdateOperationsInput | number
+    keterangan?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type costUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    harga?: IntFieldUpdateOperationsInput | number
+    keterangan?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type costCreateManyInput = {
+    id?: string
+    harga: number
+    keterangan: string
+  }
+
+  export type costUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    harga?: IntFieldUpdateOperationsInput | number
+    keterangan?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type costUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    harga?: IntFieldUpdateOperationsInput | number
+    keterangan?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -16885,6 +17970,21 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -16902,6 +18002,7 @@ export namespace Prisma {
     tindakan?: SortOrder
     jumlah?: SortOrder
     harga?: SortOrder
+    keterangan?: SortOrder
     deleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -16918,6 +18019,7 @@ export namespace Prisma {
     tindakan?: SortOrder
     jumlah?: SortOrder
     harga?: SortOrder
+    keterangan?: SortOrder
     deleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -16929,6 +18031,7 @@ export namespace Prisma {
     tindakan?: SortOrder
     jumlah?: SortOrder
     harga?: SortOrder
+    keterangan?: SortOrder
     deleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -16973,6 +18076,24 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type belanjaOrderByRelevanceInput = {
@@ -17069,6 +18190,38 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumNotificationsTypeFilter<$PrismaModel>
     _max?: NestedEnumNotificationsTypeFilter<$PrismaModel>
+  }
+
+  export type costOrderByRelevanceInput = {
+    fields: costOrderByRelevanceFieldEnum | costOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type costCountOrderByAggregateInput = {
+    id?: SortOrder
+    harga?: SortOrder
+    keterangan?: SortOrder
+  }
+
+  export type costAvgOrderByAggregateInput = {
+    harga?: SortOrder
+  }
+
+  export type costMaxOrderByAggregateInput = {
+    id?: SortOrder
+    harga?: SortOrder
+    keterangan?: SortOrder
+  }
+
+  export type costMinOrderByAggregateInput = {
+    id?: SortOrder
+    harga?: SortOrder
+    keterangan?: SortOrder
+  }
+
+  export type costSumOrderByAggregateInput = {
+    harga?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -17499,6 +18652,10 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type EnumNotificationsTypeFieldUpdateOperationsInput = {
     set?: $Enums.NotificationsType
   }
@@ -17660,6 +18817,21 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedEnumJenisWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.Jenis | EnumJenisFieldRefInput<$PrismaModel>
     in?: $Enums.Jenis[]
@@ -17705,6 +18877,24 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumNotificationsTypeFilter<$PrismaModel = never> = {

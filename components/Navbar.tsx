@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { GoBellFill } from "react-icons/go";
 import SoundNotification from "./notification/SoundNotification";
+import Pulse from "./Pulse";
 
 const Navbar = () => {
   const [notifications, setNotifications] = useState<notifications[]>([])
@@ -133,13 +134,15 @@ const Navbar = () => {
                   <GoBellFill size={25}/>
                 {notifications.length > 0 && (
                   <span
-                    className="position-absolute bg-danger rounded-circle"
+                    className="position-absolute"
                     style={{
                       padding: "6px",
                       top: "2px",
                       left: "24px"
                     }}
-                  />
+                  >
+                    <Pulse/>
+                  </span>
                 )}
               </div>
               <ul className="dropdown-menu dropdown-menu-end">

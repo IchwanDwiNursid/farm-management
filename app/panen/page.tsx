@@ -1,4 +1,4 @@
-import { getIncome } from '@/service/action';
+import { getIncome, PrintSqlToPdf } from '@/service/action';
 import {getAllPanen, getTotalPanenPerBulan } from '@/service/query'
 import Link from 'next/link'
 import { redirect } from 'next/navigation';
@@ -10,43 +10,14 @@ const PanenPage = async() => {
     redirect('/panen/tambah')
   }
   const totalPanenPerBulan = await getTotalPanenPerBulan() as []
+
+  async function handleDownloadPdf() {
+      "use server";
+      await PrintSqlToPdf();
+  }
+
   return (
     <div className="row" style={{ marginTop: 50 }}>
-      {/* <div className="col-12 mb-3 px-5">
-        <div className="d-flex justify-content-between align-items-center">
-          <table className="table table-borderless w-25 mb-0">
-            <tbody className="text-start">
-              <tr>
-                <td className="fw-bold">Bulan :</td>
-                <td>{new Date().toLocaleString("id-ID", { month: "long" })}</td>
-              </tr>
-              <tr>
-                <td className="fw-bold">Telur :</td>
-                <td>{telur.toString()}</td>
-              </tr>
-              <tr>
-                <td className="fw-bold">Daging :</td>
-                <td>{daging.toString()}</td>
-              </tr>
-              <tr>
-                <td className="fw-bold">Income :</td>
-                <td>{income?.toLocaleString("id-ID", {
-                  style: "currency",
-                  currency: "IDR"
-                })}</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <Link
-            href="/panen/tambah"
-            className="btn btn-primary ms-3"
-            style={{ minWidth: 100 }}
-          >
-            Tambah
-          </Link>
-        </div>
-      </div> */}
       <div className="col-12 mb-3 px-5 text-end">
           <Link
             href="/panen/tambah"
@@ -55,6 +26,11 @@ const PanenPage = async() => {
           >
             Tambah
           </Link>
+          <div>
+            <form action={handleDownloadPdf}>
+              <button type="submit" className='btn btn-danger'>Download PDF</button>
+            </form>
+          </div>
       </div>
       <div className='table-responsive d-flex mx-auto'>
         <div className="col-10 px-4">
@@ -62,11 +38,11 @@ const PanenPage = async() => {
             <thead className='table-primary border-primary'>
               <tr>
                 <th scope="col" className="text-center">No</th>
-                <th scope="col" className="text-center">Id</th>
                 <th scope="col" className="text-center">Jenis</th>
                 <th scope="col" className="text-center">Tindakan</th>
                 <th scope="col" className="text-center">Jumlah</th>
                 <th scope="col" className="text-center">Harga</th>
+                <th scope="col" className="text-center">Keterangan</th>
                 <th scope="col" className="text-center">Tanggal</th>
               </tr>
             </thead>
@@ -74,7 +50,6 @@ const PanenPage = async() => {
               {panens.map((panen, index) => (
                 <tr key={panen.id}>
                   <td className="align-middle text-center">{index + 1}</td>
-                  <td className="align-middle text-center">{panen.id}</td>
                   <td className="align-middle text-center">{panen.jenis}</td>
                   <td className="align-middle text-center">{panen.tindakan}</td>
                   <td className="align-middle text-center">{panen.jumlah}</td>
@@ -82,6 +57,7 @@ const PanenPage = async() => {
                     style: "currency",
                     currency: "IDR"
                   })}</td>
+                  <td className="align-middle text-center">{panen.keterangan}</td>
                   <td className="align-middle text-center">
                     {new Date(panen.createdAt).toLocaleDateString("id-ID", {
                       day: "numeric",

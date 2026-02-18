@@ -51,7 +51,8 @@ export const PanenSchema = z.object({
     jenis: z.string().min(1, "Jenis harus diisi"),
     jumlah: z.string().min(1, "Jumlah harus diisi"),
     tindakan: z.string().min(1, "Tindakan harus diisi"),
-    harga: z.string().optional()
+    harga: z.string().optional(),
+    keterangan: z.string().optional()
 })
 
 export const BelanjaSchema = z.object({

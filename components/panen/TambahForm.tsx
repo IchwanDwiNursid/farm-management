@@ -77,6 +77,21 @@ const TambahFormPanen = () => {
           </div>
         </div>
       )}
+      <div className="mb-3">
+        <label htmlFor="keterangan" className="form-label">
+          Keterangan
+        </label>
+        <input
+          {...register("keterangan")}
+          type="text"
+          className="form-control bg-transparent"
+          id="keterangan"
+          name="keterangan"
+        />
+        <div aria-live="polite" aria-atomic={true}>
+            <span className="text-danger mt-2">{errors.keterangan?.message}</span>
+        </div>
+      </div>
       <div className="d-flex justify-content-end">
         <button type="submit" className="btn btn-primary">
             Tambah

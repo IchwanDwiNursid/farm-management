@@ -172,14 +172,15 @@ enum Tindakan {
 }
 
 model panen {
-  id        String   @id @default(cuid())
-  jenis     Jenis    @default(telur)
-  tindakan  Tindakan @default(konsumsi)
-  jumlah    Int
-  harga     Int?
-  deleted   Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String   @id @default(cuid())
+  jenis      Jenis    @default(telur)
+  tindakan   Tindakan @default(konsumsi)
+  jumlah     Int
+  harga      Int?
+  keterangan String?  @db.Text
+  deleted    Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   @@map("panen")
 }
@@ -208,4 +209,10 @@ model notifications {
   read      Boolean           @default(false)
   createdAt DateTime          @default(now())
   updatedAt DateTime          @updatedAt
+}
+
+model cost {
+  id         String @id @default(cuid())
+  harga      Int
+  keterangan String @db.Text
 }

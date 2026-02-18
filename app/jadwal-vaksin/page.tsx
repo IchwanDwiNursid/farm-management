@@ -1,3 +1,4 @@
+import Pulse from '@/components/Pulse'
 import { deleteJadwalObat, deleteJadwalVaksinasi, updateJadwalObat, updateJadwalVaksinasi } from '@/service/action'
 import { getAllJadwalObat, getAllJadwalVaksinasi} from '@/service/query'
 import Link from 'next/link'
@@ -6,6 +7,16 @@ import React from 'react'
 const JadwalVaksin = async () => {
     const vaksinasi = await getAllJadwalVaksinasi()
     const medicane = await getAllJadwalObat()
+    const isTodayOrAfter = (dateString: any) => {
+      const d = new Date(dateString)
+      const today = new Date()
+
+      d.setHours(0, 0, 0, 0)
+      today.setHours(0, 0, 0, 0)
+    
+      return d <= today
+    }
+    
   return (
     <div className="row" style={{ marginTop: 50 }}>
       <div className="col-6 w-xl-50 px-4 table-responsive">
@@ -50,7 +61,10 @@ const JadwalVaksin = async () => {
                   <td className="align-middle text-center">{item.ayam.nama}</td>
                   <td className="align-middle text-center">{item.vaksin.nama}</td>
                   <td className="align-middle text-center">{item.dosis}</td>
-                  <td className="align-middle text-center">{new Date(item.tanggal).toLocaleDateString("id-ID")}</td>
+                  <td className="align-middle text-center">
+                    {isTodayOrAfter(item.tanggal) && <Pulse/>}
+                    {new Date(item.tanggal).toLocaleDateString("id-ID")}
+                  </td>
                   <td className="align-middle text-center">{item.keterangan}</td>
                   {item.sudah ? (
                       <td className="align-middle text-center">
@@ -120,7 +134,10 @@ const JadwalVaksin = async () => {
                   <td className="align-middle text-center">{item.ayam.nama}</td>
                   <td className="align-middle text-center">{item.obat.nama}</td>
                   <td className="align-middle text-center">{item.dosis}</td>
-                  <td className="align-middle text-center">{new Date(item.tanggal).toLocaleDateString("id-ID")}</td>
+                  <td className="align-middle text-center">
+                    {isTodayOrAfter(item.tanggal) && <Pulse/>}
+                    {new Date(item.tanggal).toLocaleDateString("id-ID")}
+                  </td>
                   <td className="align-middle text-center">{item.keterangan}</td>
                   {item.sudah ? (
                       <td className="align-middle text-center">
