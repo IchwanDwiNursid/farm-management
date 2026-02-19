@@ -1,7 +1,7 @@
 "use server"
 
 import { DB } from "@/config/database";
-import { AyamType, BelanjaType, JadwalObatType, JadwalVaksinType, ObatType, PakanType, PanenType, PenyakitType, RegisterType, VaksinType } from "@/types/input";
+import { AyamType, BelanjaType, CostType, JadwalObatType, JadwalVaksinType, ObatType, PakanType, PanenType, PenyakitType, RegisterType, VaksinType } from "@/types/input";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Jenis, Tindakan} from "@/app/generated/prisma";
@@ -284,6 +284,21 @@ export const createPanen = async (data: PanenType) => {
         throw error;
     }
     redirect("/panen");
+}
+
+export const createCost = async (data: CostType) => {
+    try {
+        await DB.cost.create({
+            data: {
+                harga: Number(data.harga),
+                keterangan: data.keterangan
+            }
+        })
+    } catch (error) {
+        console.error("Error creating panen:", error);
+        throw error;
+    }
+    redirect("/cost");
 }
 
 export const createBelanja = async (data: BelanjaType) => {

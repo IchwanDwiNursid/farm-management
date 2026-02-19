@@ -13950,18 +13950,24 @@ export namespace Prisma {
     id: string | null
     harga: number | null
     keterangan: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type CostMaxAggregateOutputType = {
     id: string | null
     harga: number | null
     keterangan: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type CostCountAggregateOutputType = {
     id: number
     harga: number
     keterangan: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -13978,18 +13984,24 @@ export namespace Prisma {
     id?: true
     harga?: true
     keterangan?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type CostMaxAggregateInputType = {
     id?: true
     harga?: true
     keterangan?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type CostCountAggregateInputType = {
     id?: true
     harga?: true
     keterangan?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -14083,6 +14095,8 @@ export namespace Prisma {
     id: string
     harga: number
     keterangan: string
+    createdAt: Date
+    updatedAt: Date
     _count: CostCountAggregateOutputType | null
     _avg: CostAvgAggregateOutputType | null
     _sum: CostSumAggregateOutputType | null
@@ -14108,6 +14122,8 @@ export namespace Prisma {
     id?: boolean
     harga?: boolean
     keterangan?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["cost"]>
 
 
@@ -14116,9 +14132,11 @@ export namespace Prisma {
     id?: boolean
     harga?: boolean
     keterangan?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type costOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "harga" | "keterangan", ExtArgs["result"]["cost"]>
+  export type costOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "harga" | "keterangan" | "createdAt" | "updatedAt", ExtArgs["result"]["cost"]>
 
   export type $costPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "cost"
@@ -14127,6 +14145,8 @@ export namespace Prisma {
       id: string
       harga: number
       keterangan: string
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["cost"]>
     composites: {}
   }
@@ -14499,6 +14519,8 @@ export namespace Prisma {
     readonly id: FieldRef<"cost", 'String'>
     readonly harga: FieldRef<"cost", 'Int'>
     readonly keterangan: FieldRef<"cost", 'String'>
+    readonly createdAt: FieldRef<"cost", 'DateTime'>
+    readonly updatedAt: FieldRef<"cost", 'DateTime'>
   }
     
 
@@ -15016,7 +15038,9 @@ export namespace Prisma {
   export const CostScalarFieldEnum: {
     id: 'id',
     harga: 'harga',
-    keterangan: 'keterangan'
+    keterangan: 'keterangan',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type CostScalarFieldEnum = (typeof CostScalarFieldEnum)[keyof typeof CostScalarFieldEnum]
@@ -16205,12 +16229,16 @@ export namespace Prisma {
     id?: StringFilter<"cost"> | string
     harga?: IntFilter<"cost"> | number
     keterangan?: StringFilter<"cost"> | string
+    createdAt?: DateTimeFilter<"cost"> | Date | string
+    updatedAt?: DateTimeFilter<"cost"> | Date | string
   }
 
   export type costOrderByWithRelationInput = {
     id?: SortOrder
     harga?: SortOrder
     keterangan?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _relevance?: costOrderByRelevanceInput
   }
 
@@ -16221,12 +16249,16 @@ export namespace Prisma {
     NOT?: costWhereInput | costWhereInput[]
     harga?: IntFilter<"cost"> | number
     keterangan?: StringFilter<"cost"> | string
+    createdAt?: DateTimeFilter<"cost"> | Date | string
+    updatedAt?: DateTimeFilter<"cost"> | Date | string
   }, "id">
 
   export type costOrderByWithAggregationInput = {
     id?: SortOrder
     harga?: SortOrder
     keterangan?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: costCountOrderByAggregateInput
     _avg?: costAvgOrderByAggregateInput
     _max?: costMaxOrderByAggregateInput
@@ -16241,6 +16273,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"cost"> | string
     harga?: IntWithAggregatesFilter<"cost"> | number
     keterangan?: StringWithAggregatesFilter<"cost"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"cost"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"cost"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -17269,42 +17303,56 @@ export namespace Prisma {
     id?: string
     harga: number
     keterangan: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type costUncheckedCreateInput = {
     id?: string
     harga: number
     keterangan: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type costUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     harga?: IntFieldUpdateOperationsInput | number
     keterangan?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type costUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     harga?: IntFieldUpdateOperationsInput | number
     keterangan?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type costCreateManyInput = {
     id?: string
     harga: number
     keterangan: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type costUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     harga?: IntFieldUpdateOperationsInput | number
     keterangan?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type costUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     harga?: IntFieldUpdateOperationsInput | number
     keterangan?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -18202,6 +18250,8 @@ export namespace Prisma {
     id?: SortOrder
     harga?: SortOrder
     keterangan?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type costAvgOrderByAggregateInput = {
@@ -18212,12 +18262,16 @@ export namespace Prisma {
     id?: SortOrder
     harga?: SortOrder
     keterangan?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type costMinOrderByAggregateInput = {
     id?: SortOrder
     harga?: SortOrder
     keterangan?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type costSumOrderByAggregateInput = {

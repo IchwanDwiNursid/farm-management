@@ -18,19 +18,19 @@ const PanenPage = async() => {
 
   return (
     <div className="row" style={{ marginTop: 50 }}>
-      <div className="col-12 mb-3 px-5 text-end">
-          <Link
-            href="/panen/tambah"
-            className="btn btn-primary ms-3"
-            style={{ minWidth: 100 }}
-          >
-            Tambah
-          </Link>
-          <div>
-            <form action={handleDownloadPdf}>
-              <button type="submit" className='btn btn-danger'>Download PDF</button>
-            </form>
-          </div>
+      <div className="col-12 mb-3 px-5 d-flex justify-content-end gap-2 mb-4">
+            <Link
+              href="/panen/tambah"
+              className="btn btn-primary ms-auto"
+              style={{ minWidth: 100 }}
+            >
+              Tambah
+            </Link>
+            <div>
+              <form action="/api/download-panen">
+                <button type="submit" className='btn btn-danger'>Download <span className='bi bi-file-earmark-pdf'></span> </button>
+              </form>
+            </div>
       </div>
       <div className='table-responsive d-flex mx-auto'>
         <div className="col-10 px-4">
@@ -42,8 +42,8 @@ const PanenPage = async() => {
                 <th scope="col" className="text-center">Tindakan</th>
                 <th scope="col" className="text-center">Jumlah</th>
                 <th scope="col" className="text-center">Harga</th>
-                <th scope="col" className="text-center">Keterangan</th>
                 <th scope="col" className="text-center">Tanggal</th>
+                <th scope="col" className="text-center">Keterangan</th>
               </tr>
             </thead>
             <tbody>
@@ -57,7 +57,6 @@ const PanenPage = async() => {
                     style: "currency",
                     currency: "IDR"
                   })}</td>
-                  <td className="align-middle text-center">{panen.keterangan}</td>
                   <td className="align-middle text-center">
                     {new Date(panen.createdAt).toLocaleDateString("id-ID", {
                       day: "numeric",
@@ -65,6 +64,7 @@ const PanenPage = async() => {
                       year: "numeric"
                     })}
                   </td>
+                  <td className="align-middle text-center">{panen.keterangan}</td>
                 </tr>
     ))}
             </tbody>

@@ -178,6 +178,20 @@ export const getAllPanen = async() => {
     return panen
 }
 
+export const getAllCost = async() => {
+    try{
+        const costs = await DB.cost.findMany({
+            orderBy:{
+                createdAt: 'desc'
+            }
+        })
+
+        return costs
+    }catch(e){
+        console.log(e)
+    }
+}
+
 export const getPenyakitPalingBanyak = async () => {
     try {
         const penyakit = await DB.penyakit.groupBy({

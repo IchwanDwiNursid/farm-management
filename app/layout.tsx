@@ -5,6 +5,7 @@ import './globals.css'
 import Navbar from "@/components/Navbar";
 import localFont from "next/font/local"
 import { UserProvider } from "@/context/UserContext";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const rubik = localFont({
   src: [

@@ -21,7 +21,8 @@ export const GET = async () => {
             select: {
                 createdAt: true,
                 jumlah: true,
-                harga: true
+                harga: true,
+                keterangan: true,
             },
             orderBy: {
                 createdAt: 'desc'
@@ -29,7 +30,7 @@ export const GET = async () => {
         })
 
         let tableHTML = `
-            <div style="width: 50%; overflow-x: auto; margin-top: 20px; margin-left: auto; margin-right: auto;">
+            <div style="width: 80%; overflow-x: auto; margin-top: 20px; margin-left: auto; margin-right: auto;">
                 <h2>Pendapatan Bulan <span style="color:red;">${bulanSekarang}</span></h2>
                 <table style="width: 100%; border-collapse: collapse; text-align: left;">
                     <thead>
@@ -37,6 +38,7 @@ export const GET = async () => {
                             <th style="border:1px solid #000; padding:8px;">Tanggal</th>
                             <th style="border:1px solid #000; padding:8px;">Jumlah</th>
                             <th style="border:1px solid #000; padding:8px;">Harga</th>
+                            <th style="border:1px solid #000; padding:8px;">Keterangan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,32 +46,35 @@ export const GET = async () => {
 
         let total = 0
         rows.forEach(row => {
-                total += Number(row.harga)
-                tableHTML += `
-                    <tr>
-                        <td style="border:1px solid #000; padding:8px;">
-                            ${new Date(row.createdAt).toLocaleDateString()}
-                        </td>
-                        <td style="border:1px solid #000; padding:8px;">
-                            ${row.jumlah}
-                        </td>
-                        <td style="border:1px solid #000; padding:8px;">
-                            Rp. ${formatCurrency(Number(row.harga))}
-                        </td>
-                    </tr>
-                `;
+            total += Number(row.harga);
+            tableHTML += `
+                <tr>
+                    <td style="border:1px solid #000; padding:8px;">
+                        ${new Date(row.createdAt).toLocaleDateString()}
+                    </td>
+                    <td style="border:1px solid #000; padding:8px;">
+                        ${row.jumlah}
+                    </td>
+                    <td style="border:1px solid #000; padding:8px; text-align:right;">
+                        Rp. ${formatCurrency(Number(row.harga))}
+                    </td>
+                    <td style="border:1px solid #000; padding:8px;">
+                        ${row.keterangan ? row.keterangan : "-"}
+                    </td>
+                </tr>
+            `;
         });
-
+        
         tableHTML += `
             <tr>
                 <td colspan="2" style="border:1px solid #000; padding:8px; font-weight:bold; text-align:right;">
                     TOTAL
                 </td>
-                <td style="border:1px solid #000; padding:8px; font-weight:bold;">
+                <td style="border:1px solid #000; padding:8px; font-weight:bold; text-align:right;">
                     Rp. ${formatCurrency(total)}
                 </td>
             </tr>
-        `;
+        `;        
 
         tableHTML += `
                     </tbody>

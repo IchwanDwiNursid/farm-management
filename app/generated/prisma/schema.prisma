@@ -212,7 +212,9 @@ model notifications {
 }
 
 model cost {
-  id         String @id @default(cuid())
+  id         String   @id @default(cuid())
   harga      Int
-  keterangan String @db.Text
+  keterangan String   @db.Text
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }

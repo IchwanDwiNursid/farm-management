@@ -267,7 +267,9 @@ exports.Prisma.NotificationsScalarFieldEnum = {
 exports.Prisma.CostScalarFieldEnum = {
   id: 'id',
   harga: 'harga',
-  keterangan: 'keterangan'
+  keterangan: 'keterangan',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {

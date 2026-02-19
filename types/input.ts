@@ -86,6 +86,13 @@ export const JadwalObatSchema = z.object({
     keterangan: z.string().nullable()
 })
 
+export const CostSchema = z.object({
+    harga : z.string(),
+    keterangan: z.string()
+})
+
+
+
 export type AyamType = z.infer<typeof AyamSchema>;
 export type VaksinType = z.infer<typeof VaksinSchema>;
 export type ObatType = z.infer<typeof ObatSchema>;
@@ -97,3 +104,4 @@ export type RegisterType = z.infer<typeof RegisterSchema>
 export type BelanjaType = z.infer<typeof BelanjaSchema>
 export type JadwalVaksinType = z.infer<typeof JadwalVaksinSchema>
 export type JadwalObatType = z.infer<typeof JadwalObatSchema>
+export type CostType = z.infer<typeof CostSchema>

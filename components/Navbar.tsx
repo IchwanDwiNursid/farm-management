@@ -42,8 +42,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-primary fixed-top">
       <div className="container-fluid d-flex mx-2">
-        <a className="navbar-brand" href="#">
-          <Image src="/logo_ayam.png" alt="logo" width={50} height={50} />
+        <a className="navbar-brand bi bi-egg" href="#">
           <span className="text-white ms-2">Farm Management</span>
         </a>
         <button
@@ -82,6 +81,9 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <Link className={linkClass('/panen')} href={"/panen"}>PANEN</Link>
+            </li>
+            <li className="nav-item">
+              <Link className={linkClass('/cost')} href={"/cost"}>COST</Link>
             </li>
             {!loading && (
                 <li className="nav-item dropdown">
