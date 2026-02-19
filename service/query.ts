@@ -267,6 +267,23 @@ export const getTotalPanenPerBulan = async() =>{
         console.log((e as Error).message)
     }
 }
+
+export const getTotalCostPerBulan = async() =>{
+    try{
+        const rawData = await DB.$queryRaw`
+            SELECT
+                DATE_FORMAT(createdAt, '%Y-%m') AS bulan,
+                CAST(SUM(harga) AS SIGNED) AS total_cost
+            FROM cost
+            GROUP BY bulan
+            ORDER BY bulan DESC;
+        `
+        return convertDecimalToPlainObject(rawData)
+    }catch(e){
+        console.log((e as Error).message)
+    }
+}
+
 export const getTotalBelanjaPerBulan = async() =>{
     try{
         const data = await DB.$queryRaw`

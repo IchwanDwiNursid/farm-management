@@ -1,5 +1,5 @@
 import { getIncome, PrintSqlToPdf } from '@/service/action';
-import {getAllCost, getAllPanen, getTotalPanenPerBulan } from '@/service/query'
+import {getAllCost, getAllPanen, getTotalCostPerBulan, getTotalPanenPerBulan } from '@/service/query'
 import Link from 'next/link'
 import { redirect } from 'next/navigation';
 import React from 'react'
@@ -9,7 +9,7 @@ const CostPage = async() => {
   if (costs?.length === 0) {
     redirect('/cost/tambah')
   }
-  const totalPanenPerBulan = await getTotalPanenPerBulan() as []
+  const totalCostPerBulan = await getTotalCostPerBulan() as []
 
   return (
     <div className="row" style={{ marginTop: 50 }}>
@@ -55,24 +55,20 @@ const CostPage = async() => {
             </tbody>
           </table>
         </div>
-        {/* <div className="col-2 px-4">
+        <div className="col-2 px-4">
             <table className='table table-striped-columns'>
               <thead className='table-warning'>
                 <tr>
                   <th>Bulan</th>
-                  <th>Telur</th>
-                  <th>Daging</th>
-                  <th>Pendapatan</th>
+                  <th>Pengeluaran</th>
                 </tr>
               </thead>
               <tbody>
-                {totalPanenPerBulan?.map((item: any, index: number) => (
+                {totalCostPerBulan?.map((item: any, index: number) => (
                   <tr key={index + 1}>
                     <th>{item.bulan}</th>
-                    <th>{item.jumlah_telur}</th>
-                    <th>{item.jumlah_daging}</th>
                     <th>
-                      {Number(item.total_harga).toLocaleString("id-ID", {
+                      {Number(item.total_cost).toLocaleString("id-ID", {
                           style: "currency",
                           currency: "IDR"
                       })}
@@ -81,7 +77,7 @@ const CostPage = async() => {
                 ))}
               </tbody>
             </table>
-        </div> */}
+        </div>
       </div>
     </div>
   )

@@ -1,3 +1,28 @@
+@media print {
+
+    .page-break {
+        break-before: page;
+    }
+
+    @page {
+        size: A4;
+        margin: 20mm;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    tr {
+        break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+}
+
 .circle{
     height: 10px;
     width: 10px;
