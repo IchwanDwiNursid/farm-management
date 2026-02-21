@@ -158,6 +158,27 @@ export const getAllJadwalObat = async () => {
     return res
 }
 
+export const getAllJadwalTindakan = async () => {
+    const res = await DB.jadwal_tindakan.findMany({
+        where: {
+            deleted: false
+        },
+        orderBy: {
+            tanggal: 'desc'
+        },
+        include: {
+            ayam: {
+                select: {
+                    id: true,
+                    gambar: true,
+                    nama: true,
+                }
+            }
+        }
+    })
+    return res
+}
+
 export const getAllJumlahAyam = async() => {
     const rawData: any = await DB.$queryRaw`
         SELECT 

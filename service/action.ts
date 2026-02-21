@@ -1,7 +1,7 @@
 "use server"
 
 import { DB } from "@/config/database";
-import { AyamType, BelanjaType, CostType, JadwalObatType, JadwalVaksinType, ObatType, PakanType, PanenType, PenyakitType, RegisterType, VaksinType } from "@/types/input";
+import { AyamType, BelanjaType, CostType, JadwalObatType, JadwalTindakanType, JadwalVaksinType, ObatType, PakanType, PanenType, PenyakitType, RegisterType, VaksinType } from "@/types/input";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Jenis, Tindakan} from "@/app/generated/prisma";
@@ -428,6 +428,26 @@ export const createJadwalObat = async (data: JadwalObatType) => {
                 dosis: 1,
                 ayamId: data.nama,
                 obatId: data.obat,
+                tanggal: data.tanggal as Date,
+                keterangan: data.keterangan || "tolong segera di vaksin"
+            }
+        })
+
+        console.log(vaksinasi)
+
+    } catch (e){
+        console.log(e)
+        throw e;
+    }finally{
+        redirect('/jadwal-vaksin')
+    }
+}
+
+export const createJadwalTindakan = async (data: JadwalTindakanType) => {
+    try {
+        const vaksinasi =  await DB.jadwal_tindakan.create({
+            data:{
+                ayamId: data.nama,
                 tanggal: data.tanggal as Date,
                 keterangan: data.keterangan || "tolong segera di vaksin"
             }

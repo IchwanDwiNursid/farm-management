@@ -42,6 +42,7 @@ model Ayam {
   JadwalObat Jadwal_Obat[]
   Penyakit penyakit[]
   Mortalitas mortalitas[]
+  JadwalTindakan jadwal_tindakan[]
   @@map("ayam")
 }
 
@@ -124,6 +125,22 @@ model Jadwal_Obat {
   obat Obat @relation(fields: [obatId], references: [id])
 
   @@map("jadwal_obat")
+}
+
+model jadwal_tindakan {
+  id        String   @id @default(cuid())
+  ayamId    String
+  tanggal   DateTime
+  keterangan String
+  sudah Boolean @default(false)
+  send_notification Boolean @default(false)
+  deleted   Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  ayam Ayam @relation(fields: [ayamId], references: [id], onDelete: Cascade)
+
+  @@map("jadwal_tindakan")
 }
 
 model penyakit {

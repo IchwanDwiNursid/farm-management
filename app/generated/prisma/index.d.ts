@@ -49,6 +49,11 @@ export type jadwal_vaksinasi = $Result.DefaultSelection<Prisma.$jadwal_vaksinasi
  */
 export type Jadwal_Obat = $Result.DefaultSelection<Prisma.$Jadwal_ObatPayload>
 /**
+ * Model jadwal_tindakan
+ * 
+ */
+export type jadwal_tindakan = $Result.DefaultSelection<Prisma.$jadwal_tindakanPayload>
+/**
  * Model penyakit
  * 
  */
@@ -307,6 +312,16 @@ export class PrismaClient<
     * ```
     */
   get jadwal_Obat(): Prisma.Jadwal_ObatDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.jadwal_tindakan`: Exposes CRUD operations for the **jadwal_tindakan** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Jadwal_tindakans
+    * const jadwal_tindakans = await prisma.jadwal_tindakan.findMany()
+    * ```
+    */
+  get jadwal_tindakan(): Prisma.jadwal_tindakanDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.penyakit`: Exposes CRUD operations for the **penyakit** model.
@@ -815,6 +830,7 @@ export namespace Prisma {
     Obat: 'Obat',
     jadwal_vaksinasi: 'jadwal_vaksinasi',
     Jadwal_Obat: 'Jadwal_Obat',
+    jadwal_tindakan: 'jadwal_tindakan',
     penyakit: 'penyakit',
     mortalitas: 'mortalitas',
     panen: 'panen',
@@ -839,7 +855,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "ayam" | "vaksin" | "pakan" | "obat" | "jadwal_vaksinasi" | "jadwal_Obat" | "penyakit" | "mortalitas" | "panen" | "belanja" | "notifications" | "cost"
+      modelProps: "user" | "ayam" | "vaksin" | "pakan" | "obat" | "jadwal_vaksinasi" | "jadwal_Obat" | "jadwal_tindakan" | "penyakit" | "mortalitas" | "panen" | "belanja" | "notifications" | "cost"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1302,6 +1318,72 @@ export namespace Prisma {
           count: {
             args: Prisma.Jadwal_ObatCountArgs<ExtArgs>
             result: $Utils.Optional<Jadwal_ObatCountAggregateOutputType> | number
+          }
+        }
+      }
+      jadwal_tindakan: {
+        payload: Prisma.$jadwal_tindakanPayload<ExtArgs>
+        fields: Prisma.jadwal_tindakanFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.jadwal_tindakanFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jadwal_tindakanPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.jadwal_tindakanFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jadwal_tindakanPayload>
+          }
+          findFirst: {
+            args: Prisma.jadwal_tindakanFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jadwal_tindakanPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.jadwal_tindakanFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jadwal_tindakanPayload>
+          }
+          findMany: {
+            args: Prisma.jadwal_tindakanFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jadwal_tindakanPayload>[]
+          }
+          create: {
+            args: Prisma.jadwal_tindakanCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jadwal_tindakanPayload>
+          }
+          createMany: {
+            args: Prisma.jadwal_tindakanCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.jadwal_tindakanDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jadwal_tindakanPayload>
+          }
+          update: {
+            args: Prisma.jadwal_tindakanUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jadwal_tindakanPayload>
+          }
+          deleteMany: {
+            args: Prisma.jadwal_tindakanDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.jadwal_tindakanUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.jadwal_tindakanUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jadwal_tindakanPayload>
+          }
+          aggregate: {
+            args: Prisma.Jadwal_tindakanAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateJadwal_tindakan>
+          }
+          groupBy: {
+            args: Prisma.jadwal_tindakanGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Jadwal_tindakanGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.jadwal_tindakanCountArgs<ExtArgs>
+            result: $Utils.Optional<Jadwal_tindakanCountAggregateOutputType> | number
           }
         }
       }
@@ -1804,6 +1886,7 @@ export namespace Prisma {
     obat?: ObatOmit
     jadwal_vaksinasi?: jadwal_vaksinasiOmit
     jadwal_Obat?: Jadwal_ObatOmit
+    jadwal_tindakan?: jadwal_tindakanOmit
     penyakit?: penyakitOmit
     mortalitas?: mortalitasOmit
     panen?: panenOmit
@@ -1894,6 +1977,7 @@ export namespace Prisma {
     JadwalObat: number
     Penyakit: number
     Mortalitas: number
+    JadwalTindakan: number
   }
 
   export type AyamCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1901,6 +1985,7 @@ export namespace Prisma {
     JadwalObat?: boolean | AyamCountOutputTypeCountJadwalObatArgs
     Penyakit?: boolean | AyamCountOutputTypeCountPenyakitArgs
     Mortalitas?: boolean | AyamCountOutputTypeCountMortalitasArgs
+    JadwalTindakan?: boolean | AyamCountOutputTypeCountJadwalTindakanArgs
   }
 
   // Custom InputTypes
@@ -1940,6 +2025,13 @@ export namespace Prisma {
    */
   export type AyamCountOutputTypeCountMortalitasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: mortalitasWhereInput
+  }
+
+  /**
+   * AyamCountOutputType without action
+   */
+  export type AyamCountOutputTypeCountJadwalTindakanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: jadwal_tindakanWhereInput
   }
 
 
@@ -3165,6 +3257,7 @@ export namespace Prisma {
     JadwalObat?: boolean | Ayam$JadwalObatArgs<ExtArgs>
     Penyakit?: boolean | Ayam$PenyakitArgs<ExtArgs>
     Mortalitas?: boolean | Ayam$MortalitasArgs<ExtArgs>
+    JadwalTindakan?: boolean | Ayam$JadwalTindakanArgs<ExtArgs>
     _count?: boolean | AyamCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ayam"]>
 
@@ -3191,6 +3284,7 @@ export namespace Prisma {
     JadwalObat?: boolean | Ayam$JadwalObatArgs<ExtArgs>
     Penyakit?: boolean | Ayam$PenyakitArgs<ExtArgs>
     Mortalitas?: boolean | Ayam$MortalitasArgs<ExtArgs>
+    JadwalTindakan?: boolean | Ayam$JadwalTindakanArgs<ExtArgs>
     _count?: boolean | AyamCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3201,6 +3295,7 @@ export namespace Prisma {
       JadwalObat: Prisma.$Jadwal_ObatPayload<ExtArgs>[]
       Penyakit: Prisma.$penyakitPayload<ExtArgs>[]
       Mortalitas: Prisma.$mortalitasPayload<ExtArgs>[]
+      JadwalTindakan: Prisma.$jadwal_tindakanPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3559,6 +3654,7 @@ export namespace Prisma {
     JadwalObat<T extends Ayam$JadwalObatArgs<ExtArgs> = {}>(args?: Subset<T, Ayam$JadwalObatArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Jadwal_ObatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Penyakit<T extends Ayam$PenyakitArgs<ExtArgs> = {}>(args?: Subset<T, Ayam$PenyakitArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$penyakitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Mortalitas<T extends Ayam$MortalitasArgs<ExtArgs> = {}>(args?: Subset<T, Ayam$MortalitasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$mortalitasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    JadwalTindakan<T extends Ayam$JadwalTindakanArgs<ExtArgs> = {}>(args?: Subset<T, Ayam$JadwalTindakanArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$jadwal_tindakanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4036,6 +4132,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MortalitasScalarFieldEnum | MortalitasScalarFieldEnum[]
+  }
+
+  /**
+   * Ayam.JadwalTindakan
+   */
+  export type Ayam$JadwalTindakanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jadwal_tindakan
+     */
+    select?: jadwal_tindakanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the jadwal_tindakan
+     */
+    omit?: jadwal_tindakanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jadwal_tindakanInclude<ExtArgs> | null
+    where?: jadwal_tindakanWhereInput
+    orderBy?: jadwal_tindakanOrderByWithRelationInput | jadwal_tindakanOrderByWithRelationInput[]
+    cursor?: jadwal_tindakanWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Jadwal_tindakanScalarFieldEnum | Jadwal_tindakanScalarFieldEnum[]
   }
 
   /**
@@ -9140,6 +9260,979 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: Jadwal_ObatInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model jadwal_tindakan
+   */
+
+  export type AggregateJadwal_tindakan = {
+    _count: Jadwal_tindakanCountAggregateOutputType | null
+    _min: Jadwal_tindakanMinAggregateOutputType | null
+    _max: Jadwal_tindakanMaxAggregateOutputType | null
+  }
+
+  export type Jadwal_tindakanMinAggregateOutputType = {
+    id: string | null
+    ayamId: string | null
+    tanggal: Date | null
+    keterangan: string | null
+    sudah: boolean | null
+    send_notification: boolean | null
+    deleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type Jadwal_tindakanMaxAggregateOutputType = {
+    id: string | null
+    ayamId: string | null
+    tanggal: Date | null
+    keterangan: string | null
+    sudah: boolean | null
+    send_notification: boolean | null
+    deleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type Jadwal_tindakanCountAggregateOutputType = {
+    id: number
+    ayamId: number
+    tanggal: number
+    keterangan: number
+    sudah: number
+    send_notification: number
+    deleted: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type Jadwal_tindakanMinAggregateInputType = {
+    id?: true
+    ayamId?: true
+    tanggal?: true
+    keterangan?: true
+    sudah?: true
+    send_notification?: true
+    deleted?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type Jadwal_tindakanMaxAggregateInputType = {
+    id?: true
+    ayamId?: true
+    tanggal?: true
+    keterangan?: true
+    sudah?: true
+    send_notification?: true
+    deleted?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type Jadwal_tindakanCountAggregateInputType = {
+    id?: true
+    ayamId?: true
+    tanggal?: true
+    keterangan?: true
+    sudah?: true
+    send_notification?: true
+    deleted?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type Jadwal_tindakanAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which jadwal_tindakan to aggregate.
+     */
+    where?: jadwal_tindakanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of jadwal_tindakans to fetch.
+     */
+    orderBy?: jadwal_tindakanOrderByWithRelationInput | jadwal_tindakanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: jadwal_tindakanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` jadwal_tindakans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` jadwal_tindakans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned jadwal_tindakans
+    **/
+    _count?: true | Jadwal_tindakanCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Jadwal_tindakanMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Jadwal_tindakanMaxAggregateInputType
+  }
+
+  export type GetJadwal_tindakanAggregateType<T extends Jadwal_tindakanAggregateArgs> = {
+        [P in keyof T & keyof AggregateJadwal_tindakan]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateJadwal_tindakan[P]>
+      : GetScalarType<T[P], AggregateJadwal_tindakan[P]>
+  }
+
+
+
+
+  export type jadwal_tindakanGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: jadwal_tindakanWhereInput
+    orderBy?: jadwal_tindakanOrderByWithAggregationInput | jadwal_tindakanOrderByWithAggregationInput[]
+    by: Jadwal_tindakanScalarFieldEnum[] | Jadwal_tindakanScalarFieldEnum
+    having?: jadwal_tindakanScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Jadwal_tindakanCountAggregateInputType | true
+    _min?: Jadwal_tindakanMinAggregateInputType
+    _max?: Jadwal_tindakanMaxAggregateInputType
+  }
+
+  export type Jadwal_tindakanGroupByOutputType = {
+    id: string
+    ayamId: string
+    tanggal: Date
+    keterangan: string
+    sudah: boolean
+    send_notification: boolean
+    deleted: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: Jadwal_tindakanCountAggregateOutputType | null
+    _min: Jadwal_tindakanMinAggregateOutputType | null
+    _max: Jadwal_tindakanMaxAggregateOutputType | null
+  }
+
+  type GetJadwal_tindakanGroupByPayload<T extends jadwal_tindakanGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Jadwal_tindakanGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Jadwal_tindakanGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Jadwal_tindakanGroupByOutputType[P]>
+            : GetScalarType<T[P], Jadwal_tindakanGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type jadwal_tindakanSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ayamId?: boolean
+    tanggal?: boolean
+    keterangan?: boolean
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ayam?: boolean | AyamDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["jadwal_tindakan"]>
+
+
+
+  export type jadwal_tindakanSelectScalar = {
+    id?: boolean
+    ayamId?: boolean
+    tanggal?: boolean
+    keterangan?: boolean
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type jadwal_tindakanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ayamId" | "tanggal" | "keterangan" | "sudah" | "send_notification" | "deleted" | "createdAt" | "updatedAt", ExtArgs["result"]["jadwal_tindakan"]>
+  export type jadwal_tindakanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ayam?: boolean | AyamDefaultArgs<ExtArgs>
+  }
+
+  export type $jadwal_tindakanPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "jadwal_tindakan"
+    objects: {
+      ayam: Prisma.$AyamPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      ayamId: string
+      tanggal: Date
+      keterangan: string
+      sudah: boolean
+      send_notification: boolean
+      deleted: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["jadwal_tindakan"]>
+    composites: {}
+  }
+
+  type jadwal_tindakanGetPayload<S extends boolean | null | undefined | jadwal_tindakanDefaultArgs> = $Result.GetResult<Prisma.$jadwal_tindakanPayload, S>
+
+  type jadwal_tindakanCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<jadwal_tindakanFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Jadwal_tindakanCountAggregateInputType | true
+    }
+
+  export interface jadwal_tindakanDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['jadwal_tindakan'], meta: { name: 'jadwal_tindakan' } }
+    /**
+     * Find zero or one Jadwal_tindakan that matches the filter.
+     * @param {jadwal_tindakanFindUniqueArgs} args - Arguments to find a Jadwal_tindakan
+     * @example
+     * // Get one Jadwal_tindakan
+     * const jadwal_tindakan = await prisma.jadwal_tindakan.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends jadwal_tindakanFindUniqueArgs>(args: SelectSubset<T, jadwal_tindakanFindUniqueArgs<ExtArgs>>): Prisma__jadwal_tindakanClient<$Result.GetResult<Prisma.$jadwal_tindakanPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Jadwal_tindakan that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {jadwal_tindakanFindUniqueOrThrowArgs} args - Arguments to find a Jadwal_tindakan
+     * @example
+     * // Get one Jadwal_tindakan
+     * const jadwal_tindakan = await prisma.jadwal_tindakan.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends jadwal_tindakanFindUniqueOrThrowArgs>(args: SelectSubset<T, jadwal_tindakanFindUniqueOrThrowArgs<ExtArgs>>): Prisma__jadwal_tindakanClient<$Result.GetResult<Prisma.$jadwal_tindakanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Jadwal_tindakan that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {jadwal_tindakanFindFirstArgs} args - Arguments to find a Jadwal_tindakan
+     * @example
+     * // Get one Jadwal_tindakan
+     * const jadwal_tindakan = await prisma.jadwal_tindakan.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends jadwal_tindakanFindFirstArgs>(args?: SelectSubset<T, jadwal_tindakanFindFirstArgs<ExtArgs>>): Prisma__jadwal_tindakanClient<$Result.GetResult<Prisma.$jadwal_tindakanPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Jadwal_tindakan that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {jadwal_tindakanFindFirstOrThrowArgs} args - Arguments to find a Jadwal_tindakan
+     * @example
+     * // Get one Jadwal_tindakan
+     * const jadwal_tindakan = await prisma.jadwal_tindakan.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends jadwal_tindakanFindFirstOrThrowArgs>(args?: SelectSubset<T, jadwal_tindakanFindFirstOrThrowArgs<ExtArgs>>): Prisma__jadwal_tindakanClient<$Result.GetResult<Prisma.$jadwal_tindakanPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Jadwal_tindakans that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {jadwal_tindakanFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Jadwal_tindakans
+     * const jadwal_tindakans = await prisma.jadwal_tindakan.findMany()
+     * 
+     * // Get first 10 Jadwal_tindakans
+     * const jadwal_tindakans = await prisma.jadwal_tindakan.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const jadwal_tindakanWithIdOnly = await prisma.jadwal_tindakan.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends jadwal_tindakanFindManyArgs>(args?: SelectSubset<T, jadwal_tindakanFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$jadwal_tindakanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Jadwal_tindakan.
+     * @param {jadwal_tindakanCreateArgs} args - Arguments to create a Jadwal_tindakan.
+     * @example
+     * // Create one Jadwal_tindakan
+     * const Jadwal_tindakan = await prisma.jadwal_tindakan.create({
+     *   data: {
+     *     // ... data to create a Jadwal_tindakan
+     *   }
+     * })
+     * 
+     */
+    create<T extends jadwal_tindakanCreateArgs>(args: SelectSubset<T, jadwal_tindakanCreateArgs<ExtArgs>>): Prisma__jadwal_tindakanClient<$Result.GetResult<Prisma.$jadwal_tindakanPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Jadwal_tindakans.
+     * @param {jadwal_tindakanCreateManyArgs} args - Arguments to create many Jadwal_tindakans.
+     * @example
+     * // Create many Jadwal_tindakans
+     * const jadwal_tindakan = await prisma.jadwal_tindakan.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends jadwal_tindakanCreateManyArgs>(args?: SelectSubset<T, jadwal_tindakanCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Jadwal_tindakan.
+     * @param {jadwal_tindakanDeleteArgs} args - Arguments to delete one Jadwal_tindakan.
+     * @example
+     * // Delete one Jadwal_tindakan
+     * const Jadwal_tindakan = await prisma.jadwal_tindakan.delete({
+     *   where: {
+     *     // ... filter to delete one Jadwal_tindakan
+     *   }
+     * })
+     * 
+     */
+    delete<T extends jadwal_tindakanDeleteArgs>(args: SelectSubset<T, jadwal_tindakanDeleteArgs<ExtArgs>>): Prisma__jadwal_tindakanClient<$Result.GetResult<Prisma.$jadwal_tindakanPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Jadwal_tindakan.
+     * @param {jadwal_tindakanUpdateArgs} args - Arguments to update one Jadwal_tindakan.
+     * @example
+     * // Update one Jadwal_tindakan
+     * const jadwal_tindakan = await prisma.jadwal_tindakan.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends jadwal_tindakanUpdateArgs>(args: SelectSubset<T, jadwal_tindakanUpdateArgs<ExtArgs>>): Prisma__jadwal_tindakanClient<$Result.GetResult<Prisma.$jadwal_tindakanPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Jadwal_tindakans.
+     * @param {jadwal_tindakanDeleteManyArgs} args - Arguments to filter Jadwal_tindakans to delete.
+     * @example
+     * // Delete a few Jadwal_tindakans
+     * const { count } = await prisma.jadwal_tindakan.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends jadwal_tindakanDeleteManyArgs>(args?: SelectSubset<T, jadwal_tindakanDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Jadwal_tindakans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {jadwal_tindakanUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Jadwal_tindakans
+     * const jadwal_tindakan = await prisma.jadwal_tindakan.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends jadwal_tindakanUpdateManyArgs>(args: SelectSubset<T, jadwal_tindakanUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Jadwal_tindakan.
+     * @param {jadwal_tindakanUpsertArgs} args - Arguments to update or create a Jadwal_tindakan.
+     * @example
+     * // Update or create a Jadwal_tindakan
+     * const jadwal_tindakan = await prisma.jadwal_tindakan.upsert({
+     *   create: {
+     *     // ... data to create a Jadwal_tindakan
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Jadwal_tindakan we want to update
+     *   }
+     * })
+     */
+    upsert<T extends jadwal_tindakanUpsertArgs>(args: SelectSubset<T, jadwal_tindakanUpsertArgs<ExtArgs>>): Prisma__jadwal_tindakanClient<$Result.GetResult<Prisma.$jadwal_tindakanPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Jadwal_tindakans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {jadwal_tindakanCountArgs} args - Arguments to filter Jadwal_tindakans to count.
+     * @example
+     * // Count the number of Jadwal_tindakans
+     * const count = await prisma.jadwal_tindakan.count({
+     *   where: {
+     *     // ... the filter for the Jadwal_tindakans we want to count
+     *   }
+     * })
+    **/
+    count<T extends jadwal_tindakanCountArgs>(
+      args?: Subset<T, jadwal_tindakanCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Jadwal_tindakanCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Jadwal_tindakan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Jadwal_tindakanAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Jadwal_tindakanAggregateArgs>(args: Subset<T, Jadwal_tindakanAggregateArgs>): Prisma.PrismaPromise<GetJadwal_tindakanAggregateType<T>>
+
+    /**
+     * Group by Jadwal_tindakan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {jadwal_tindakanGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends jadwal_tindakanGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: jadwal_tindakanGroupByArgs['orderBy'] }
+        : { orderBy?: jadwal_tindakanGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, jadwal_tindakanGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetJadwal_tindakanGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the jadwal_tindakan model
+   */
+  readonly fields: jadwal_tindakanFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for jadwal_tindakan.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__jadwal_tindakanClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ayam<T extends AyamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AyamDefaultArgs<ExtArgs>>): Prisma__AyamClient<$Result.GetResult<Prisma.$AyamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the jadwal_tindakan model
+   */
+  interface jadwal_tindakanFieldRefs {
+    readonly id: FieldRef<"jadwal_tindakan", 'String'>
+    readonly ayamId: FieldRef<"jadwal_tindakan", 'String'>
+    readonly tanggal: FieldRef<"jadwal_tindakan", 'DateTime'>
+    readonly keterangan: FieldRef<"jadwal_tindakan", 'String'>
+    readonly sudah: FieldRef<"jadwal_tindakan", 'Boolean'>
+    readonly send_notification: FieldRef<"jadwal_tindakan", 'Boolean'>
+    readonly deleted: FieldRef<"jadwal_tindakan", 'Boolean'>
+    readonly createdAt: FieldRef<"jadwal_tindakan", 'DateTime'>
+    readonly updatedAt: FieldRef<"jadwal_tindakan", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * jadwal_tindakan findUnique
+   */
+  export type jadwal_tindakanFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jadwal_tindakan
+     */
+    select?: jadwal_tindakanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the jadwal_tindakan
+     */
+    omit?: jadwal_tindakanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jadwal_tindakanInclude<ExtArgs> | null
+    /**
+     * Filter, which jadwal_tindakan to fetch.
+     */
+    where: jadwal_tindakanWhereUniqueInput
+  }
+
+  /**
+   * jadwal_tindakan findUniqueOrThrow
+   */
+  export type jadwal_tindakanFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jadwal_tindakan
+     */
+    select?: jadwal_tindakanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the jadwal_tindakan
+     */
+    omit?: jadwal_tindakanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jadwal_tindakanInclude<ExtArgs> | null
+    /**
+     * Filter, which jadwal_tindakan to fetch.
+     */
+    where: jadwal_tindakanWhereUniqueInput
+  }
+
+  /**
+   * jadwal_tindakan findFirst
+   */
+  export type jadwal_tindakanFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jadwal_tindakan
+     */
+    select?: jadwal_tindakanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the jadwal_tindakan
+     */
+    omit?: jadwal_tindakanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jadwal_tindakanInclude<ExtArgs> | null
+    /**
+     * Filter, which jadwal_tindakan to fetch.
+     */
+    where?: jadwal_tindakanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of jadwal_tindakans to fetch.
+     */
+    orderBy?: jadwal_tindakanOrderByWithRelationInput | jadwal_tindakanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for jadwal_tindakans.
+     */
+    cursor?: jadwal_tindakanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` jadwal_tindakans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` jadwal_tindakans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of jadwal_tindakans.
+     */
+    distinct?: Jadwal_tindakanScalarFieldEnum | Jadwal_tindakanScalarFieldEnum[]
+  }
+
+  /**
+   * jadwal_tindakan findFirstOrThrow
+   */
+  export type jadwal_tindakanFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jadwal_tindakan
+     */
+    select?: jadwal_tindakanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the jadwal_tindakan
+     */
+    omit?: jadwal_tindakanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jadwal_tindakanInclude<ExtArgs> | null
+    /**
+     * Filter, which jadwal_tindakan to fetch.
+     */
+    where?: jadwal_tindakanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of jadwal_tindakans to fetch.
+     */
+    orderBy?: jadwal_tindakanOrderByWithRelationInput | jadwal_tindakanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for jadwal_tindakans.
+     */
+    cursor?: jadwal_tindakanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` jadwal_tindakans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` jadwal_tindakans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of jadwal_tindakans.
+     */
+    distinct?: Jadwal_tindakanScalarFieldEnum | Jadwal_tindakanScalarFieldEnum[]
+  }
+
+  /**
+   * jadwal_tindakan findMany
+   */
+  export type jadwal_tindakanFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jadwal_tindakan
+     */
+    select?: jadwal_tindakanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the jadwal_tindakan
+     */
+    omit?: jadwal_tindakanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jadwal_tindakanInclude<ExtArgs> | null
+    /**
+     * Filter, which jadwal_tindakans to fetch.
+     */
+    where?: jadwal_tindakanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of jadwal_tindakans to fetch.
+     */
+    orderBy?: jadwal_tindakanOrderByWithRelationInput | jadwal_tindakanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing jadwal_tindakans.
+     */
+    cursor?: jadwal_tindakanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` jadwal_tindakans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` jadwal_tindakans.
+     */
+    skip?: number
+    distinct?: Jadwal_tindakanScalarFieldEnum | Jadwal_tindakanScalarFieldEnum[]
+  }
+
+  /**
+   * jadwal_tindakan create
+   */
+  export type jadwal_tindakanCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jadwal_tindakan
+     */
+    select?: jadwal_tindakanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the jadwal_tindakan
+     */
+    omit?: jadwal_tindakanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jadwal_tindakanInclude<ExtArgs> | null
+    /**
+     * The data needed to create a jadwal_tindakan.
+     */
+    data: XOR<jadwal_tindakanCreateInput, jadwal_tindakanUncheckedCreateInput>
+  }
+
+  /**
+   * jadwal_tindakan createMany
+   */
+  export type jadwal_tindakanCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many jadwal_tindakans.
+     */
+    data: jadwal_tindakanCreateManyInput | jadwal_tindakanCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * jadwal_tindakan update
+   */
+  export type jadwal_tindakanUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jadwal_tindakan
+     */
+    select?: jadwal_tindakanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the jadwal_tindakan
+     */
+    omit?: jadwal_tindakanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jadwal_tindakanInclude<ExtArgs> | null
+    /**
+     * The data needed to update a jadwal_tindakan.
+     */
+    data: XOR<jadwal_tindakanUpdateInput, jadwal_tindakanUncheckedUpdateInput>
+    /**
+     * Choose, which jadwal_tindakan to update.
+     */
+    where: jadwal_tindakanWhereUniqueInput
+  }
+
+  /**
+   * jadwal_tindakan updateMany
+   */
+  export type jadwal_tindakanUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update jadwal_tindakans.
+     */
+    data: XOR<jadwal_tindakanUpdateManyMutationInput, jadwal_tindakanUncheckedUpdateManyInput>
+    /**
+     * Filter which jadwal_tindakans to update
+     */
+    where?: jadwal_tindakanWhereInput
+    /**
+     * Limit how many jadwal_tindakans to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * jadwal_tindakan upsert
+   */
+  export type jadwal_tindakanUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jadwal_tindakan
+     */
+    select?: jadwal_tindakanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the jadwal_tindakan
+     */
+    omit?: jadwal_tindakanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jadwal_tindakanInclude<ExtArgs> | null
+    /**
+     * The filter to search for the jadwal_tindakan to update in case it exists.
+     */
+    where: jadwal_tindakanWhereUniqueInput
+    /**
+     * In case the jadwal_tindakan found by the `where` argument doesn't exist, create a new jadwal_tindakan with this data.
+     */
+    create: XOR<jadwal_tindakanCreateInput, jadwal_tindakanUncheckedCreateInput>
+    /**
+     * In case the jadwal_tindakan was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<jadwal_tindakanUpdateInput, jadwal_tindakanUncheckedUpdateInput>
+  }
+
+  /**
+   * jadwal_tindakan delete
+   */
+  export type jadwal_tindakanDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jadwal_tindakan
+     */
+    select?: jadwal_tindakanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the jadwal_tindakan
+     */
+    omit?: jadwal_tindakanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jadwal_tindakanInclude<ExtArgs> | null
+    /**
+     * Filter which jadwal_tindakan to delete.
+     */
+    where: jadwal_tindakanWhereUniqueInput
+  }
+
+  /**
+   * jadwal_tindakan deleteMany
+   */
+  export type jadwal_tindakanDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which jadwal_tindakans to delete
+     */
+    where?: jadwal_tindakanWhereInput
+    /**
+     * Limit how many jadwal_tindakans to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * jadwal_tindakan without action
+   */
+  export type jadwal_tindakanDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jadwal_tindakan
+     */
+    select?: jadwal_tindakanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the jadwal_tindakan
+     */
+    omit?: jadwal_tindakanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jadwal_tindakanInclude<ExtArgs> | null
   }
 
 
@@ -14965,6 +16058,21 @@ export namespace Prisma {
   export type Jadwal_ObatScalarFieldEnum = (typeof Jadwal_ObatScalarFieldEnum)[keyof typeof Jadwal_ObatScalarFieldEnum]
 
 
+  export const Jadwal_tindakanScalarFieldEnum: {
+    id: 'id',
+    ayamId: 'ayamId',
+    tanggal: 'tanggal',
+    keterangan: 'keterangan',
+    sudah: 'sudah',
+    send_notification: 'send_notification',
+    deleted: 'deleted',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type Jadwal_tindakanScalarFieldEnum = (typeof Jadwal_tindakanScalarFieldEnum)[keyof typeof Jadwal_tindakanScalarFieldEnum]
+
+
   export const PenyakitScalarFieldEnum: {
     id: 'id',
     nama: 'nama',
@@ -15151,6 +16259,15 @@ export namespace Prisma {
   };
 
   export type Jadwal_ObatOrderByRelevanceFieldEnum = (typeof Jadwal_ObatOrderByRelevanceFieldEnum)[keyof typeof Jadwal_ObatOrderByRelevanceFieldEnum]
+
+
+  export const jadwal_tindakanOrderByRelevanceFieldEnum: {
+    id: 'id',
+    ayamId: 'ayamId',
+    keterangan: 'keterangan'
+  };
+
+  export type jadwal_tindakanOrderByRelevanceFieldEnum = (typeof jadwal_tindakanOrderByRelevanceFieldEnum)[keyof typeof jadwal_tindakanOrderByRelevanceFieldEnum]
 
 
   export const penyakitOrderByRelevanceFieldEnum: {
@@ -15371,6 +16488,7 @@ export namespace Prisma {
     JadwalObat?: Jadwal_ObatListRelationFilter
     Penyakit?: PenyakitListRelationFilter
     Mortalitas?: MortalitasListRelationFilter
+    JadwalTindakan?: Jadwal_tindakanListRelationFilter
   }
 
   export type AyamOrderByWithRelationInput = {
@@ -15390,6 +16508,7 @@ export namespace Prisma {
     JadwalObat?: Jadwal_ObatOrderByRelationAggregateInput
     Penyakit?: penyakitOrderByRelationAggregateInput
     Mortalitas?: mortalitasOrderByRelationAggregateInput
+    JadwalTindakan?: jadwal_tindakanOrderByRelationAggregateInput
     _relevance?: AyamOrderByRelevanceInput
   }
 
@@ -15413,6 +16532,7 @@ export namespace Prisma {
     JadwalObat?: Jadwal_ObatListRelationFilter
     Penyakit?: PenyakitListRelationFilter
     Mortalitas?: MortalitasListRelationFilter
+    JadwalTindakan?: Jadwal_tindakanListRelationFilter
   }, "id">
 
   export type AyamOrderByWithAggregationInput = {
@@ -15865,6 +16985,82 @@ export namespace Prisma {
     deleted?: BoolWithAggregatesFilter<"Jadwal_Obat"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Jadwal_Obat"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Jadwal_Obat"> | Date | string
+  }
+
+  export type jadwal_tindakanWhereInput = {
+    AND?: jadwal_tindakanWhereInput | jadwal_tindakanWhereInput[]
+    OR?: jadwal_tindakanWhereInput[]
+    NOT?: jadwal_tindakanWhereInput | jadwal_tindakanWhereInput[]
+    id?: StringFilter<"jadwal_tindakan"> | string
+    ayamId?: StringFilter<"jadwal_tindakan"> | string
+    tanggal?: DateTimeFilter<"jadwal_tindakan"> | Date | string
+    keterangan?: StringFilter<"jadwal_tindakan"> | string
+    sudah?: BoolFilter<"jadwal_tindakan"> | boolean
+    send_notification?: BoolFilter<"jadwal_tindakan"> | boolean
+    deleted?: BoolFilter<"jadwal_tindakan"> | boolean
+    createdAt?: DateTimeFilter<"jadwal_tindakan"> | Date | string
+    updatedAt?: DateTimeFilter<"jadwal_tindakan"> | Date | string
+    ayam?: XOR<AyamScalarRelationFilter, AyamWhereInput>
+  }
+
+  export type jadwal_tindakanOrderByWithRelationInput = {
+    id?: SortOrder
+    ayamId?: SortOrder
+    tanggal?: SortOrder
+    keterangan?: SortOrder
+    sudah?: SortOrder
+    send_notification?: SortOrder
+    deleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    ayam?: AyamOrderByWithRelationInput
+    _relevance?: jadwal_tindakanOrderByRelevanceInput
+  }
+
+  export type jadwal_tindakanWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: jadwal_tindakanWhereInput | jadwal_tindakanWhereInput[]
+    OR?: jadwal_tindakanWhereInput[]
+    NOT?: jadwal_tindakanWhereInput | jadwal_tindakanWhereInput[]
+    ayamId?: StringFilter<"jadwal_tindakan"> | string
+    tanggal?: DateTimeFilter<"jadwal_tindakan"> | Date | string
+    keterangan?: StringFilter<"jadwal_tindakan"> | string
+    sudah?: BoolFilter<"jadwal_tindakan"> | boolean
+    send_notification?: BoolFilter<"jadwal_tindakan"> | boolean
+    deleted?: BoolFilter<"jadwal_tindakan"> | boolean
+    createdAt?: DateTimeFilter<"jadwal_tindakan"> | Date | string
+    updatedAt?: DateTimeFilter<"jadwal_tindakan"> | Date | string
+    ayam?: XOR<AyamScalarRelationFilter, AyamWhereInput>
+  }, "id">
+
+  export type jadwal_tindakanOrderByWithAggregationInput = {
+    id?: SortOrder
+    ayamId?: SortOrder
+    tanggal?: SortOrder
+    keterangan?: SortOrder
+    sudah?: SortOrder
+    send_notification?: SortOrder
+    deleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: jadwal_tindakanCountOrderByAggregateInput
+    _max?: jadwal_tindakanMaxOrderByAggregateInput
+    _min?: jadwal_tindakanMinOrderByAggregateInput
+  }
+
+  export type jadwal_tindakanScalarWhereWithAggregatesInput = {
+    AND?: jadwal_tindakanScalarWhereWithAggregatesInput | jadwal_tindakanScalarWhereWithAggregatesInput[]
+    OR?: jadwal_tindakanScalarWhereWithAggregatesInput[]
+    NOT?: jadwal_tindakanScalarWhereWithAggregatesInput | jadwal_tindakanScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"jadwal_tindakan"> | string
+    ayamId?: StringWithAggregatesFilter<"jadwal_tindakan"> | string
+    tanggal?: DateTimeWithAggregatesFilter<"jadwal_tindakan"> | Date | string
+    keterangan?: StringWithAggregatesFilter<"jadwal_tindakan"> | string
+    sudah?: BoolWithAggregatesFilter<"jadwal_tindakan"> | boolean
+    send_notification?: BoolWithAggregatesFilter<"jadwal_tindakan"> | boolean
+    deleted?: BoolWithAggregatesFilter<"jadwal_tindakan"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"jadwal_tindakan"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"jadwal_tindakan"> | Date | string
   }
 
   export type penyakitWhereInput = {
@@ -16357,6 +17553,7 @@ export namespace Prisma {
     JadwalObat?: Jadwal_ObatCreateNestedManyWithoutAyamInput
     Penyakit?: penyakitCreateNestedManyWithoutAyamInput
     Mortalitas?: mortalitasCreateNestedManyWithoutAyamInput
+    JadwalTindakan?: jadwal_tindakanCreateNestedManyWithoutAyamInput
   }
 
   export type AyamUncheckedCreateInput = {
@@ -16376,6 +17573,7 @@ export namespace Prisma {
     JadwalObat?: Jadwal_ObatUncheckedCreateNestedManyWithoutAyamInput
     Penyakit?: penyakitUncheckedCreateNestedManyWithoutAyamInput
     Mortalitas?: mortalitasUncheckedCreateNestedManyWithoutAyamInput
+    JadwalTindakan?: jadwal_tindakanUncheckedCreateNestedManyWithoutAyamInput
   }
 
   export type AyamUpdateInput = {
@@ -16395,6 +17593,7 @@ export namespace Prisma {
     JadwalObat?: Jadwal_ObatUpdateManyWithoutAyamNestedInput
     Penyakit?: penyakitUpdateManyWithoutAyamNestedInput
     Mortalitas?: mortalitasUpdateManyWithoutAyamNestedInput
+    JadwalTindakan?: jadwal_tindakanUpdateManyWithoutAyamNestedInput
   }
 
   export type AyamUncheckedUpdateInput = {
@@ -16414,6 +17613,7 @@ export namespace Prisma {
     JadwalObat?: Jadwal_ObatUncheckedUpdateManyWithoutAyamNestedInput
     Penyakit?: penyakitUncheckedUpdateManyWithoutAyamNestedInput
     Mortalitas?: mortalitasUncheckedUpdateManyWithoutAyamNestedInput
+    JadwalTindakan?: jadwal_tindakanUncheckedUpdateManyWithoutAyamNestedInput
   }
 
   export type AyamCreateManyInput = {
@@ -16909,6 +18109,89 @@ export namespace Prisma {
     obatId?: StringFieldUpdateOperationsInput | string
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
     dosis?: IntFieldUpdateOperationsInput | number
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type jadwal_tindakanCreateInput = {
+    id?: string
+    tanggal: Date | string
+    keterangan: string
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ayam: AyamCreateNestedOneWithoutJadwalTindakanInput
+  }
+
+  export type jadwal_tindakanUncheckedCreateInput = {
+    id?: string
+    ayamId: string
+    tanggal: Date | string
+    keterangan: string
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type jadwal_tindakanUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ayam?: AyamUpdateOneRequiredWithoutJadwalTindakanNestedInput
+  }
+
+  export type jadwal_tindakanUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ayamId?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type jadwal_tindakanCreateManyInput = {
+    id?: string
+    ayamId: string
+    tanggal: Date | string
+    keterangan: string
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type jadwal_tindakanUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type jadwal_tindakanUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ayamId?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
     keterangan?: StringFieldUpdateOperationsInput | string
     sudah?: BoolFieldUpdateOperationsInput | boolean
     send_notification?: BoolFieldUpdateOperationsInput | boolean
@@ -17509,6 +18792,12 @@ export namespace Prisma {
     none?: mortalitasWhereInput
   }
 
+  export type Jadwal_tindakanListRelationFilter = {
+    every?: jadwal_tindakanWhereInput
+    some?: jadwal_tindakanWhereInput
+    none?: jadwal_tindakanWhereInput
+  }
+
   export type jadwal_vaksinasiOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -17522,6 +18811,10 @@ export namespace Prisma {
   }
 
   export type mortalitasOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type jadwal_tindakanOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17899,6 +19192,48 @@ export namespace Prisma {
 
   export type Jadwal_ObatSumOrderByAggregateInput = {
     dosis?: SortOrder
+  }
+
+  export type jadwal_tindakanOrderByRelevanceInput = {
+    fields: jadwal_tindakanOrderByRelevanceFieldEnum | jadwal_tindakanOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type jadwal_tindakanCountOrderByAggregateInput = {
+    id?: SortOrder
+    ayamId?: SortOrder
+    tanggal?: SortOrder
+    keterangan?: SortOrder
+    sudah?: SortOrder
+    send_notification?: SortOrder
+    deleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type jadwal_tindakanMaxOrderByAggregateInput = {
+    id?: SortOrder
+    ayamId?: SortOrder
+    tanggal?: SortOrder
+    keterangan?: SortOrder
+    sudah?: SortOrder
+    send_notification?: SortOrder
+    deleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type jadwal_tindakanMinOrderByAggregateInput = {
+    id?: SortOrder
+    ayamId?: SortOrder
+    tanggal?: SortOrder
+    keterangan?: SortOrder
+    sudah?: SortOrder
+    send_notification?: SortOrder
+    deleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type penyakitOrderByRelevanceInput = {
@@ -18314,6 +19649,13 @@ export namespace Prisma {
     connect?: mortalitasWhereUniqueInput | mortalitasWhereUniqueInput[]
   }
 
+  export type jadwal_tindakanCreateNestedManyWithoutAyamInput = {
+    create?: XOR<jadwal_tindakanCreateWithoutAyamInput, jadwal_tindakanUncheckedCreateWithoutAyamInput> | jadwal_tindakanCreateWithoutAyamInput[] | jadwal_tindakanUncheckedCreateWithoutAyamInput[]
+    connectOrCreate?: jadwal_tindakanCreateOrConnectWithoutAyamInput | jadwal_tindakanCreateOrConnectWithoutAyamInput[]
+    createMany?: jadwal_tindakanCreateManyAyamInputEnvelope
+    connect?: jadwal_tindakanWhereUniqueInput | jadwal_tindakanWhereUniqueInput[]
+  }
+
   export type jadwal_vaksinasiUncheckedCreateNestedManyWithoutAyamInput = {
     create?: XOR<jadwal_vaksinasiCreateWithoutAyamInput, jadwal_vaksinasiUncheckedCreateWithoutAyamInput> | jadwal_vaksinasiCreateWithoutAyamInput[] | jadwal_vaksinasiUncheckedCreateWithoutAyamInput[]
     connectOrCreate?: jadwal_vaksinasiCreateOrConnectWithoutAyamInput | jadwal_vaksinasiCreateOrConnectWithoutAyamInput[]
@@ -18340,6 +19682,13 @@ export namespace Prisma {
     connectOrCreate?: mortalitasCreateOrConnectWithoutAyamInput | mortalitasCreateOrConnectWithoutAyamInput[]
     createMany?: mortalitasCreateManyAyamInputEnvelope
     connect?: mortalitasWhereUniqueInput | mortalitasWhereUniqueInput[]
+  }
+
+  export type jadwal_tindakanUncheckedCreateNestedManyWithoutAyamInput = {
+    create?: XOR<jadwal_tindakanCreateWithoutAyamInput, jadwal_tindakanUncheckedCreateWithoutAyamInput> | jadwal_tindakanCreateWithoutAyamInput[] | jadwal_tindakanUncheckedCreateWithoutAyamInput[]
+    connectOrCreate?: jadwal_tindakanCreateOrConnectWithoutAyamInput | jadwal_tindakanCreateOrConnectWithoutAyamInput[]
+    createMany?: jadwal_tindakanCreateManyAyamInputEnvelope
+    connect?: jadwal_tindakanWhereUniqueInput | jadwal_tindakanWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -18410,6 +19759,20 @@ export namespace Prisma {
     deleteMany?: mortalitasScalarWhereInput | mortalitasScalarWhereInput[]
   }
 
+  export type jadwal_tindakanUpdateManyWithoutAyamNestedInput = {
+    create?: XOR<jadwal_tindakanCreateWithoutAyamInput, jadwal_tindakanUncheckedCreateWithoutAyamInput> | jadwal_tindakanCreateWithoutAyamInput[] | jadwal_tindakanUncheckedCreateWithoutAyamInput[]
+    connectOrCreate?: jadwal_tindakanCreateOrConnectWithoutAyamInput | jadwal_tindakanCreateOrConnectWithoutAyamInput[]
+    upsert?: jadwal_tindakanUpsertWithWhereUniqueWithoutAyamInput | jadwal_tindakanUpsertWithWhereUniqueWithoutAyamInput[]
+    createMany?: jadwal_tindakanCreateManyAyamInputEnvelope
+    set?: jadwal_tindakanWhereUniqueInput | jadwal_tindakanWhereUniqueInput[]
+    disconnect?: jadwal_tindakanWhereUniqueInput | jadwal_tindakanWhereUniqueInput[]
+    delete?: jadwal_tindakanWhereUniqueInput | jadwal_tindakanWhereUniqueInput[]
+    connect?: jadwal_tindakanWhereUniqueInput | jadwal_tindakanWhereUniqueInput[]
+    update?: jadwal_tindakanUpdateWithWhereUniqueWithoutAyamInput | jadwal_tindakanUpdateWithWhereUniqueWithoutAyamInput[]
+    updateMany?: jadwal_tindakanUpdateManyWithWhereWithoutAyamInput | jadwal_tindakanUpdateManyWithWhereWithoutAyamInput[]
+    deleteMany?: jadwal_tindakanScalarWhereInput | jadwal_tindakanScalarWhereInput[]
+  }
+
   export type jadwal_vaksinasiUncheckedUpdateManyWithoutAyamNestedInput = {
     create?: XOR<jadwal_vaksinasiCreateWithoutAyamInput, jadwal_vaksinasiUncheckedCreateWithoutAyamInput> | jadwal_vaksinasiCreateWithoutAyamInput[] | jadwal_vaksinasiUncheckedCreateWithoutAyamInput[]
     connectOrCreate?: jadwal_vaksinasiCreateOrConnectWithoutAyamInput | jadwal_vaksinasiCreateOrConnectWithoutAyamInput[]
@@ -18464,6 +19827,20 @@ export namespace Prisma {
     update?: mortalitasUpdateWithWhereUniqueWithoutAyamInput | mortalitasUpdateWithWhereUniqueWithoutAyamInput[]
     updateMany?: mortalitasUpdateManyWithWhereWithoutAyamInput | mortalitasUpdateManyWithWhereWithoutAyamInput[]
     deleteMany?: mortalitasScalarWhereInput | mortalitasScalarWhereInput[]
+  }
+
+  export type jadwal_tindakanUncheckedUpdateManyWithoutAyamNestedInput = {
+    create?: XOR<jadwal_tindakanCreateWithoutAyamInput, jadwal_tindakanUncheckedCreateWithoutAyamInput> | jadwal_tindakanCreateWithoutAyamInput[] | jadwal_tindakanUncheckedCreateWithoutAyamInput[]
+    connectOrCreate?: jadwal_tindakanCreateOrConnectWithoutAyamInput | jadwal_tindakanCreateOrConnectWithoutAyamInput[]
+    upsert?: jadwal_tindakanUpsertWithWhereUniqueWithoutAyamInput | jadwal_tindakanUpsertWithWhereUniqueWithoutAyamInput[]
+    createMany?: jadwal_tindakanCreateManyAyamInputEnvelope
+    set?: jadwal_tindakanWhereUniqueInput | jadwal_tindakanWhereUniqueInput[]
+    disconnect?: jadwal_tindakanWhereUniqueInput | jadwal_tindakanWhereUniqueInput[]
+    delete?: jadwal_tindakanWhereUniqueInput | jadwal_tindakanWhereUniqueInput[]
+    connect?: jadwal_tindakanWhereUniqueInput | jadwal_tindakanWhereUniqueInput[]
+    update?: jadwal_tindakanUpdateWithWhereUniqueWithoutAyamInput | jadwal_tindakanUpdateWithWhereUniqueWithoutAyamInput[]
+    updateMany?: jadwal_tindakanUpdateManyWithWhereWithoutAyamInput | jadwal_tindakanUpdateManyWithWhereWithoutAyamInput[]
+    deleteMany?: jadwal_tindakanScalarWhereInput | jadwal_tindakanScalarWhereInput[]
   }
 
   export type jadwal_vaksinasiCreateNestedManyWithoutVaksinInput = {
@@ -18646,6 +20023,20 @@ export namespace Prisma {
     upsert?: ObatUpsertWithoutJadwal_ObatInput
     connect?: ObatWhereUniqueInput
     update?: XOR<XOR<ObatUpdateToOneWithWhereWithoutJadwal_ObatInput, ObatUpdateWithoutJadwal_ObatInput>, ObatUncheckedUpdateWithoutJadwal_ObatInput>
+  }
+
+  export type AyamCreateNestedOneWithoutJadwalTindakanInput = {
+    create?: XOR<AyamCreateWithoutJadwalTindakanInput, AyamUncheckedCreateWithoutJadwalTindakanInput>
+    connectOrCreate?: AyamCreateOrConnectWithoutJadwalTindakanInput
+    connect?: AyamWhereUniqueInput
+  }
+
+  export type AyamUpdateOneRequiredWithoutJadwalTindakanNestedInput = {
+    create?: XOR<AyamCreateWithoutJadwalTindakanInput, AyamUncheckedCreateWithoutJadwalTindakanInput>
+    connectOrCreate?: AyamCreateOrConnectWithoutJadwalTindakanInput
+    upsert?: AyamUpsertWithoutJadwalTindakanInput
+    connect?: AyamWhereUniqueInput
+    update?: XOR<XOR<AyamUpdateToOneWithWhereWithoutJadwalTindakanInput, AyamUpdateWithoutJadwalTindakanInput>, AyamUncheckedUpdateWithoutJadwalTindakanInput>
   }
 
   export type AyamCreateNestedOneWithoutPenyakitInput = {
@@ -19104,6 +20495,38 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type jadwal_tindakanCreateWithoutAyamInput = {
+    id?: string
+    tanggal: Date | string
+    keterangan: string
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type jadwal_tindakanUncheckedCreateWithoutAyamInput = {
+    id?: string
+    tanggal: Date | string
+    keterangan: string
+    sudah?: boolean
+    send_notification?: boolean
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type jadwal_tindakanCreateOrConnectWithoutAyamInput = {
+    where: jadwal_tindakanWhereUniqueInput
+    create: XOR<jadwal_tindakanCreateWithoutAyamInput, jadwal_tindakanUncheckedCreateWithoutAyamInput>
+  }
+
+  export type jadwal_tindakanCreateManyAyamInputEnvelope = {
+    data: jadwal_tindakanCreateManyAyamInput | jadwal_tindakanCreateManyAyamInput[]
+    skipDuplicates?: boolean
+  }
+
   export type jadwal_vaksinasiUpsertWithWhereUniqueWithoutAyamInput = {
     where: jadwal_vaksinasiWhereUniqueInput
     update: XOR<jadwal_vaksinasiUpdateWithoutAyamInput, jadwal_vaksinasiUncheckedUpdateWithoutAyamInput>
@@ -19230,6 +20653,37 @@ export namespace Prisma {
     deleted?: BoolFilter<"mortalitas"> | boolean
     createdAt?: DateTimeFilter<"mortalitas"> | Date | string
     updatedAt?: DateTimeFilter<"mortalitas"> | Date | string
+  }
+
+  export type jadwal_tindakanUpsertWithWhereUniqueWithoutAyamInput = {
+    where: jadwal_tindakanWhereUniqueInput
+    update: XOR<jadwal_tindakanUpdateWithoutAyamInput, jadwal_tindakanUncheckedUpdateWithoutAyamInput>
+    create: XOR<jadwal_tindakanCreateWithoutAyamInput, jadwal_tindakanUncheckedCreateWithoutAyamInput>
+  }
+
+  export type jadwal_tindakanUpdateWithWhereUniqueWithoutAyamInput = {
+    where: jadwal_tindakanWhereUniqueInput
+    data: XOR<jadwal_tindakanUpdateWithoutAyamInput, jadwal_tindakanUncheckedUpdateWithoutAyamInput>
+  }
+
+  export type jadwal_tindakanUpdateManyWithWhereWithoutAyamInput = {
+    where: jadwal_tindakanScalarWhereInput
+    data: XOR<jadwal_tindakanUpdateManyMutationInput, jadwal_tindakanUncheckedUpdateManyWithoutAyamInput>
+  }
+
+  export type jadwal_tindakanScalarWhereInput = {
+    AND?: jadwal_tindakanScalarWhereInput | jadwal_tindakanScalarWhereInput[]
+    OR?: jadwal_tindakanScalarWhereInput[]
+    NOT?: jadwal_tindakanScalarWhereInput | jadwal_tindakanScalarWhereInput[]
+    id?: StringFilter<"jadwal_tindakan"> | string
+    ayamId?: StringFilter<"jadwal_tindakan"> | string
+    tanggal?: DateTimeFilter<"jadwal_tindakan"> | Date | string
+    keterangan?: StringFilter<"jadwal_tindakan"> | string
+    sudah?: BoolFilter<"jadwal_tindakan"> | boolean
+    send_notification?: BoolFilter<"jadwal_tindakan"> | boolean
+    deleted?: BoolFilter<"jadwal_tindakan"> | boolean
+    createdAt?: DateTimeFilter<"jadwal_tindakan"> | Date | string
+    updatedAt?: DateTimeFilter<"jadwal_tindakan"> | Date | string
   }
 
   export type jadwal_vaksinasiCreateWithoutVaksinInput = {
@@ -19402,6 +20856,7 @@ export namespace Prisma {
     JadwalObat?: Jadwal_ObatCreateNestedManyWithoutAyamInput
     Penyakit?: penyakitCreateNestedManyWithoutAyamInput
     Mortalitas?: mortalitasCreateNestedManyWithoutAyamInput
+    JadwalTindakan?: jadwal_tindakanCreateNestedManyWithoutAyamInput
   }
 
   export type AyamUncheckedCreateWithoutJadwalVaksinasiInput = {
@@ -19420,6 +20875,7 @@ export namespace Prisma {
     JadwalObat?: Jadwal_ObatUncheckedCreateNestedManyWithoutAyamInput
     Penyakit?: penyakitUncheckedCreateNestedManyWithoutAyamInput
     Mortalitas?: mortalitasUncheckedCreateNestedManyWithoutAyamInput
+    JadwalTindakan?: jadwal_tindakanUncheckedCreateNestedManyWithoutAyamInput
   }
 
   export type AyamCreateOrConnectWithoutJadwalVaksinasiInput = {
@@ -19485,6 +20941,7 @@ export namespace Prisma {
     JadwalObat?: Jadwal_ObatUpdateManyWithoutAyamNestedInput
     Penyakit?: penyakitUpdateManyWithoutAyamNestedInput
     Mortalitas?: mortalitasUpdateManyWithoutAyamNestedInput
+    JadwalTindakan?: jadwal_tindakanUpdateManyWithoutAyamNestedInput
   }
 
   export type AyamUncheckedUpdateWithoutJadwalVaksinasiInput = {
@@ -19503,6 +20960,7 @@ export namespace Prisma {
     JadwalObat?: Jadwal_ObatUncheckedUpdateManyWithoutAyamNestedInput
     Penyakit?: penyakitUncheckedUpdateManyWithoutAyamNestedInput
     Mortalitas?: mortalitasUncheckedUpdateManyWithoutAyamNestedInput
+    JadwalTindakan?: jadwal_tindakanUncheckedUpdateManyWithoutAyamNestedInput
   }
 
   export type VaksinUpsertWithoutJasadwalVaksinasiInput = {
@@ -19558,6 +21016,7 @@ export namespace Prisma {
     JadwalVaksinasi?: jadwal_vaksinasiCreateNestedManyWithoutAyamInput
     Penyakit?: penyakitCreateNestedManyWithoutAyamInput
     Mortalitas?: mortalitasCreateNestedManyWithoutAyamInput
+    JadwalTindakan?: jadwal_tindakanCreateNestedManyWithoutAyamInput
   }
 
   export type AyamUncheckedCreateWithoutJadwalObatInput = {
@@ -19576,6 +21035,7 @@ export namespace Prisma {
     JadwalVaksinasi?: jadwal_vaksinasiUncheckedCreateNestedManyWithoutAyamInput
     Penyakit?: penyakitUncheckedCreateNestedManyWithoutAyamInput
     Mortalitas?: mortalitasUncheckedCreateNestedManyWithoutAyamInput
+    JadwalTindakan?: jadwal_tindakanUncheckedCreateNestedManyWithoutAyamInput
   }
 
   export type AyamCreateOrConnectWithoutJadwalObatInput = {
@@ -19639,6 +21099,7 @@ export namespace Prisma {
     JadwalVaksinasi?: jadwal_vaksinasiUpdateManyWithoutAyamNestedInput
     Penyakit?: penyakitUpdateManyWithoutAyamNestedInput
     Mortalitas?: mortalitasUpdateManyWithoutAyamNestedInput
+    JadwalTindakan?: jadwal_tindakanUpdateManyWithoutAyamNestedInput
   }
 
   export type AyamUncheckedUpdateWithoutJadwalObatInput = {
@@ -19657,6 +21118,7 @@ export namespace Prisma {
     JadwalVaksinasi?: jadwal_vaksinasiUncheckedUpdateManyWithoutAyamNestedInput
     Penyakit?: penyakitUncheckedUpdateManyWithoutAyamNestedInput
     Mortalitas?: mortalitasUncheckedUpdateManyWithoutAyamNestedInput
+    JadwalTindakan?: jadwal_tindakanUncheckedUpdateManyWithoutAyamNestedInput
   }
 
   export type ObatUpsertWithoutJadwal_ObatInput = {
@@ -19694,6 +21156,98 @@ export namespace Prisma {
     Penyakit?: penyakitUncheckedUpdateManyWithoutObatNestedInput
   }
 
+  export type AyamCreateWithoutJadwalTindakanInput = {
+    id?: string
+    nama: string
+    jumlah: number
+    jenis: string
+    umur: number
+    gambar: string
+    kandang: string
+    pakan: JsonNullValueInput | InputJsonValue
+    obat: JsonNullValueInput | InputJsonValue
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    JadwalVaksinasi?: jadwal_vaksinasiCreateNestedManyWithoutAyamInput
+    JadwalObat?: Jadwal_ObatCreateNestedManyWithoutAyamInput
+    Penyakit?: penyakitCreateNestedManyWithoutAyamInput
+    Mortalitas?: mortalitasCreateNestedManyWithoutAyamInput
+  }
+
+  export type AyamUncheckedCreateWithoutJadwalTindakanInput = {
+    id?: string
+    nama: string
+    jumlah: number
+    jenis: string
+    umur: number
+    gambar: string
+    kandang: string
+    pakan: JsonNullValueInput | InputJsonValue
+    obat: JsonNullValueInput | InputJsonValue
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    JadwalVaksinasi?: jadwal_vaksinasiUncheckedCreateNestedManyWithoutAyamInput
+    JadwalObat?: Jadwal_ObatUncheckedCreateNestedManyWithoutAyamInput
+    Penyakit?: penyakitUncheckedCreateNestedManyWithoutAyamInput
+    Mortalitas?: mortalitasUncheckedCreateNestedManyWithoutAyamInput
+  }
+
+  export type AyamCreateOrConnectWithoutJadwalTindakanInput = {
+    where: AyamWhereUniqueInput
+    create: XOR<AyamCreateWithoutJadwalTindakanInput, AyamUncheckedCreateWithoutJadwalTindakanInput>
+  }
+
+  export type AyamUpsertWithoutJadwalTindakanInput = {
+    update: XOR<AyamUpdateWithoutJadwalTindakanInput, AyamUncheckedUpdateWithoutJadwalTindakanInput>
+    create: XOR<AyamCreateWithoutJadwalTindakanInput, AyamUncheckedCreateWithoutJadwalTindakanInput>
+    where?: AyamWhereInput
+  }
+
+  export type AyamUpdateToOneWithWhereWithoutJadwalTindakanInput = {
+    where?: AyamWhereInput
+    data: XOR<AyamUpdateWithoutJadwalTindakanInput, AyamUncheckedUpdateWithoutJadwalTindakanInput>
+  }
+
+  export type AyamUpdateWithoutJadwalTindakanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jumlah?: IntFieldUpdateOperationsInput | number
+    jenis?: StringFieldUpdateOperationsInput | string
+    umur?: IntFieldUpdateOperationsInput | number
+    gambar?: StringFieldUpdateOperationsInput | string
+    kandang?: StringFieldUpdateOperationsInput | string
+    pakan?: JsonNullValueInput | InputJsonValue
+    obat?: JsonNullValueInput | InputJsonValue
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    JadwalVaksinasi?: jadwal_vaksinasiUpdateManyWithoutAyamNestedInput
+    JadwalObat?: Jadwal_ObatUpdateManyWithoutAyamNestedInput
+    Penyakit?: penyakitUpdateManyWithoutAyamNestedInput
+    Mortalitas?: mortalitasUpdateManyWithoutAyamNestedInput
+  }
+
+  export type AyamUncheckedUpdateWithoutJadwalTindakanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    jumlah?: IntFieldUpdateOperationsInput | number
+    jenis?: StringFieldUpdateOperationsInput | string
+    umur?: IntFieldUpdateOperationsInput | number
+    gambar?: StringFieldUpdateOperationsInput | string
+    kandang?: StringFieldUpdateOperationsInput | string
+    pakan?: JsonNullValueInput | InputJsonValue
+    obat?: JsonNullValueInput | InputJsonValue
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    JadwalVaksinasi?: jadwal_vaksinasiUncheckedUpdateManyWithoutAyamNestedInput
+    JadwalObat?: Jadwal_ObatUncheckedUpdateManyWithoutAyamNestedInput
+    Penyakit?: penyakitUncheckedUpdateManyWithoutAyamNestedInput
+    Mortalitas?: mortalitasUncheckedUpdateManyWithoutAyamNestedInput
+  }
+
   export type AyamCreateWithoutPenyakitInput = {
     id?: string
     nama: string
@@ -19710,6 +21264,7 @@ export namespace Prisma {
     JadwalVaksinasi?: jadwal_vaksinasiCreateNestedManyWithoutAyamInput
     JadwalObat?: Jadwal_ObatCreateNestedManyWithoutAyamInput
     Mortalitas?: mortalitasCreateNestedManyWithoutAyamInput
+    JadwalTindakan?: jadwal_tindakanCreateNestedManyWithoutAyamInput
   }
 
   export type AyamUncheckedCreateWithoutPenyakitInput = {
@@ -19728,6 +21283,7 @@ export namespace Prisma {
     JadwalVaksinasi?: jadwal_vaksinasiUncheckedCreateNestedManyWithoutAyamInput
     JadwalObat?: Jadwal_ObatUncheckedCreateNestedManyWithoutAyamInput
     Mortalitas?: mortalitasUncheckedCreateNestedManyWithoutAyamInput
+    JadwalTindakan?: jadwal_tindakanUncheckedCreateNestedManyWithoutAyamInput
   }
 
   export type AyamCreateOrConnectWithoutPenyakitInput = {
@@ -19791,6 +21347,7 @@ export namespace Prisma {
     JadwalVaksinasi?: jadwal_vaksinasiUpdateManyWithoutAyamNestedInput
     JadwalObat?: Jadwal_ObatUpdateManyWithoutAyamNestedInput
     Mortalitas?: mortalitasUpdateManyWithoutAyamNestedInput
+    JadwalTindakan?: jadwal_tindakanUpdateManyWithoutAyamNestedInput
   }
 
   export type AyamUncheckedUpdateWithoutPenyakitInput = {
@@ -19809,6 +21366,7 @@ export namespace Prisma {
     JadwalVaksinasi?: jadwal_vaksinasiUncheckedUpdateManyWithoutAyamNestedInput
     JadwalObat?: Jadwal_ObatUncheckedUpdateManyWithoutAyamNestedInput
     Mortalitas?: mortalitasUncheckedUpdateManyWithoutAyamNestedInput
+    JadwalTindakan?: jadwal_tindakanUncheckedUpdateManyWithoutAyamNestedInput
   }
 
   export type ObatUpsertWithoutPenyakitInput = {
@@ -19862,6 +21420,7 @@ export namespace Prisma {
     JadwalVaksinasi?: jadwal_vaksinasiCreateNestedManyWithoutAyamInput
     JadwalObat?: Jadwal_ObatCreateNestedManyWithoutAyamInput
     Penyakit?: penyakitCreateNestedManyWithoutAyamInput
+    JadwalTindakan?: jadwal_tindakanCreateNestedManyWithoutAyamInput
   }
 
   export type AyamUncheckedCreateWithoutMortalitasInput = {
@@ -19880,6 +21439,7 @@ export namespace Prisma {
     JadwalVaksinasi?: jadwal_vaksinasiUncheckedCreateNestedManyWithoutAyamInput
     JadwalObat?: Jadwal_ObatUncheckedCreateNestedManyWithoutAyamInput
     Penyakit?: penyakitUncheckedCreateNestedManyWithoutAyamInput
+    JadwalTindakan?: jadwal_tindakanUncheckedCreateNestedManyWithoutAyamInput
   }
 
   export type AyamCreateOrConnectWithoutMortalitasInput = {
@@ -19914,6 +21474,7 @@ export namespace Prisma {
     JadwalVaksinasi?: jadwal_vaksinasiUpdateManyWithoutAyamNestedInput
     JadwalObat?: Jadwal_ObatUpdateManyWithoutAyamNestedInput
     Penyakit?: penyakitUpdateManyWithoutAyamNestedInput
+    JadwalTindakan?: jadwal_tindakanUpdateManyWithoutAyamNestedInput
   }
 
   export type AyamUncheckedUpdateWithoutMortalitasInput = {
@@ -19932,6 +21493,7 @@ export namespace Prisma {
     JadwalVaksinasi?: jadwal_vaksinasiUncheckedUpdateManyWithoutAyamNestedInput
     JadwalObat?: Jadwal_ObatUncheckedUpdateManyWithoutAyamNestedInput
     Penyakit?: penyakitUncheckedUpdateManyWithoutAyamNestedInput
+    JadwalTindakan?: jadwal_tindakanUncheckedUpdateManyWithoutAyamNestedInput
   }
 
   export type jadwal_vaksinasiCreateManyAyamInput = {
@@ -19977,6 +21539,17 @@ export namespace Prisma {
     tanggal: Date | string
     jumlah: number
     penyebab: string
+    deleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type jadwal_tindakanCreateManyAyamInput = {
+    id?: string
+    tanggal: Date | string
+    keterangan: string
+    sudah?: boolean
+    send_notification?: boolean
     deleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -20121,6 +21694,39 @@ export namespace Prisma {
     tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
     jumlah?: IntFieldUpdateOperationsInput | number
     penyebab?: StringFieldUpdateOperationsInput | string
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type jadwal_tindakanUpdateWithoutAyamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type jadwal_tindakanUncheckedUpdateWithoutAyamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
+    deleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type jadwal_tindakanUncheckedUpdateManyWithoutAyamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tanggal?: DateTimeFieldUpdateOperationsInput | Date | string
+    keterangan?: StringFieldUpdateOperationsInput | string
+    sudah?: BoolFieldUpdateOperationsInput | boolean
+    send_notification?: BoolFieldUpdateOperationsInput | boolean
     deleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

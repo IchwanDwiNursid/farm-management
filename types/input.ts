@@ -86,6 +86,12 @@ export const JadwalObatSchema = z.object({
     keterangan: z.string().nullable()
 })
 
+export const JadwalTindakanSchema = z.object({
+    nama : z.string(),
+    tanggal: z.coerce.date(),
+    keterangan: z.string().nullable()
+})
+
 export const CostSchema = z.object({
     harga : z.string(),
     keterangan: z.string()
@@ -104,4 +110,5 @@ export type RegisterType = z.infer<typeof RegisterSchema>
 export type BelanjaType = z.infer<typeof BelanjaSchema>
 export type JadwalVaksinType = z.infer<typeof JadwalVaksinSchema>
 export type JadwalObatType = z.infer<typeof JadwalObatSchema>
+export type JadwalTindakanType = z.infer<typeof JadwalTindakanSchema>
 export type CostType = z.infer<typeof CostSchema>
