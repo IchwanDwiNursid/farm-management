@@ -110,7 +110,6 @@ export const GET = async () => {
                 <table style="width: 100%; border-collapse: collapse; text-align: left;">
                     <thead>
                         <tr>
-                            <th style="border:1px solid #000; padding:8px; width:20px;">No</th>
                             <th style="border:1px solid #000; padding:8px;">Tanggal</th>
                             <th style="border:1px solid #000; padding:8px;">Harga</th>
                             <th style="border:1px solid #000; padding:8px;">Keterangan</th>
