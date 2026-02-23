@@ -30,7 +30,7 @@ export const GET = async () => {
         })
 
         let tableHTML = `
-            <div style="width: 85%; overflow-x: auto; margin-top: 20px; margin-left: auto; margin-right: auto;">
+            <div style="width: 85%; overflow-x: auto; page-break-before: always; margin-left: auto; margin-right: auto;">
                 <h2>Pendapatan Bulan <span style="color:red;">${bulanSekarang}</span></h2>
                 <table style="width: 100%; border-collapse: collapse; text-align: left;">
                     <thead>
@@ -71,7 +71,7 @@ export const GET = async () => {
         
         tableHTML += `
             <tr>
-                <td colspan="2" style="border:1px solid #000; padding:8px; font-weight:bold; text-align:right;">
+                <td colspan="3" style="border:1px solid #000; padding:8px; font-weight:bold; text-align:right;">
                     TOTAL
                 </td>
                 <td style="border:1px solid #000; padding:8px; font-weight:bold; text-align:right;">
@@ -105,7 +105,7 @@ export const GET = async () => {
 
         tableHTML += `
             <div style="break-before: page;"></div>
-            <div style="width: 85%; overflow-x: auto; margin-top: 20px; margin-left: auto; margin-right: auto; margin-top: 15px;">
+            <div style="width: 85%; overflow-x: auto; margin-left: auto; margin-right: auto; margin-top: 15px;">
                 <h2>Pengeluaran Bulan <span style="color:red;">${bulanSekarang}</span></h2>
                 <table style="width: 100%; border-collapse: collapse; text-align: left;">
                     <thead>
@@ -181,6 +181,10 @@ export const GET = async () => {
         const pdfBuffer = await page.pdf({
             format: "A4",
             printBackground: true,
+            margin: {
+                top: "30px",
+                bottom: "30px"
+            }
         });
 
         await browser.close();
