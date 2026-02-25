@@ -25,7 +25,7 @@ export const GET = async () => {
                 keterangan: true,
             },
             orderBy: {
-                createdAt: 'desc'
+                createdAt: 'asc'
             }
         })
 
@@ -99,6 +99,9 @@ export const GET = async () => {
                 harga: true,
                 keterangan: true,
                 createdAt: true,
+            },
+            orderBy: {
+                createdAt: "asc"
             }
         })
 
