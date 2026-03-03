@@ -193,12 +193,12 @@ export const GET = async () => {
         await browser.close();
 
         console.log(`pendapatan-${dateNow}.pdf`);
-        console.log("PDF berhasil dibuat");
+        console.log("PDF berhasil load");
 
         return new Response(pdfBuffer, {
             headers: {
                 "Content-Type": "application/pdf",
-                "Content-Disposition": `attachment; filename=pendapatan-${dateNow}.pdf`
+                "Content-Disposition": `inline; filename=pendapatan-${dateNow}.pdf`
             }
         });
     }catch(error) {
