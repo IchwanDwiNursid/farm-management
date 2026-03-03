@@ -27,7 +27,7 @@ const PanenPage = async() => {
               Tambah
             </Link>
             <div>
-              <form action="/api/download-panen">
+              <form action="/api/download-panen" target='_blank'>
                 <button type="submit" className='btn btn-danger'>Download <span className='bi bi-file-earmark-pdf'></span> </button>
               </form>
             </div>
