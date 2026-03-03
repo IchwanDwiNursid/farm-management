@@ -1,7 +1,7 @@
 "use client"
 
-import { createJadwalObat, createJadwalTindakan } from '@/service/action'
-import { JadwalObatSchema, JadwalObatType, JadwalTindakanSchema, JadwalTindakanType } from '@/types/input'
+import {createJadwalTindakan } from '@/service/action'
+import {JadwalTindakanSchema, JadwalTindakanType } from '@/types/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -64,7 +64,7 @@ const TambahJadwalTindakanForm = () => {
       <div className="mb-3">
             <label htmlFor="tanggal" className="form-label">Tanggal</label>
             <input
-                {...register("tanggal")}
+                {...register("tanggal", {valueAsDate: true})}
                 type="date"
                 className="form-control bg-transparent"
                 id="tanggal"

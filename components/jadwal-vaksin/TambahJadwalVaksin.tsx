@@ -96,7 +96,7 @@ const TambahJadwalVaksin = () => {
       <div className="mb-3">
             <label htmlFor="tanggal" className="form-label">Tanggal</label>
             <input
-                {...register("tanggal")}
+                {...register("tanggal", {valueAsDate: true})}
                 type="date"
                 className="form-control bg-transparent"
                 id="tanggal"

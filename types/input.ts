@@ -75,20 +75,20 @@ export const RegisterSchema = z.object({
 export const JadwalVaksinSchema = z.object({
     nama : z.string(),
     vaksin: z.string(),
-    tanggal: z.coerce.date(),
+    tanggal: z.date(),
     keterangan: z.string().nullable()
 })
 
 export const JadwalObatSchema = z.object({
     nama : z.string(),
     obat: z.string(),
-    tanggal: z.coerce.date(),
+    tanggal: z.date(),
     keterangan: z.string().nullable()
 })
 
 export const JadwalTindakanSchema = z.object({
     nama : z.string(),
-    tanggal: z.coerce.date(),
+    tanggal: z.date(),
     keterangan: z.string().nullable()
 })
 

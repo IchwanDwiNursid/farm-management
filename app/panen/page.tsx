@@ -1,4 +1,4 @@
-import { getIncome, PrintSqlToPdf } from '@/service/action';
+import { PrintSqlToPdf } from '@/service/action';
 import {getAllPanen, getTotalPanenPerBulan } from '@/service/query'
 import Link from 'next/link'
 import { redirect } from 'next/navigation';
