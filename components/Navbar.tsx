@@ -108,7 +108,7 @@ const Navbar = () => {
                           </a>
                         </li>
                         <li>
-                          <a className="dropdown-item" href="#">
+                          <a className="dropdown-item" href="https://docs.google.com/spreadsheets/d/1nEAoS7lq-iMR8MtzHF_gqdl-DyzmTLfbC1zfIpntUhI/edit?gid=0#gid=0" target="_blank">
                             NOTE
                           </a>
                         </li>
