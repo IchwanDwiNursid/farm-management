@@ -51,3 +51,31 @@
         opacity: 0;
     }
 }
+
+.wave {
+  position: relative;
+  overflow: hidden;
+  background: #e0e0e0;
+}
+
+.wave::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150px;
+  width: 150px;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(127, 201, 228, 0.6),
+    transparent
+  );
+  animation: wave 1.2s infinite;
+}
+
+@keyframes wave {
+  100% {
+    left: 100%;
+  }
+}

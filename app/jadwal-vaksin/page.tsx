@@ -208,7 +208,7 @@ const JadwalVaksin = async () => {
                       {isTodayOrAfter(item.tanggal) && <Pulse/>}
                       {new Date(item.tanggal).toLocaleDateString("id-ID")}
                     </td>
-                    <td className="align-middle text-center">{item.keterangan}</td>
+                    <td className="align-middle text-center wave">{item.keterangan}</td>
                     {item.sudah ? (
                         <td className="align-middle text-center">
                             <form action={async () => {
