@@ -195,7 +195,7 @@ export const GET = async () => {
         console.log(`pendapatan-${dateNow}.pdf`);
         console.log("PDF berhasil load");
 
-        return new Response(pdfBuffer, {
+        return new Response(pdfBuffer.buffer, {
             headers: {
                 "Content-Type": "application/pdf",
                 "Content-Disposition": `inline; filename=pendapatan-${dateNow}.pdf`
