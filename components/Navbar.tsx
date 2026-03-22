@@ -1,14 +1,12 @@
 "use client";
 import React from "react";
-import { notifications, NotificationsType } from "@/app/generated/prisma";
+import { notifications } from "@/app/generated/prisma";
 import { useUser } from "@/context/UserContext";
 import { logout } from "@/service/action";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { GoBellFill } from "react-icons/go";
-import SoundNotification from "./notification/SoundNotification";
 import Pulse from "./Pulse";
 
 const Navbar = () => {

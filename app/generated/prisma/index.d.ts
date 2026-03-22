@@ -106,7 +106,8 @@ export type Tindakan = (typeof Tindakan)[keyof typeof Tindakan]
 
 export const NotificationsType: {
   vaksin: 'vaksin',
-  obat: 'obat'
+  obat: 'obat',
+  tindakan: 'tindakan'
 };
 
 export type NotificationsType = (typeof NotificationsType)[keyof typeof NotificationsType]
@@ -14143,6 +14144,7 @@ export namespace Prisma {
     read: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    typeId: string | null
   }
 
   export type NotificationsMaxAggregateOutputType = {
@@ -14152,6 +14154,7 @@ export namespace Prisma {
     read: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    typeId: string | null
   }
 
   export type NotificationsCountAggregateOutputType = {
@@ -14161,6 +14164,7 @@ export namespace Prisma {
     read: number
     createdAt: number
     updatedAt: number
+    typeId: number
     _all: number
   }
 
@@ -14172,6 +14176,7 @@ export namespace Prisma {
     read?: true
     createdAt?: true
     updatedAt?: true
+    typeId?: true
   }
 
   export type NotificationsMaxAggregateInputType = {
@@ -14181,6 +14186,7 @@ export namespace Prisma {
     read?: true
     createdAt?: true
     updatedAt?: true
+    typeId?: true
   }
 
   export type NotificationsCountAggregateInputType = {
@@ -14190,6 +14196,7 @@ export namespace Prisma {
     read?: true
     createdAt?: true
     updatedAt?: true
+    typeId?: true
     _all?: true
   }
 
@@ -14272,6 +14279,7 @@ export namespace Prisma {
     read: boolean
     createdAt: Date
     updatedAt: Date
+    typeId: string
     _count: NotificationsCountAggregateOutputType | null
     _min: NotificationsMinAggregateOutputType | null
     _max: NotificationsMaxAggregateOutputType | null
@@ -14298,6 +14306,7 @@ export namespace Prisma {
     read?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    typeId?: boolean
   }, ExtArgs["result"]["notifications"]>
 
 
@@ -14309,9 +14318,10 @@ export namespace Prisma {
     read?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    typeId?: boolean
   }
 
-  export type notificationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "message" | "read" | "createdAt" | "updatedAt", ExtArgs["result"]["notifications"]>
+  export type notificationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "message" | "read" | "createdAt" | "updatedAt" | "typeId", ExtArgs["result"]["notifications"]>
 
   export type $notificationsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "notifications"
@@ -14323,6 +14333,7 @@ export namespace Prisma {
       read: boolean
       createdAt: Date
       updatedAt: Date
+      typeId: string
     }, ExtArgs["result"]["notifications"]>
     composites: {}
   }
@@ -14698,6 +14709,7 @@ export namespace Prisma {
     readonly read: FieldRef<"notifications", 'Boolean'>
     readonly createdAt: FieldRef<"notifications", 'DateTime'>
     readonly updatedAt: FieldRef<"notifications", 'DateTime'>
+    readonly typeId: FieldRef<"notifications", 'String'>
   }
     
 
@@ -16137,7 +16149,8 @@ export namespace Prisma {
     message: 'message',
     read: 'read',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    typeId: 'typeId'
   };
 
   export type NotificationsScalarFieldEnum = (typeof NotificationsScalarFieldEnum)[keyof typeof NotificationsScalarFieldEnum]
@@ -16318,7 +16331,8 @@ export namespace Prisma {
 
   export const notificationsOrderByRelevanceFieldEnum: {
     id: 'id',
-    message: 'message'
+    message: 'message',
+    typeId: 'typeId'
   };
 
   export type notificationsOrderByRelevanceFieldEnum = (typeof notificationsOrderByRelevanceFieldEnum)[keyof typeof notificationsOrderByRelevanceFieldEnum]
@@ -17370,6 +17384,7 @@ export namespace Prisma {
     read?: BoolFilter<"notifications"> | boolean
     createdAt?: DateTimeFilter<"notifications"> | Date | string
     updatedAt?: DateTimeFilter<"notifications"> | Date | string
+    typeId?: StringFilter<"notifications"> | string
   }
 
   export type notificationsOrderByWithRelationInput = {
@@ -17379,11 +17394,13 @@ export namespace Prisma {
     read?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    typeId?: SortOrder
     _relevance?: notificationsOrderByRelevanceInput
   }
 
   export type notificationsWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    typeId?: string
     AND?: notificationsWhereInput | notificationsWhereInput[]
     OR?: notificationsWhereInput[]
     NOT?: notificationsWhereInput | notificationsWhereInput[]
@@ -17392,7 +17409,7 @@ export namespace Prisma {
     read?: BoolFilter<"notifications"> | boolean
     createdAt?: DateTimeFilter<"notifications"> | Date | string
     updatedAt?: DateTimeFilter<"notifications"> | Date | string
-  }, "id">
+  }, "id" | "typeId">
 
   export type notificationsOrderByWithAggregationInput = {
     id?: SortOrder
@@ -17401,6 +17418,7 @@ export namespace Prisma {
     read?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    typeId?: SortOrder
     _count?: notificationsCountOrderByAggregateInput
     _max?: notificationsMaxOrderByAggregateInput
     _min?: notificationsMinOrderByAggregateInput
@@ -17416,6 +17434,7 @@ export namespace Prisma {
     read?: BoolWithAggregatesFilter<"notifications"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"notifications"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"notifications"> | Date | string
+    typeId?: StringWithAggregatesFilter<"notifications"> | string
   }
 
   export type costWhereInput = {
@@ -18526,6 +18545,7 @@ export namespace Prisma {
     read?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    typeId: string
   }
 
   export type notificationsUncheckedCreateInput = {
@@ -18535,6 +18555,7 @@ export namespace Prisma {
     read?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    typeId: string
   }
 
   export type notificationsUpdateInput = {
@@ -18544,6 +18565,7 @@ export namespace Prisma {
     read?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    typeId?: StringFieldUpdateOperationsInput | string
   }
 
   export type notificationsUncheckedUpdateInput = {
@@ -18553,6 +18575,7 @@ export namespace Prisma {
     read?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    typeId?: StringFieldUpdateOperationsInput | string
   }
 
   export type notificationsCreateManyInput = {
@@ -18562,6 +18585,7 @@ export namespace Prisma {
     read?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    typeId: string
   }
 
   export type notificationsUpdateManyMutationInput = {
@@ -18571,6 +18595,7 @@ export namespace Prisma {
     read?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    typeId?: StringFieldUpdateOperationsInput | string
   }
 
   export type notificationsUncheckedUpdateManyInput = {
@@ -18580,6 +18605,7 @@ export namespace Prisma {
     read?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    typeId?: StringFieldUpdateOperationsInput | string
   }
 
   export type costCreateInput = {
@@ -19545,6 +19571,7 @@ export namespace Prisma {
     read?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    typeId?: SortOrder
   }
 
   export type notificationsMaxOrderByAggregateInput = {
@@ -19554,6 +19581,7 @@ export namespace Prisma {
     read?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    typeId?: SortOrder
   }
 
   export type notificationsMinOrderByAggregateInput = {
@@ -19563,6 +19591,7 @@ export namespace Prisma {
     read?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    typeId?: SortOrder
   }
 
   export type EnumNotificationsTypeWithAggregatesFilter<$PrismaModel = never> = {

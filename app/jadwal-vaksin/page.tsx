@@ -1,5 +1,5 @@
 import Pulse from '@/components/Pulse'
-import { deleteJadwalObat, deleteJadwalVaksinasi, updateJadwalObat, updateJadwalVaksinasi } from '@/service/action'
+import { deleteJadwalObat, deleteJadwalTindakan, deleteJadwalVaksinasi, updateJadwalObat, updateJadwalTindakan, updateJadwalVaksinasi } from '@/service/action'
 import { getAllJadwalObat, getAllJadwalTindakan, getAllJadwalVaksinasi} from '@/service/query'
 import Link from 'next/link'
 import React from 'react'
@@ -213,7 +213,7 @@ const JadwalVaksin = async () => {
                         <td className="align-middle text-center">
                             <form action={async () => {
                                 "use server"
-                                await deleteJadwalObat(item.id);
+                                await deleteJadwalTindakan(item.id);
                                 }}>
                                 <button type="submit" className="btn btn-sm btn-danger me-2">Hapus</button>
                             </form>
@@ -222,7 +222,7 @@ const JadwalVaksin = async () => {
                         <td className="align-middle text-center">
                             <form action={async () => {
                                 "use server"
-                                await updateJadwalObat(item.id);
+                                await updateJadwalTindakan(item.id);
                                 }}>
                                 <button type="submit" className="btn btn-sm btn-success me-2">Sudah</button>
                             </form>

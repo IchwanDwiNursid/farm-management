@@ -217,6 +217,7 @@ model belanja {
 enum NotificationsType {
   vaksin
   obat
+  tindakan
 }
 
 model notifications {
@@ -226,6 +227,7 @@ model notifications {
   read      Boolean           @default(false)
   createdAt DateTime          @default(now())
   updatedAt DateTime          @updatedAt
+  typeId    String            @unique
 }
 
 model cost {

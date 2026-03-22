@@ -273,7 +273,8 @@ exports.Prisma.NotificationsScalarFieldEnum = {
   message: 'message',
   read: 'read',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  typeId: 'typeId'
 };
 
 exports.Prisma.CostScalarFieldEnum = {
@@ -397,7 +398,8 @@ exports.Prisma.belanjaOrderByRelevanceFieldEnum = {
 
 exports.Prisma.notificationsOrderByRelevanceFieldEnum = {
   id: 'id',
-  message: 'message'
+  message: 'message',
+  typeId: 'typeId'
 };
 
 exports.Prisma.costOrderByRelevanceFieldEnum = {
@@ -416,7 +418,8 @@ exports.Tindakan = exports.$Enums.Tindakan = {
 
 exports.NotificationsType = exports.$Enums.NotificationsType = {
   vaksin: 'vaksin',
-  obat: 'obat'
+  obat: 'obat',
+  tindakan: 'tindakan'
 };
 
 exports.Prisma.ModelName = {

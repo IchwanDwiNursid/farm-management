@@ -123,12 +123,21 @@ export const createPenyakit = async (data: PenyakitType) => {
 
 export const updateJadwalVaksinasi = async (id: string) => {
     try {
-        await DB.jadwal_vaksinasi.update({
+        const jd_vk = await DB.jadwal_vaksinasi.update({
             where: {
                 id: id
             },
             data: {
                 sudah: true
+            }
+        })
+
+        await DB.notifications.update({
+            where: {
+                typeId: jd_vk.id
+            },
+            data: {
+                read: true
             }
         })
     } catch (error) {
@@ -141,7 +150,7 @@ export const updateJadwalVaksinasi = async (id: string) => {
 
 export const updateJadwalObat = async (id: string) => {
     try {
-        await DB.jadwal_Obat.update({
+        const jd_obat = await DB.jadwal_Obat.update({
             where: {
                 id: id
             },
@@ -149,8 +158,47 @@ export const updateJadwalObat = async (id: string) => {
                 sudah: true
             }
         })
+
+        // update notification
+        await DB.notifications.update({
+            where: {
+                typeId: jd_obat.id
+            },
+            data: {
+                read: true
+            }
+        })
     } catch (error) {
         console.error("Error updating jadwal vaksinasi:", error);
+        throw error;
+    }
+    
+    revalidatePath("/jadwal-vaksinasi");
+}
+
+export const updateJadwalTindakan = async (id: string) => {
+    try {
+        const jd_tindakan = await DB.jadwal_tindakan.update({
+            where: {
+                id: id
+            },
+            data: {
+                sudah: true
+            }
+        })
+
+        // update notifications
+        await DB.notifications.update({
+            where: {
+                typeId: jd_tindakan.id
+            },
+            data: {
+                read: true
+            }
+        })
+
+    } catch (error) {
+        console.error("Error updating jadwal tindakan", error);
         throw error;
     }
     
@@ -187,6 +235,24 @@ export const deleteJadwalObat = async (id: string) => {
         })
     } catch (error) {
         console.error("Error deleting jadwal vaksinasi:", error);
+        throw error;
+    }
+    
+    revalidatePath("/jadwal-vaksinasi");
+}
+
+export const deleteJadwalTindakan = async (id: string) => {
+    try {
+        await DB.jadwal_tindakan.update({
+            where: {
+                id: id
+            },
+            data: {
+                deleted: true
+            }
+        })
+    } catch (error) {
+        console.error("Error deleting jadwal tindakan:", error);
         throw error;
     }
     
@@ -612,7 +678,8 @@ const notificationsAlertVaksin = async() => {
 
         await DB.notifications.create({
             data: {
-                message: `JADWAL VAKSIN ID: ${s_vaksin.vaksin.nama} , HARUS SEGERA DILAKUKAN !!!`,
+                message: `JADWAL VAKSIN: ${s_vaksin.vaksin.nama} , HARUS SEGERA DILAKUKAN !!!`,
+                typeId: s_vaksin.id
             }
         })
 
@@ -674,7 +741,8 @@ const notificationsAlertObat = async() => {
         await DB.notifications.create({
             data: {
                 message: `JADWAL OBAT : ${s_obat.obat.nama} , HARUS SEGERA DILAKUKAN !!!`,
-                type: "obat"
+                type: "obat",
+                typeId: s_obat.id
             }
         })
 
@@ -691,12 +759,69 @@ const notificationsAlertObat = async() => {
     }
 };
 
+const notificationsAlertTindakan = async() => {
+    try{
+        const now = new Date();
+
+        const startOfDay = new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate(),
+            0, 0, 0, 0
+        );
+        
+        const endOfDay = new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate(),
+            23, 59, 59, 999
+        );
+
+        const s_tindakan = await DB.jadwal_tindakan.findFirst({
+            where: {
+                AND: {
+                    tanggal: {
+                        gte: startOfDay,
+                        lte: endOfDay,
+                    },
+                    send_notification: false
+                }
+            }
+        })
+
+        if(!s_tindakan){
+            logger.log("info", "No have limit schedule tindakan")
+            return
+        }
+
+        await DB.notifications.create({
+            data: {
+                message: `${s_tindakan.keterangan} , harus segera dilakukan !!!`,
+                type: "tindakan",
+                typeId: s_tindakan.id
+            }
+        })
+
+        await DB.jadwal_tindakan.update({
+            where: {
+                id: s_tindakan.id
+            },
+            data: {
+                send_notification: true
+            }
+        })
+    }catch(e){
+        console.log(e)
+    }
+};
+
 // cron job
 cron.schedule(
     "0 0 * * * *",
     async() => {
       await notificationsAlertVaksin();
       await notificationsAlertObat();
+      await notificationsAlertTindakan();
     },
     {
       timezone: "Asia/Jakarta",
