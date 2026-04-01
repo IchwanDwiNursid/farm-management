@@ -11,10 +11,6 @@ const PanenPage = async() => {
   }
   const totalPanenPerBulan = await getTotalPanenPerBulan() as []
 
-  async function handleDownloadPdf() {
-      "use server";
-      await PrintSqlToPdf();
-  }
 
   return (
     <div className="row" style={{ marginTop: 50 }}>
